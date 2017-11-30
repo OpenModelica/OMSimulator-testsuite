@@ -75,6 +75,16 @@ sub setbaselineone
     my $teardown_command = $info{"teardown_command"};
     my $stack_size = $info{"stack_size"};
     my $ulimit = ulimit_cmd($stack_size);
+    my ($ext) = $f =~ /(\.[^.]+)$/;
+    my $comment_prefix="//";
+    my $sim_exe="OMSimulator";
+    if ($ext eq '.py') {
+      $comment_prefix="##";
+      $sim_exe="OMSimulatorPython";
+    }
+    if ($ext eq '.lua') {
+      $comment_prefix="--";
+    }
 
     $log = "$tmpdir/log-$f";
     system "rm -f $log";
@@ -94,7 +104,7 @@ sub setbaselineone
       $env =~ s/:/\\;/g;
     }
     unlink "$testTempFile$f";
-    system "$env $ulimit $INSTALLDIR/bin/OMSimulator $f >>$log 2>&1";
+    system "$env $ulimit $INSTALLDIR/bin/$sim_exe $f >>$log 2>&1";
     if ($nodelete == 0 && open(TOREMOVE,"<$testTempFile$f")) {
       while(my $line = <TOREMOVE>) {
         $line =~ s/^\s*(.*?)\s*$/$1/;
@@ -111,24 +121,24 @@ sub setbaselineone
     open(SRC,"<$f");
 
     while(<SRC>) {
-      if (/^-- Result:/../^-- endResult/) {
+      if (/^$comment_prefix Result:/../^$comment_prefix endResult/) {
 
       } else {
         my $x = $_;
-        $x =~ s/^ *-- *Result:/-- Result:/;
+        $x =~ s/^ *$comment_prefix *Result:/$comment_prefix Result:/;
         print RES "$x";
       }
     }
-    print RES "-- Result:\n";
+    print RES "$comment_prefix Result:\n";
     while(<LOG>) {
       my $x = $_;
       if ($x ne "\n") {
-        print RES "-- $x";
+        print RES "$comment_prefix $x";
       } else {
-        print RES "--\n";
+        print RES "$comment_prefix\n";
       }
     }
-    print RES "-- endResult\n";
+    print RES "$comment_prefix endResult\n";
     close RES;
     close LOG;
     close SRC;
@@ -160,6 +170,11 @@ sub runone
     my $stack_size = $info{"stack_size"};
     my $ulimit = ulimit_cmd($stack_size);
     my $start_t = time;
+    my ($ext) = $f =~ /(\.[^.]+)$/;
+    my $sim_exe="OMSimulator";
+    if ($ext eq '.py') {
+      $sim_exe="OMSimulatorPython";
+    }
 
     $log = "$tmpdir/log-$f";
     system "rm -f $log";
@@ -179,7 +194,7 @@ sub runone
       $env =~ s/:/\\;/g;
     }
     unlink "$testTempFile$f";
-    system "$env $ulimit $INSTALLDIR/bin/OMSimulator $f >>$log 2>&1";
+    system "$env $ulimit $INSTALLDIR/bin/$sim_exe $f >>$log 2>&1";
     $retval = $?;
     if ($nodelete==0 && open(TOREMOVE,"<$testTempFile$f")) {
       while(my $line = <TOREMOVE>) {
@@ -252,26 +267,35 @@ sub dofile
         "stack_size" => "");
     $log = "$tmpdir/log-$f";
     $tc_err = 1;
+    my ($ext) = $f =~ /(\.[^.]+)$/;
+    my $comment_prefix="//";
+    if ($ext eq '.py') {
+      $comment_prefix="##";
+    }
+    if ($ext eq '.lua') {
+      $comment_prefix="--";
+    }
+
     # Find the expected result
     open(OUT,">$expected");
     open(IN,"<$f");
     while(<IN>) {
     # @adrpo - uncomment for debugging
     # print ($_);
-    if (/^-- Result:/../^-- endResult/) {
+    if (/^$comment_prefix Result:/../^$comment_prefix endResult/) {
         s/^[ \t]*//;
-        s/^-- Result://;
-        s/^-- endResult//;
+        s/^$comment_prefix Result://;
+        s/^$comment_prefix endResult//;
         s/[ \t]+/ /;
-        if (/^-- /) {
+        if (/^$comment_prefix /) {
           print OUT substr($_,3);
-        } elsif (/^--$/) {
+        } elsif (/^$comment_prefix$/) {
           print OUT substr($_,2);
         } elsif ($tc_err == 0)  {
             print "Error in testcase: $f\n";
             $tc_err = 1;
         }
-    } elsif (/^--[ \\|]*([a-z_]*):[ \\|]*([^\012\015\n\r]*)/) {
+    } elsif (/^$comment_prefix[ \\|]*([a-z_]*):[ \\|]*([^\012\015\n\r]*)/) {
         # @adrpo - uncomment for debugging
         # print "Noticed: $1 = $2\n";
         # $info{$1} = $value;
