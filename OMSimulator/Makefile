@@ -1,7 +1,7 @@
 TEST = ../rtest -v
 
 TESTFILES = \
-DualMassOscillator_cs.lua \
+DualMassOscillator_cs.py \
 DualMassOscillator_me.lua \
 DualMassOscillatorEq_cs.lua \
 DualMassOscillatorEq_me.lua \
