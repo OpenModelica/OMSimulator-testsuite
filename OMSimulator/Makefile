@@ -5,6 +5,7 @@ DualMassOscillator_cs.py \
 DualMassOscillator_me.lua \
 DualMassOscillatorEq_cs.lua \
 DualMassOscillatorEq_me.lua \
+RealNetwork1.py \
 
 # Run make failingtest
 FAILINGTESTFILES = \
