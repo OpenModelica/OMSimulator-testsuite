@@ -6,7 +6,7 @@ use File::Temp qw/ tempfile /;
 $cwd = getcwd;
 if ($cwd =~ m/(.*)OMSimulator\/(.+)$/) {
   $dirname = $2;
-  $INSTALLDIR = "$1/OMSimulator/install";
+  $INSTALLDIR = "$1/OMSimulator/install/linux";
 } else {
   print "You must run rtest from OMSimulator (was run from $cwd)\n";
   exit 0;

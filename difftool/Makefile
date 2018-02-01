@@ -3,7 +3,7 @@ CC = gcc
 EXT=".exe"
 endif
 
-OMBUILDDIR=../../install
+OMBUILDDIR=../../install/linux
 
 $(OMBUILDDIR)/bin/omc-diff$(EXT): lex.yy.o $(OMBUILDDIR)/bin
 	$(CC) -o $@ lex.yy.o
