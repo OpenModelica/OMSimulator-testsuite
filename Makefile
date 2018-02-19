@@ -11,5 +11,8 @@ OMSimulator.log: difftool
 	$(MAKE) -C OMSimulator -f Makefile test > $@
 	grep == OMSimulator.log
 
+OMFit.log: difftool
+	$(MAKE) -C OMFit -f Makefile test > $@
+
 difftool:
 	$(MAKE) -C difftool
