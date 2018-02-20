@@ -2,6 +2,7 @@ TEST = ../rtest -v
 
 TESTFILES = \
 HelloWorld_cs_Fit.lua \
+HelloWorld_cs_Fit.py \
 
 # Run make failingtest
 FAILINGTESTFILES = \
@@ -10,6 +11,7 @@ FAILINGTESTFILES = \
 # Add them here or they will be cleaned.
 DEPENDENCIES = \
 *.lua \
+*.py \
 *.xml \
 Makefile \
 README.md \
