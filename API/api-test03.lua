@@ -53,12 +53,12 @@ os.execute("cat api_test03.xml")
 -- status code: 0
 -- status code: 0
 -- <?xml version="1.0" encoding="UTF-8"?>
--- <ssd:SystemStructureDescription xmlns:ssc="http://www.pmsf.net/xsd/SystemStructureCommonDraft" xmlns:ssd="http://www.pmsf.net/xsd/SystemStructureDescriptionDraft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.pmsf.net/xsd/SystemStructureDescriptionDraft http://www.pmsf.net/xsd/SSP/Draft20170606/SystemStructureDescription.xsd">
--- 	<FMICompositeModel Name="api_test03">
--- 		<SubModel Name="System2" Type="FMU" ModelFile="../FMUs/DualMassOscillator.System2_me.fmu" />
--- 		<Connections />
--- 	</FMICompositeModel>
--- 	<Experiment StartTime="0.000000" StopTime="1.000000" ResultFile="api_test03_res.mat" />
+-- <ssd:SystemStructureDescription name="api_test03" version="Draft20171219">
+-- 	<ssd:System name="api_test03">
+-- 		<ssd:Component name="System2" type="application/x-fmu-sharedlibrary" source="../FMUs/DualMassOscillator.System2_me.fmu" />
+-- 		<ssd:Connections />
+-- 	</ssd:System>
+-- 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 -- </ssd:SystemStructureDescription>
 -- info:    0 warnings
 -- info:    1 errors

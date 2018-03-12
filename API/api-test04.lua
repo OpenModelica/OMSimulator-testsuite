@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -rf api-test04.log
+-- teardown_command: rm -rf api-test04.log api-test04_tmp
 
 oms2_setLogFile("api-test04.log")
 

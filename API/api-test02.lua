@@ -71,27 +71,27 @@ os.execute("cat api_test02b.xml")
 -- status code: 0
 -- status code: 0
 -- <?xml version="1.0" encoding="UTF-8"?>
--- <ssd:SystemStructureDescription xmlns:ssc="http://www.pmsf.net/xsd/SystemStructureCommonDraft" xmlns:ssd="http://www.pmsf.net/xsd/SystemStructureDescriptionDraft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.pmsf.net/xsd/SystemStructureDescriptionDraft http://www.pmsf.net/xsd/SSP/Draft20170606/SystemStructureDescription.xsd">
--- 	<FMICompositeModel Name="api_test02">
--- 		<SubModel Name="System1" Type="FMU" ModelFile="../FMUs/DualMassOscillator.System1_me.fmu" />
--- 		<SubModel Name="System2" Type="FMU" ModelFile="../FMUs/DualMassOscillator.System2_me.fmu" />
--- 		<Connections>
--- 			<Connection From="System1:F" To="System2:F" />
--- 			<Connection From="System1:s" To="System2:s" />
--- 			<Connection From="System1:v" To="System2:v" />
--- 			<Connection From="System1:a" To="System2:a" />
--- 		</Connections>
--- 	</FMICompositeModel>
--- 	<Experiment StartTime="0.000000" StopTime="1.000000" ResultFile="api_test02_res.mat" />
+-- <ssd:SystemStructureDescription name="api_test02" version="Draft20171219">
+-- 	<ssd:System name="api_test02">
+-- 		<ssd:Component name="System1" type="application/x-fmu-sharedlibrary" source="../FMUs/DualMassOscillator.System1_me.fmu" />
+-- 		<ssd:Component name="System2" type="application/x-fmu-sharedlibrary" source="../FMUs/DualMassOscillator.System2_me.fmu" />
+-- 		<ssd:Connections>
+-- 			<ssd:Connection startElement="System1" startConnector="F" endElement="System2" endConnector="F" />
+-- 			<ssd:Connection startElement="System1" startConnector="s" endElement="System2" endConnector="s" />
+-- 			<ssd:Connection startElement="System1" startConnector="v" endElement="System2" endConnector="v" />
+-- 			<ssd:Connection startElement="System1" startConnector="a" endElement="System2" endConnector="a" />
+-- 		</ssd:Connections>
+-- 	</ssd:System>
+-- 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 -- </ssd:SystemStructureDescription>
 -- <?xml version="1.0" encoding="UTF-8"?>
--- <ssd:SystemStructureDescription xmlns:ssc="http://www.pmsf.net/xsd/SystemStructureCommonDraft" xmlns:ssd="http://www.pmsf.net/xsd/SystemStructureDescriptionDraft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.pmsf.net/xsd/SystemStructureDescriptionDraft http://www.pmsf.net/xsd/SSP/Draft20170606/SystemStructureDescription.xsd">
--- 	<FMICompositeModel Name="api_test02">
--- 		<SubModel Name="System1" Type="FMU" ModelFile="../FMUs/DualMassOscillator.System1_me.fmu" />
--- 		<SubModel Name="System2" Type="FMU" ModelFile="../FMUs/DualMassOscillator.System2_me.fmu" />
--- 		<Connections />
--- 	</FMICompositeModel>
--- 	<Experiment StartTime="0.000000" StopTime="1.000000" ResultFile="api_test02_res.mat" />
+-- <ssd:SystemStructureDescription name="api_test02" version="Draft20171219">
+-- 	<ssd:System name="api_test02">
+-- 		<ssd:Component name="System1" type="application/x-fmu-sharedlibrary" source="../FMUs/DualMassOscillator.System1_me.fmu" />
+-- 		<ssd:Component name="System2" type="application/x-fmu-sharedlibrary" source="../FMUs/DualMassOscillator.System2_me.fmu" />
+-- 		<ssd:Connections />
+-- 	</ssd:System>
+-- 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 -- </ssd:SystemStructureDescription>
 -- info:    Logging information has been saved to "api-test02.log"
 -- endResult
