@@ -1,5 +1,7 @@
 -- status: correct
 -- teardown_command:
+-- linux: yes
+-- mingw: yes
 
 oms2_setLoggingLevel(1)
 
