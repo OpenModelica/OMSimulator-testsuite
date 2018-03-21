@@ -9,14 +9,14 @@ if ($cwd =~ m/(.*)testsuite\/(.+)$/) {
   $dirname = $2;
   $os = `uname`;
   if ($os =~ /MINGW/) {
-    $INSTALLDIR = "$prefix/install/mingw";
+    $PLATFORM = "mingw";
   }
   else {
     if ($os =~ /Darwin/) {
-      $INSTALLDIR = "$prefix/install/mac";
+      $PLATFORM = "mac";
     }
     else {
-      $INSTALLDIR = "$prefix/install/linux";
+      $PLATFORM = "linux";
     }
   }
 } else {
@@ -24,9 +24,9 @@ if ($cwd =~ m/(.*)testsuite\/(.+)$/) {
   exit 0;
 }
 
-system "$INSTALLDIR/bin/omc-diff -v1.4";
+system "$prefix/install/$PLATFORM/bin/omc-diff -v1.4";
 if ($?) {
-  print "$INSTALLDIR/bin/omc-diff seems to be missing or of an incompatible version.\n";
+  print "$prefix/install/$PLATFORM/bin/omc-diff seems to be missing or of an incompatible version.\n";
   print "Compile omc-diff and run rtest again.\n";
   exit 2;
 }
@@ -117,7 +117,7 @@ sub setbaselineone
       $env =~ s/:/\\;/g;
     }
     unlink "$testTempFile$f";
-    system "$env $ulimit $INSTALLDIR/bin/$sim_exe $f >>$log 2>&1";
+    system "$env $ulimit $prefix/install/$PLATFORM/bin/$sim_exe $f >>$log 2>&1";
     if ($nodelete == 0 && open(TOREMOVE,"<$testTempFile$f")) {
       while(my $line = <TOREMOVE>) {
         $line =~ s/^\s*(.*?)\s*$/$1/;
@@ -207,7 +207,7 @@ sub runone
       $env =~ s/:/\\;/g;
     }
     unlink "$testTempFile$f";
-    system "$env $ulimit $INSTALLDIR/bin/$sim_exe $f >>$log 2>&1";
+    system "$env $ulimit $prefix/install/$PLATFORM/bin/$sim_exe $f >>$log 2>&1";
     $retval = $?;
     if ($nodelete==0 && open(TOREMOVE,"<$testTempFile$f")) {
       while(my $line = <TOREMOVE>) {
@@ -248,7 +248,7 @@ sub runone
     close RES;
 
     # Compare
-    system "$INSTALLDIR/bin/omc-diff $epsilon $expected $got > $difference";
+    system "$prefix/install/$PLATFORM/bin/omc-diff $epsilon $expected $got > $difference";
 
     if ( $? != 0 ) {
     print "equation mismatch [time:$end_t]\n";
@@ -277,7 +277,11 @@ sub dofile
         "setup_command" => "",
         "env" => "",
         "teardown_command" => "",
-        "stack_size" => "");
+        "stack_size" => "",
+        "linux" => "yes",
+        "win" => "",
+        "mingw" => "",
+        "mac" => "");
     $expected = $expected . "tmp_expected-" . $f;
     $got = $got . "_tmp_got-" . $f;
     $log = "$tmpdir/log-$f";
@@ -369,15 +373,20 @@ sub dofile
     $total = $total + 1;
 
     if ( $info{"status"} !~ /^(erroneous|(in|)correct)$/ ) {
-    print "unknown testcase status\n";
-    return 1;
+      print "unknown testcase status\n";
+      return 1;
     }
 
-    if ($setbaseline) {
-      setbaselineone $f,%info;
-      $status = 0;
+    if ($info{$PLATFORM} eq "yes") {
+      if ($setbaseline) {
+        setbaselineone $f,%info;
+        $status = 0;
+      } else {
+        $status = runone $f,%info;
+      }
     } else {
-      $status = runone $f,%info;
+      $status = 0;
+      print "skipped\n";
     }
 
     if ($status == 0) {
@@ -432,7 +441,7 @@ while ($#ARGV >= 0) {
     } elsif ($arg eq "-nolib") {
       $set_modelica_lib = 0;
     } else {
-      $filearg = 1;      
+      $filearg = 1;
       dofile $arg;
     }
 }
