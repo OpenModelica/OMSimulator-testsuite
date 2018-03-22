@@ -392,11 +392,11 @@ sub dofile
     if ($status == 0) {
       $successes = $successes + 1;
     } else {
-    if ($verbose eq "yes" ) {
-      print "\n";
-      print "==== Log $log\n";
-      system "$pager $log";
-    }
+      if ($verbose eq "yes" ) {
+        print "\n";
+        print "==== Log $log\n";
+        system "$pager $log";
+      }
     }
 }
 
