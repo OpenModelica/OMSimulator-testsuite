@@ -1,8 +1,8 @@
-# Tests for the OMFit module
+# Tests for the OMSysIdent module
 
-This folder contains tests for the OMFit module.
+This folder contains tests for the OMSysIdent module.
 
-## Tests for the OMFit module C-API bindings
+## Tests for the OMSysIdent module C-API bindings
 
 The tests that directly use the C-API can be executed by cmake/ctest, see
 CMakeLists.txt, e.g., in the OMSimulator build directory do:
@@ -17,15 +17,15 @@ Use the `runRoot.sh` for this purpose (this will start Root and load the require
 shared libraries), e.g.:
 
 ```shell
-./runRoot.sh ../../src/OMFitLib/test_HelloWorld_cs_Fit.c
+./runRoot.sh ../../src/OMSysIdentLib/test_HelloWorld_cs_Fit.c
 ```
 
-# Tests for the OMFit module using the Lua bindings
+# Tests for the OMSysIdent module using the Lua bindings
 
-The Lua scripts use the Lua bindings to the OMFit C-API for parameter estimation.
+The Lua scripts use the Lua bindings to the OMSysIdent C-API for parameter estimation.
 
 The OMSimulator binary already contains a Lua interpreter including the Lua bindings
-to the OMFit library (if it has been built with the _optional_ OMFit module).
+to the OMSysIdent library (if it has been built with the _optional_ OMSysIdent module).
 Hence, scripts can be simply executed like shown below:
 
 ```shell
@@ -39,6 +39,6 @@ the libraries need to be loaded similarly as shown below:
 require("package")
 OMSimulatorLua = package.loadlib("../../install/linux/lib/libOMSimulatorLua.so", "luaopen_OMSimulatorLua")
 OMSimulatorLua()
-OMFitLua = package.loadlib("../../install/linux/lib/libOMFitLua.so", "luaopen_OMFitLua")
-OMFitLua()
+OMSysIdentLua = package.loadlib("../../install/linux/lib/libOMSysIdentLua.so", "luaopen_OMSysIdentLua")
+OMSysIdentLua()
 ```
