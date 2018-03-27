@@ -39,6 +39,4 @@ the libraries need to be loaded similarly as shown below:
 require("package")
 OMSimulatorLua = package.loadlib("../../install/linux/lib/libOMSimulatorLua.so", "luaopen_OMSimulatorLua")
 OMSimulatorLua()
-OMSysIdentLua = package.loadlib("../../install/linux/lib/libOMSysIdentLua.so", "luaopen_OMSysIdentLua")
-OMSysIdentLua()
 ```
