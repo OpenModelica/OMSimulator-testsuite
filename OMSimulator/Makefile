@@ -7,6 +7,7 @@ DualMassOscillatorEq_cs.lua \
 DualMassOscillatorEq_me.lua \
 RealNetwork1.py \
 PI_Controller.py \
+PI_Controller.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \
