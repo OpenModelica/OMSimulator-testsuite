@@ -52,7 +52,7 @@ session.setReal(model, "gainTrack.k", 1.0/(k*Ni))
 
 # simulation settings
 session.setStopTime(model, 4.0)
-session.setCommunicationInterval(model, 1e-4)
+session.setCommunicationInterval(model, 1e-2)
 
 session.exportCompositeStructure(model, "PI_Controller")
 session.exportDependencyGraph(model, "PI_Controller")
@@ -75,10 +75,17 @@ session.addConnection(model, "driveTrain.w", "addI.u2")
 session.setResultFile(model, "PI_Controller.mat")
 
 # simulation
+print("Initialization")
 session.initialize(model)
-session.simulate(model)
-session.terminate(model)
+print("  limiter.u: " + str(session.getReal(model, "limiter.u")))
+print("  limiter.y: " + str(session.getReal(model, "limiter.y")))
 
+print("Simulation")
+session.simulate(model)
+print("  limiter.u: " + str(session.getReal(model, "limiter.u")))
+print("  limiter.y: " + str(session.getReal(model, "limiter.y")))
+
+session.terminate(model)
 session.unload(model)
 
 vars = ["limiter.u", "limiter.y"]
@@ -89,7 +96,15 @@ for var in vars:
     print(var + " is not equal")
 
 ## Result:
-## limiter.u is equal
-## limiter.y is equal
+## Initialization
+##   limiter.u: 0.0
+##   limiter.y: 0.0
+## Simulation
+##   limiter.u: -10.3343691227
+##   limiter.y: -10.3343691227
+## limiter.u is not equal
+## limiter.y is not equal
+## info:    4 warnings
+## info:    0 errors
 ## info:    Logging information has been saved to "PI_Controller.log"
 ## endResult

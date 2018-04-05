@@ -67,13 +67,9 @@ exitOnError(status)
 -- simulation settings
 status = status + oms2_setStartTime("PI_Controller", 0.0)
 status = status + oms2_setStopTime("PI_Controller", 4.0)
-status = status + oms2_setCommunicationInterval("PI_Controller", 1e-4)
+status = status + oms2_setCommunicationInterval("PI_Controller", 1e-2)
 status = status + oms2_setResultFile("PI_Controller", "PI_Controller.mat")
 exitOnError(status)
-
-status = status + oms2_exportCompositeStructure("PI_Controller", "PI_Controller_CompositeStructure.dot")
-exitOnError(status)
-os.execute("dot -Gsplines=none PI_Controller_CompositeStructure.dot | neato -n -Gsplines=ortho -Tpdf -oPI_Controller_CompositeStructure.pdf")
 
 -- instantiate lookup table
 status = status + oms2_addTable("PI_Controller", "setpoint.csv", "setpoint")
@@ -92,7 +88,10 @@ exitOnError(status)
 --os.execute("dot -Gsplines=none PI_Controller_CompositeStructure.dot | neato -n -Gsplines=ortho -Tpdf -oPI_Controller_CompositeStructure.pdf")
 
 -- initialize
+print("Initialization")
 status = status + oms2_initialize("PI_Controller")
+print("  limiter.u: " .. oms2_getReal("PI_Controller.limiter:u"))
+print("  limiter.y: " .. oms2_getReal("PI_Controller.limiter:y"))
 exitOnError(status)
 
 status = status + oms2_exportDependencyGraphs("PI_Controller", "PI_Controller_initialUnknowns.dot", "PI_Controller_outputs.dot")
@@ -101,8 +100,13 @@ exitOnError(status)
 --os.execute("gvpr -c \"N[$.degree==0]{delete(root, $)}\" PI_Controller_outputs.dot | dot -Tpdf -o PI_Controller_outputs.pdf")
 
 -- simulate
+print("Simulation")
 status = status + oms2_simulate("PI_Controller")
-status = status + oms2_terminate("PI_Controller")
+print("  limiter.u: " .. oms2_getReal("PI_Controller.limiter:u"))
+print("  limiter.y: " .. oms2_getReal("PI_Controller.limiter:y"))
+exitOnError(status)
+
+status = oms2_terminate("PI_Controller")
 exitOnError(status)
 
 status = oms2_unloadModel("PI_Controller")
@@ -118,8 +122,14 @@ exitOnError(status)
 -- status code: 0
 -- status code: 0
 -- status code: 0
+-- Initialization
+--   limiter.u: 0.0
+--   limiter.y: 0.0
 -- status code: 0
 -- status code: 0
+-- Simulation
+--   limiter.u: -10.334369122725
+--   limiter.y: -10.334369122725
 -- status code: 0
 -- status code: 0
 -- status code: 0
