@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -rf PI_Controller-lua.log PI_Controller-lua_tmp/ PI_Controller_*.dot PI_Controller_*.pdf
+-- teardown_command: rm -rf PI_Controller-lua.log PI_Controller-lua_tmp/ PI_Controller_*.dot
 -- linux: yes
 -- mingw: no
 
@@ -89,7 +89,7 @@ exitOnError(status)
 
 status = status + oms2_exportCompositeStructure("PI_Controller", "PI_Controller_CompositeStructure.dot")
 exitOnError(status)
-os.execute("dot -Gsplines=none PI_Controller_CompositeStructure.dot | neato -n -Gsplines=ortho -Tpdf -oPI_Controller_CompositeStructure.pdf")
+--os.execute("dot -Gsplines=none PI_Controller_CompositeStructure.dot | neato -n -Gsplines=ortho -Tpdf -oPI_Controller_CompositeStructure.pdf")
 
 -- initialize
 status = status + oms2_initialize("PI_Controller")
@@ -97,8 +97,8 @@ exitOnError(status)
 
 status = status + oms2_exportDependencyGraphs("PI_Controller", "PI_Controller_initialUnknowns.dot", "PI_Controller_outputs.dot")
 exitOnError(status)
-os.execute("gvpr -c \"N[$.degree==0]{delete(root, $)}\" PI_Controller_initialUnknowns.dot | dot -Tpdf -o PI_Controller_initialUnknowns.pdf")
-os.execute("gvpr -c \"N[$.degree==0]{delete(root, $)}\" PI_Controller_outputs.dot | dot -Tpdf -o PI_Controller_outputs.pdf")
+--os.execute("gvpr -c \"N[$.degree==0]{delete(root, $)}\" PI_Controller_initialUnknowns.dot | dot -Tpdf -o PI_Controller_initialUnknowns.pdf")
+--os.execute("gvpr -c \"N[$.degree==0]{delete(root, $)}\" PI_Controller_outputs.dot | dot -Tpdf -o PI_Controller_outputs.pdf")
 
 -- simulate
 status = status + oms2_simulate("PI_Controller")
