@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -rf PI_Controller-lua.log PI_Controller-lua_tmp/ PI_Controller_*.dot
+-- teardown_command: rm -rf PI_Controller-lua.log PI_Controller-lua_tmp/ PI_Controller_*.dot PI_Controller-lua.mat
 -- linux: yes
 -- mingw: no
 
@@ -10,7 +10,7 @@ function exitOnError (status)
   end
 end
 
-oms2_setLoggingLevel(1)
+oms2_setLoggingLevel(0)
 status = 0;
 
 oms2_setLogFile("PI_Controller-lua.log")
@@ -67,8 +67,8 @@ exitOnError(status)
 -- simulation settings
 status = status + oms2_setStartTime("PI_Controller", 0.0)
 status = status + oms2_setStopTime("PI_Controller", 4.0)
-status = status + oms2_setCommunicationInterval("PI_Controller", 1e-2)
-status = status + oms2_setResultFile("PI_Controller", "PI_Controller.mat")
+status = status + oms2_setCommunicationInterval("PI_Controller", 1e-4)
+status = status + oms2_setResultFile("PI_Controller", "PI_Controller-lua.mat")
 exitOnError(status)
 
 -- instantiate lookup table
@@ -112,6 +112,15 @@ exitOnError(status)
 status = oms2_unloadModel("PI_Controller")
 exitOnError(status)
 
+vars = {"limiter.u", "limiter.y"}
+for _,var in ipairs(vars) do
+  if 1 == compareSimulationResults("PI_Controller-lua.mat", "../ReferenceFiles/PI_Controller.mat", var, 1e-2, 1e-4) then
+    print(var .. " is equal")
+  else
+    print(var .. " is not equal")
+  end
+end
+
 -- Result:
 -- status code: 0
 -- status code: 0
@@ -128,10 +137,14 @@ exitOnError(status)
 -- status code: 0
 -- status code: 0
 -- Simulation
---   limiter.u: -10.334369122725
---   limiter.y: -10.334369122725
+--   limiter.u: -10.014508893657
+--   limiter.y: -10.014508893657
 -- status code: 0
 -- status code: 0
 -- status code: 0
+-- limiter.u is not equal
+-- limiter.y is not equal
+-- info:    0 warnings
+-- info:    2 errors
 -- info:    Logging information has been saved to "PI_Controller-lua.log"
 -- endResult
