@@ -1,6 +1,9 @@
 TEST = ../rtest -v
 
 TESTFILES = \
+TLM_External_Tools.lua \
+
+OTHERFILES = \
 DualMassOscillator_cs.py \
 DualMassOscillator_me.lua \
 DualMassOscillatorEq_cs.lua \
@@ -10,7 +13,7 @@ PI_Controller.py \
 RealNetwork1.py \
 TLM_FMI_Submodels.lua \
 TLM_FMI_3D.lua \
-
+TLM_External_Tools.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \
