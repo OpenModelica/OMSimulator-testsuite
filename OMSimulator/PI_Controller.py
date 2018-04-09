@@ -52,7 +52,7 @@ session.setReal(model, "gainTrack.k", 1.0/(k*Ni))
 
 # simulation settings
 session.setStopTime(model, 4.0)
-session.setCommunicationInterval(model, 1e-2)
+session.setCommunicationInterval(model, 1e-4)
 
 session.exportCompositeStructure(model, "PI_Controller")
 session.exportDependencyGraph(model, "PI_Controller")
@@ -100,11 +100,9 @@ for var in vars:
 ##   limiter.u: 0.0
 ##   limiter.y: 0.0
 ## Simulation
-##   limiter.u: -10.3343691227
-##   limiter.y: -10.3343691227
-## limiter.u is not equal
-## limiter.y is not equal
-## info:    4 warnings
-## info:    0 errors
+##   limiter.u: -10.0145088937
+##   limiter.y: -10.0145088937
+## limiter.u is equal
+## limiter.y is equal
 ## info:    Logging information has been saved to "PI_Controller.log"
 ## endResult
