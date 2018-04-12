@@ -75,15 +75,15 @@ session.addConnection(model, "driveTrain.w", "addI.u2")
 session.setResultFile(model, "PI_Controller.mat")
 
 # simulation
-print("Initialization")
+print("info:    Initialization")
 session.initialize(model)
-print("  limiter.u: " + str(session.getReal(model, "limiter.u")))
-print("  limiter.y: " + str(session.getReal(model, "limiter.y")))
+print("info:      limiter.u: " + str(session.getReal(model, "limiter.u")))
+print("info:      limiter.y: " + str(session.getReal(model, "limiter.y")))
 
-print("Simulation")
+print("info:    Simulation")
 session.simulate(model)
-print("  limiter.u: " + str(session.getReal(model, "limiter.u")))
-print("  limiter.y: " + str(session.getReal(model, "limiter.y")))
+print("info:      limiter.u: " + str(session.getReal(model, "limiter.u")))
+print("info:      limiter.y: " + str(session.getReal(model, "limiter.y")))
 
 session.terminate(model)
 session.unload(model)
@@ -91,18 +91,18 @@ session.unload(model)
 vars = ["limiter.u", "limiter.y"]
 for var in vars:
   if (1 == session.compareSimulationResults("PI_Controller.mat", "../ReferenceFiles/PI_Controller.mat", var, 1e-2, 1e-4)):
-    print(var + " is equal")
+    print("info:    " + var + " is equal")
   else:
-    print(var + " is not equal")
+    print("error:   " + var + " is not equal")
 
 ## Result:
-## Initialization
-##   limiter.u: 0.0
-##   limiter.y: 0.0
-## Simulation
-##   limiter.u: -10.0145088937
-##   limiter.y: -10.0145088937
-## limiter.u is equal
-## limiter.y is equal
+## info:    Initialization
+## info:      limiter.u: 0.0
+## info:      limiter.y: 0.0
+## info:    Simulation
+## info:      limiter.u: -10.0145088937
+## info:      limiter.y: -10.0145088937
+## info:    limiter.u is equal
+## info:    limiter.y is equal
 ## info:    Logging information has been saved to "PI_Controller.log"
 ## endResult
