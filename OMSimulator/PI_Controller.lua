@@ -4,7 +4,7 @@
 -- mingw: no
 
 function exitOnError (status)
-  print("status code: " .. status)
+  print("info:    status code: " .. status)
   if 0 ~= status then
     os.exit(0)
   end
@@ -88,10 +88,10 @@ exitOnError(status)
 --os.execute("dot -Gsplines=none PI_Controller_CompositeStructure.dot | neato -n -Gsplines=ortho -Tpdf -oPI_Controller_CompositeStructure.pdf")
 
 -- initialize
-print("Initialization")
+print("info:    Initialization")
 status = status + oms2_initialize("PI_Controller")
-print("  limiter.u: " .. oms2_getReal("PI_Controller.limiter:u"))
-print("  limiter.y: " .. oms2_getReal("PI_Controller.limiter:y"))
+print("info:      limiter.u: " .. oms2_getReal("PI_Controller.limiter:u"))
+print("info:      limiter.y: " .. oms2_getReal("PI_Controller.limiter:y"))
 exitOnError(status)
 
 status = status + oms2_exportDependencyGraphs("PI_Controller", "PI_Controller_initialUnknowns.dot", "PI_Controller_outputs.dot")
@@ -100,10 +100,10 @@ exitOnError(status)
 --os.execute("gvpr -c \"N[$.degree==0]{delete(root, $)}\" PI_Controller_outputs.dot | dot -Tpdf -o PI_Controller_outputs.pdf")
 
 -- simulate
-print("Simulation")
+print("info:    Simulation")
 status = status + oms2_simulate("PI_Controller")
-print("  limiter.u: " .. oms2_getReal("PI_Controller.limiter:u"))
-print("  limiter.y: " .. oms2_getReal("PI_Controller.limiter:y"))
+print("info:      limiter.u: " .. oms2_getReal("PI_Controller.limiter:u"))
+print("info:      limiter.y: " .. oms2_getReal("PI_Controller.limiter:y"))
 exitOnError(status)
 
 status = oms2_terminate("PI_Controller")
@@ -115,35 +115,35 @@ exitOnError(status)
 vars = {"limiter.u", "limiter.y"}
 for _,var in ipairs(vars) do
   if 1 == compareSimulationResults("PI_Controller-lua.mat", "../ReferenceFiles/PI_Controller.mat", var, 1e-2, 1e-4) then
-    print(var .. " is equal")
+    print("info:    " .. var .. " is equal")
   else
-    print(var .. " is not equal")
+    print("error:   " .. var .. " is not equal")
   end
 end
 
 -- Result:
--- status code: 0
--- status code: 0
--- status code: 0
--- status code: 0
--- status code: 0
--- status code: 0
--- status code: 0
--- status code: 0
--- status code: 0
--- Initialization
---   limiter.u: 0.0
---   limiter.y: 0.0
--- status code: 0
--- status code: 0
--- Simulation
---   limiter.u: -10.014508893657
---   limiter.y: -10.014508893657
--- status code: 0
--- status code: 0
--- status code: 0
--- limiter.u is not equal
--- limiter.y is not equal
+-- info:    status code: 0
+-- info:    status code: 0
+-- info:    status code: 0
+-- info:    status code: 0
+-- info:    status code: 0
+-- info:    status code: 0
+-- info:    status code: 0
+-- info:    status code: 0
+-- info:    status code: 0
+-- info:    Initialization
+-- info:      limiter.u: 0.0
+-- info:      limiter.y: 0.0
+-- info:    status code: 0
+-- info:    status code: 0
+-- info:    Simulation
+-- info:      limiter.u: -10.014508893657
+-- info:      limiter.y: -10.014508893657
+-- info:    status code: 0
+-- info:    status code: 0
+-- info:    status code: 0
+-- error:   limiter.u is not equal
+-- error:   limiter.y is not equal
 -- info:    0 warnings
 -- info:    2 errors
 -- info:    Logging information has been saved to "PI_Controller-lua.log"
