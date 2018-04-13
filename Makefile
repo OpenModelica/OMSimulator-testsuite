@@ -19,5 +19,9 @@ OMSysIdent.log: difftool
 	@$(MAKE) -C OMSysIdent -f Makefile test > $@
 	@grep == OMSysIdent.log
 
+AircraftVehicleDemonstrator.log: difftool
+	@$(MAKE) -C AircraftVehicleDemonstrator -f Makefile test > $@
+	@grep == AircraftVehicleDemonstrator.log
+
 difftool:
 	@$(MAKE) -C difftool
