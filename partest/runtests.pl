@@ -98,7 +98,7 @@ for(@ARGV){
     print("  -veryfew      Run only a very small number of tests to see if runtests.pl is working.\n");
     print("  -gitlibs      If you have installed omc using GITLIBRARIES=Yes, you can test some of those libraries.\n");
     print("  -parmodexp    Run the OpenCL ParModelica tests.\n");
-	print("  -b            Rebase tests in parallel. Use in conjuction with -file=/path/to/file.\n");
+    print("  -b            Rebase tests in parallel. Use in conjuction with -file=/path/to/file.\n");
     exit 1;
   }
   if(/^-f$/) {
