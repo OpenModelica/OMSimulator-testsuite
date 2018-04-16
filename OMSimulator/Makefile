@@ -8,6 +8,8 @@ DualMassOscillatorEq_me.lua \
 RealNetwork1.py \
 PI_Controller.py \
 PI_Controller.lua \
+TLM_FMI_Submodels.lua \
+
 
 # Run make failingtest
 FAILINGTESTFILES = \
