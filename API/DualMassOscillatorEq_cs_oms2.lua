@@ -25,8 +25,8 @@ status = oms2_setCommunicationInterval("DualMass", 1e-5)
 
 -- Master algorithm variants:
 -- standard : The single-task standard
--- pctpl : task pool approach using CTPL library (https://github.com/vit-vit/CTPL)
--- status = oms2_setMasterAlgorithm("DualMass", "standard")
+-- pctpl : Task pool approach using CTPL library (https://github.com/vit-vit/CTPL)
+status = oms2_setMasterAlgorithm("DualMass", "pctpl")
 
 
 status = oms2_initialize("DualMass")
