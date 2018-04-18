@@ -3,6 +3,7 @@ TEST = ../rtest -v
 TESTFILES = \
 TLM_External_Tools.lua \
 TLM_FMI_Submodels.lua \
+TLM_FMI_1D.lua \
 TLM_FMI_3D.lua \
 
 # Run make failingtest
