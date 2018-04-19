@@ -56,20 +56,9 @@ for _,var in ipairs(vars) do
 end
 
 -- Result:
--- Starting simulation.
--- Start time = 0
--- Stop time = 1
--- Starting manager.
--- Monitor initialized.
--- Registered monitoring interface: fmi1.out
--- Registered monitoring interface: fmi1.in
--- Registered monitoring interface: fmi2.in
--- Registered monitoring interface: fmi2.out
--- Success.
+-- Starting TLM simulation.
 -- Monitoring thread finished.
--- Manager finished.
 -- Manager thread finished.
--- Exiting.
 -- fmi1.out is equal
 -- fmi2.out is equal
 -- info:    Logging information has been saved to "TLM_FMI_Submodels.log"
