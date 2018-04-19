@@ -5,11 +5,10 @@ DualMassOscillator_cs.py \
 DualMassOscillator_me.lua \
 DualMassOscillatorEq_cs.lua \
 DualMassOscillatorEq_me.lua \
-RealNetwork1.py \
-PI_Controller.py \
 PI_Controller.lua \
+PI_Controller.py \
+RealNetwork1.py \
 TLM_FMI_Submodels.lua \
-
 
 # Run make failingtest
 FAILINGTESTFILES = \
@@ -18,7 +17,10 @@ FAILINGTESTFILES = \
 # Add them here or they will be cleaned.
 DEPENDENCIES = \
 *.lua \
+*.py \
+drivetrain.csv \
 Makefile \
+setpoint.csv \
 
 CLEAN = `ls | grep -w -v -f deps.tmp`
 
