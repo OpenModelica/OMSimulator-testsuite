@@ -106,7 +106,7 @@ os.execute("cat api_test02b.xml")
 -- 			</ssd:Connectors>
 -- 		</ssd:Component>
 -- 		<ssd:Connections>
--- 			<ssd:Connection startElement="System1" startConnector="F" endElement="System2" endConnector="F" />
+-- 			<ssd:Connection startElement="System2" startConnector="F" endElement="System1" endConnector="F" />
 -- 			<ssd:Connection startElement="System1" startConnector="s" endElement="System2" endConnector="s" />
 -- 			<ssd:Connection startElement="System1" startConnector="v" endElement="System2" endConnector="v" />
 -- 			<ssd:Connection startElement="System1" startConnector="a" endElement="System2" endConnector="a" />
