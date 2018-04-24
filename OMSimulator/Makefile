@@ -9,6 +9,8 @@ PI_Controller.lua \
 PI_Controller.py \
 RealNetwork1.py \
 TLM_FMI_Submodels.lua \
+TLM_FMI_3D.lua \
+
 
 # Run make failingtest
 FAILINGTESTFILES = \
