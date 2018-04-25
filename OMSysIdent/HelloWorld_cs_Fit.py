@@ -1,4 +1,4 @@
-## status: correct
+## status: OBSOLETE. Uses old oms1 API. Needs to be updated once Python bindings to oms2 exist
 ## teardown_command: rm HelloWorld_cs_Fit_py.log
 
 from OMSimulator import OMSimulator
