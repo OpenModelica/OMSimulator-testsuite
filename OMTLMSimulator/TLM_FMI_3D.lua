@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm TLM_FMI_3D.log tlm3d.csv tlm3d.run tlm3d_res.mat TLMlogfile.log
+-- teardown_command: rm -f TLM_FMI_3D.log tlm3d.csv tlm3d.run tlm3d_res.mat
 -- linux: yes
 -- mingw: no
 -- mac: no
