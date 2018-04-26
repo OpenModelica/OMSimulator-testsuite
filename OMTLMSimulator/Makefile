@@ -1,13 +1,9 @@
 TEST = ../rtest -v
 
 TESTFILES = \
-DualMassOscillator_cs.py \
-DualMassOscillator_me.lua \
-DualMassOscillatorEq_cs.lua \
-DualMassOscillatorEq_me.lua \
-PI_Controller.lua \
-PI_Controller.py \
-RealNetwork1.py \
+TLM_External_Tools.lua \
+TLM_FMI_Submodels.lua \
+TLM_FMI_3D.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \
@@ -17,9 +13,7 @@ FAILINGTESTFILES = \
 DEPENDENCIES = \
 *.lua \
 *.py \
-drivetrain.csv \
 Makefile \
-setpoint.csv \
 
 CLEAN = `ls | grep -w -v -f deps.tmp`
 

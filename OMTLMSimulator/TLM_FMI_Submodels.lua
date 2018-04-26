@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm tlm.run tlm_res.mat tlm.csv TLMlogfile.log TLM_FMI_Submodels.log
+-- teardown_command: rm tlm.run tlm_res.mat tlm.csv
 -- linux: yes
 -- mingw: no
 -- mac: no
