@@ -2,6 +2,7 @@ TEST = ../rtest -v
 
 TESTFILES = \
 HelloWorld_cs_Fit.lua \
+HelloWorldWithInput_cs_Fit.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \
