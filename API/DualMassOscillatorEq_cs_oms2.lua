@@ -25,11 +25,19 @@ status = oms2_setCommunicationInterval("DualMass", 1e-5)
 
 -- Master algorithm variants:
 -- standard : The single-task standard
--- pctpl : Task pool approach using CTPL library (https://github.com/vit-vit/CTPL)
+-- pctpl : task pool approach using CTPL library (https://github.com/vit-vit/CTPL)
+-- pmrchannela : Channel based approach using atomic variables for synchronization
+-- pmrchannelcv : Channel based approach using condition variables for synchronization
+-- pmrchannelm : Channel based approach using mutexes for synchronization
 status = oms2_setMasterAlgorithm("DualMass", "pctpl")
-
+-- Experimental idea for multi-rate execution. Has only an effect for the channel based master algorithms!
+status = experimental_setActivationRatio("DualMass.System1", 1)
+status = experimental_setActivationRatio("DualMass.System2", 1)
 
 status = oms2_initialize("DualMass")
+
+oms2_exportDependencyGraphs("DualMass", "DualMassInit.dot", "DualMassSim.dot")
+
 status = oms2_simulate("DualMass")
 
 vars = {"DualMass.System1:s1", "DualMass.System2:s2"}
