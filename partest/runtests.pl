@@ -41,6 +41,7 @@ $ENV{GC_MARKERS}="1";
 
 my $use_db = 1;
 my $save_db = 1;
+my $use_asan = 0;
 my $nocolour = '';
 my $with_omc = '';
 my $fast = 0;
@@ -116,6 +117,9 @@ for(@ARGV){
   }
   elsif(/^-nodb$/) {
     $use_db = 0;
+  }
+  elsif(/^-asan$/) {
+    $use_asan = 1;
   }
   elsif(/^-nosavedb$/) {
     $save_db = 0;
@@ -244,12 +248,16 @@ sub parse_testfiles {
   }
 }
 
-# Extract all files beginning with .mo|.mof|.mos|.py|lua from a line.
+# Extract all files beginning with .lua|.py|.xml from a line.
 sub add_tests {
   my @tests = split(/\s|=|\\/, shift);
   my $path = shift;
 
-  @tests = grep(/\.mo|\.mof|\.mos|\.py|\.lua/, @tests);
+  if ($use_asan) {
+    @tests = grep(/\.lua|\.xml/, @tests);
+  } else {
+    @tests = grep(/\.lua|\.py|\.xml/, @tests);
+  }
   @tests = map { $_ = ("$path/$_" =~ s/\/\//\//rg) } @tests;
 
   push @test_list, @tests;
