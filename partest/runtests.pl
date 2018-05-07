@@ -41,14 +41,13 @@ $ENV{GC_MARKERS}="1";
 
 my $use_db = 1;
 my $save_db = 1;
-my $use_asan = 0;
+my $asan = 0;
 my $nocolour = '';
 my $with_omc = '';
 my $fast = 0;
 my $count_tests = 0;
 my $veryfew = 0;
 my $run_failing = 0;
-my $cppruntime = 0;
 my $nocpp = 0;
 my $file;
 my $slowest:shared = 0;
@@ -84,7 +83,6 @@ for(@ARGV){
   if(/^-h|--help$/) {
     print("Usage: runtests.pl [OPTION]\n");
     print("\nOptions are:\n");
-    print("  -cppruntime   Run ONLY the slow cppruntime tests.\n");
     print("  -nocpp        Do not run any cppruntime tests.\n");
     print("  -f            Only run fast tests.\n");
     print("  -file         Reads testcases from the given file instead of from a makefile.\n");
@@ -105,9 +103,6 @@ for(@ARGV){
   if(/^-f$/) {
     $fast = 1;
   }
-  elsif(/^-cppruntime$/) {
-    $cppruntime = 1;
-  }
   elsif(/^-nocpp$/) {
     $nocpp = 1;
   }
@@ -119,7 +114,7 @@ for(@ARGV){
     $use_db = 0;
   }
   elsif(/^-asan$/) {
-    $use_asan = 1;
+    $asan = 1;
   }
   elsif(/^-nosavedb$/) {
     $save_db = 0;
@@ -199,12 +194,9 @@ sub read_makefile {
   return if($fast == 1 and $dir =~ m"/metamodelica"); # Skip libraries if -f is given.
   return if($fast == 1 and $dir =~ m"/3rdParty/"); # Skip libraries if -f is given.
   return if($fast == 1 and $dir =~ m"/openmodelica/fmi"); # Skip libraries if -f is given.
-  return if($nocpp == 1 and $dir =~ m"/cppruntime"); # Skip cppruntime if -nocpp is given.
-  return if($fast == 1 and $dir =~ m"/cppruntime"); # Skip libraries if -f is given.
   return if($fast == 1 and $dir =~ m"/hpcom"); # Skip libraries if -f is given.
   return if($fast == 1 and $dir =~ m"/tearing"); # Skip libraries if -f is given.
   return if($gitlibs == 0 and $dir =~ m"/GitLibraries"); # Skip libraries unless -gitlibs is given.
-  return if($cppruntime == 0 and $dir eq "./simulation/libraries/msl32_cpp");
 
   open(my $in, "<", "$dir/Makefile") or die "Couldn't open $dir/Makefile: $!";
 
@@ -253,7 +245,7 @@ sub add_tests {
   my @tests = split(/\s|=|\\/, shift);
   my $path = shift;
 
-  if ($use_asan) {
+  if ($asan) {
     @tests = grep(/\.lua|\.xml/, @tests);
   } else {
     @tests = grep(/\.lua|\.py|\.xml/, @tests);
@@ -299,8 +291,10 @@ if (!defined($file)) {
   # parse the makefile there.
   chdir("..");
 
-  if ($cppruntime == 1) {
-    read_makefile("./simulation/libraries/msl32_cpp", "TESTFILES");
+  if ($asan == 1) {
+    read_makefile("./AircraftVehicleDemonstrator", "TESTFILES");
+    read_makefile("./API", "TESTFILES");
+    read_makefile("./OMSimulator", "TESTFILES");
   } elsif ($parmodexp == 1) {
     read_makefile("./parmodelica/explicit", "TESTFILES");
   } elsif($veryfew == 1) {
