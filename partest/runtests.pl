@@ -58,8 +58,9 @@ my $parmodexp = 0;
 # Default is two threads.
 my $thread_count = 2;
 my $check_proc_cpu = 1;
-my $withxml = 0;
-my $withxmlcmd = 0;
+my $with_xml = 0;
+my $with_xml_file = 'result.xml';
+my $with_xml_cmd = 0;
 my $withtxt = 0;
 my $have_dwdiff = "";
 my $rebase_test = "";
@@ -129,8 +130,14 @@ for(@ARGV){
     $with_omc = "--with-omc=$1";
   }
   elsif(/^-with-xml$/) {
-    $withxml = 1;
-    $withxmlcmd = '-with-xml';
+    $with_xml = 1;
+    $with_xml_file = 'result.xml';
+    $with_xml_cmd = '-with-xml';
+  }
+  elsif(/^-with-xml=(.*)$/) {
+    $with_xml = 1;
+    $with_xml_file = "$1";
+    $with_xml_cmd = '-with-xml';
   }
   elsif(/^-with-txt$/) {
     $withtxt = 1;
@@ -262,7 +269,7 @@ sub run_tests {
     (my $test_dir, my $test) = $test_full =~ /(.*)\/([^\/]*)$/;
 
     my $t0 = [gettimeofday];
-    my $cmd = "$testscript $test_full $have_dwdiff $nocolour $withxmlcmd $with_omc $rebase_test";
+    my $cmd = "$testscript $test_full $have_dwdiff $nocolour $with_xml_cmd $with_omc $rebase_test";
     my $x = system("$cmd") >> 8;
     my $elapsed = tv_interval ( $t0, [gettimeofday]);
 
@@ -411,10 +418,10 @@ if($use_db && $save_db) {
 }
 
 # Read the files in serial; seems to get issues otherwise
-if($withxml) {
-  unlink("result.xml");
-  unlink("partest/result.xml");
-  open my $XMLOUT, '>', "$testsuite_root/partest/result.xml" or die "Couldn't open result.xml: $!";
+if($with_xml) {
+  unlink($with_xml_file);
+  unlink("partest/$with_xml_file");
+  open my $XMLOUT, '>', "$testsuite_root/partest/$with_xml_file" or die "Couldn't open $with_xml_file: $!";
   binmode $XMLOUT, ":encoding(UTF-8)";
   print $XMLOUT '<?xml version="1.0" encoding="UTF-8"?>';
   print $XMLOUT "<testsuite>\n";
@@ -422,7 +429,7 @@ if($withxml) {
   foreach(@test_list) {
     my $test_full = $_;
     (my $test_dir, my $test) = $test_full =~ /(.*)\/([^\/]*)$/;
-    my $filename = "$testsuite_root$test_full.result.xml";
+    my $filename = "$testsuite_root$test_full.$with_xml_file";
 
     my $data = "";
     if (open my $fh, '<', $filename) {
