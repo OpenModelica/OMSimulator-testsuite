@@ -8,19 +8,14 @@
 # In this way it's possible to run all tests in parallel, which greatly speeds
 # up testing when using more than two processor cores.
 #
-# Usage: Run without any arguments to run the whole testsuite, or with -f to
-#        run a fast test, i.e. skipping the libraries directory. Or with
-#        -nocpp to only skip those parts.
+# Usage: Run without any arguments to run the whole testsuite.
 #
 # NOTE: This is the official OpenModelica way of running the testsuite, so
 #       you should run this before committing any changes.
 #
-# NOTE: This script has been tested on Linux and OSX so far, and will
-#       probably work on all other platforms except Windows without any
+# NOTE: This script has been tested on Linux, Windows mingw, and OSX so far,
+#       and will probably work on all other platforms except Windows without any
 #       modifications.
-#
-# TODO: MetaModelicaDev in meta is not run yet, since those tests are organized
-#       a bit differently.
 
 use strict;
 use warnings;
@@ -43,17 +38,13 @@ my $use_db = 1;
 my $save_db = 1;
 my $asan = 0;
 my $nocolour = '';
-my $with_omc = '';
 my $fast = 0;
 my $count_tests = 0;
 my $veryfew = 0;
 my $run_failing = 0;
-my $nocpp = 0;
 my $file;
 my $slowest:shared = 0;
 my $slowest_name:shared = "";
-my $gitlibs = 0;
-my $parmodexp = 0;
 
 # Default is two threads.
 my $thread_count = 2;
@@ -84,50 +75,57 @@ for(@ARGV){
   if(/^-h|--help$/) {
     print("Usage: runtests.pl [OPTION]\n");
     print("\nOptions are:\n");
-    print("  -nocpp        Do not run any cppruntime tests.\n");
-    print("  -f            Only run fast tests.\n");
+    print("  -asan         Skip all python tests.\n");
+    print("  -b            Rebase tests in parallel. Use in conjuction with -file=/path/to/file.\n");
+    print("  -counttests   Don't run the test; only count them.\n");
+    print("  -failing      Run failing tests instead of working.\n");
+    print("  -fast         Only run fast tests.\n");
     print("  -file         Reads testcases from the given file instead of from a makefile.\n");
     print("  -jN           Use N threads.\n");
+    print("  -nocolour     Don't use colours in output.\n");
     print("  -nodb         Don't store timing data.\n");
     print("  -nosavedb     Don't overwrite stored timing data.\n");
-    print("  -nocolour     Don't use colours in output.\n");
-    print("  -counttests   Don't run the test; only count them.\n");
-    print("  -with-xml     Output XML log.\n");
-    print("  -with-txt     Output TXT log.\n");
-    print("  -failing      Run failing tests instead of working.\n");
     print("  -veryfew      Run only a very small number of tests to see if runtests.pl is working.\n");
-    print("  -gitlibs      If you have installed omc using GITLIBRARIES=Yes, you can test some of those libraries.\n");
-    print("  -parmodexp    Run the OpenCL ParModelica tests.\n");
-    print("  -b            Rebase tests in parallel. Use in conjuction with -file=/path/to/file.\n");
+    print("  -with-txt     Output TXT log.\n");
+    print("  -with-xml     Output XML log.\n");
     exit 1;
   }
-  if(/^-f$/) {
+  if(/^-asan$/) {
+    $asan = 1;
+  }
+  elsif(/^-b$/) {
+    $rebase_test = "-b";
+  }
+  elsif(/^-counttests$/) {
+    $count_tests = 1;
+  }
+  elsif(/^-failing$/) {
+    $run_failing = 1;
+  }
+  elsif(/^-fast$/) {
     $fast = 1;
   }
-  elsif(/^-nocpp$/) {
-    $nocpp = 1;
+  elsif(/^-file=(.*)$/) {
+    $file = $1;
   }
   elsif(/^-j([0-9]+)$/) {
     $check_proc_cpu = 0;
     $thread_count = $1;
   }
+  elsif(/^-nocolour$/) {
+    $nocolour = '--no-colour';
+  }
   elsif(/^-nodb$/) {
     $use_db = 0;
-  }
-  elsif(/^-asan$/) {
-    $asan = 1;
   }
   elsif(/^-nosavedb$/) {
     $save_db = 0;
   }
-  elsif(/^-nocolour$/) {
-    $nocolour = '--no-colour';
+  elsif(/^-veryfew$/) {
+    $veryfew = 1;
   }
-  elsif(/^-counttests$/) {
-    $count_tests = 1;
-  }
-  elsif(/^--with-omc=(.*)$/) {
-    $with_omc = "--with-omc=$1";
+  elsif(/^-with-txt$/) {
+    $withtxt = 1;
   }
   elsif(/^-with-xml$/) {
     $with_xml = 1;
@@ -138,27 +136,6 @@ for(@ARGV){
     $with_xml = 1;
     $with_xml_file = "$1";
     $with_xml_cmd = '-with-xml';
-  }
-  elsif(/^-with-txt$/) {
-    $withtxt = 1;
-  }
-  elsif(/^-failing$/) {
-    $run_failing = 1;
-  }
-  elsif(/^-veryfew$/) {
-    $veryfew = 1;
-  }
-  elsif(/^-file=(.*)$/) {
-    $file = $1;
-  }
-  elsif(/^-gitlibs$/) {
-    $gitlibs = 1;
-  }
-  elsif(/^-parmodexp$/) {
-    $parmodexp = 1;
-  }
-  elsif(/^-b$/) {
-    $rebase_test = "-b";
   }
   else {
     print("Unknown flag " . $_ . "!\n");
@@ -195,20 +172,13 @@ sub read_makefile {
   my $dir = shift;
   my $header = shift;
 
-  return if $dir eq "./openmodelica/java"; # Skip the java tests, since they don't work.
-  return if($fast == 1 and $dir =~ m"/libraries/"); # Skip libraries if -f is given.
-  return if($fast == 1 and $dir =~ m"/bootstrapping"); # Skip libraries if -f is given.
-  return if($fast == 1 and $dir =~ m"/metamodelica"); # Skip libraries if -f is given.
-  return if($fast == 1 and $dir =~ m"/3rdParty/"); # Skip libraries if -f is given.
-  return if($fast == 1 and $dir =~ m"/openmodelica/fmi"); # Skip libraries if -f is given.
-  return if($fast == 1 and $dir =~ m"/hpcom"); # Skip libraries if -f is given.
-  return if($fast == 1 and $dir =~ m"/tearing"); # Skip libraries if -f is given.
-  return if($gitlibs == 0 and $dir =~ m"/GitLibraries"); # Skip libraries unless -gitlibs is given.
+  return if($fast == 1 and $dir =~ m"/OMSysIdent"); # Skip OMSysIdent if -f is given.
+  return if($fast == 1 and $dir =~ m"/OMTLMSimulator"); # Skip OMTLMSimulator if -f is given.
 
   open(my $in, "<", "$dir/Makefile") or die "Couldn't open $dir/Makefile: $!";
 
   while(<$in>) {
-    if(/(\S+) -f Makefile test[^s]/) {  # Recursively parse makefiles.
+    if(/(\S+) -f Makefile test[^s]/) { # Recursively parse makefiles.
       read_makefile("$dir/$1", $header);
     }
     elsif(/^$header\s*=.*$/) { # Found a list of tests, parse them.
@@ -269,7 +239,7 @@ sub run_tests {
     (my $test_dir, my $test) = $test_full =~ /(.*)\/([^\/]*)$/;
 
     my $t0 = [gettimeofday];
-    my $cmd = "$testscript $test_full $have_dwdiff $nocolour $with_xml_cmd $with_omc $rebase_test";
+    my $cmd = "$testscript $test_full $have_dwdiff $nocolour $with_xml_cmd $rebase_test";
     my $x = system("$cmd") >> 8;
     my $elapsed = tv_interval ( $t0, [gettimeofday]);
 
@@ -298,14 +268,10 @@ if (!defined($file)) {
   # parse the makefile there.
   chdir("..");
 
-  if ($asan == 1) {
+  if ($veryfew == 1) {
     read_makefile("./AircraftVehicleDemonstrator", "TESTFILES");
     read_makefile("./API", "TESTFILES");
     read_makefile("./OMSimulator", "TESTFILES");
-  } elsif ($parmodexp == 1) {
-    read_makefile("./parmodelica/explicit", "TESTFILES");
-  } elsif($veryfew == 1) {
-    read_makefile("./flattening/modelica/modification", "TESTFILES");
   } elsif($run_failing == 0) {
     read_makefile(".", "TESTFILES");
   } else {
@@ -351,8 +317,6 @@ if ($check_proc_cpu) {
 }
 # Make sure that omc-diff is generated before trying to run any tests.
 system("make --quiet -j$thread_count omc-diff ReferenceFiles > /dev/null 2>&1");
-
-symlink('../Compiler', 'Compiler');
 
 my $test_count = @test_list;
 
@@ -429,7 +393,7 @@ if($with_xml) {
   foreach(@test_list) {
     my $test_full = $_;
     (my $test_dir, my $test) = $test_full =~ /(.*)\/([^\/]*)$/;
-    my $filename = "$testsuite_root$test_full.$with_xml_file";
+    my $filename = "$testsuite_root$test_full.result.xml";
 
     my $data = "";
     if (open my $fh, '<', $filename) {
@@ -449,7 +413,6 @@ if($with_xml) {
   print $XMLOUT "</testsuite>\n";
 }
 
-unlink("Compiler");
 # Clean up the temporary rtest directory, so it doesn't get overrun.
 my $username = getpwuid($<);
 my @dirs = glob "/tmp/omc-rtest-$username*";
