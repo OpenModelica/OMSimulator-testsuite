@@ -1,6 +1,6 @@
 -- name: HelloWorldWithInput_cs_Fit
 -- status: correct
--- teardown_command: rm HelloWorldWithInput_cs_Fit.log
+-- teardown_command: rm -f HelloWorldWithInput_cs_Fit.log HelloWorldWithInput_cs_Fit_res.csv
 
 version = getVersion()
 -- print(version)

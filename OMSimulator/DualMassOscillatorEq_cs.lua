@@ -1,49 +1,38 @@
 -- status: correct
 -- teardown_command: rm DualMassOscillatorEq_cs.log DualMassOscillatorEq_cs.mat
 
-setLogFile("DualMassOscillatorEq_cs.log")
-
-model = newModel()
-setTempDirectory("./DualMassOscillatorEq_cs_tmp")
+oms2_setLogFile("DualMassOscillatorEq_cs.log")
+oms2_setTempDirectory("./DualMassOscillatorEq_me_tmp")
+oms2_newFMIModel("DualMassOscillatorEq")
 
 -- instantiate FMUs
-instantiateFMU(model, "../FMUs/DualMassOscillator.System1Eq_cs.fmu", "System1")
-instantiateFMU(model, "../FMUs/DualMassOscillator.System2Eq_cs.fmu", "System2")
+oms2_addFMU("DualMassOscillatorEq", "../FMUs/DualMassOscillator.System1Eq_cs.fmu", "System1")
+oms2_addFMU("DualMassOscillatorEq", "../FMUs/DualMassOscillator.System2Eq_cs.fmu", "System2")
 
 -- add connections
-addConnection(model, "System1.in_F", "System2.out_F")
-addConnection(model, "System1.out_s1", "System2.in_s1")
-addConnection(model, "System1.out_v1", "System2.in_v1")
+oms2_addConnection("DualMassOscillatorEq", "System1:in_F", "System2:out_F")
+oms2_addConnection("DualMassOscillatorEq", "System1:out_s1", "System2:in_s1")
+oms2_addConnection("DualMassOscillatorEq", "System1:out_v1", "System2:in_v1")
 
-setResultFile(model, "DualMassOscillatorEq_cs.mat")
+oms2_setResultFile("DualMassOscillatorEq", "DualMassOscillatorEq_cs.mat")
 
-setStopTime(model, 0.1)
-setCommunicationInterval(model, 1e-5)
+oms2_setStopTime("DualMassOscillatorEq", 0.1)
+oms2_setCommunicationInterval("DualMassOscillatorEq", 1e-5)
 
---describe(model)
+oms2_initialize("DualMassOscillatorEq")
+oms2_simulate("DualMassOscillatorEq")
 
---exportDependencyGraph(model, "DualMassOscillatorEq_cs")
---os.execute("gvpr -c \"N[$.degree==0]{delete(root, $)}\" DualMassOscillatorEq_cs_simulation.dot | dot -Tpdf -o DualMassOscillatorEq_cs_simulation.pdf")
---os.execute("gvpr -c \"N[$.degree==0]{delete(root, $)}\" DualMassOscillatorEq_cs_initialization.dot | dot -Tpdf -o DualMassOscillatorEq_cs_initialization.pdf")
-
---exportCompositeStructure(model, "DualMassOscillatorEq_cs")
---os.execute("dot -Gsplines=none DualMassOscillatorEq_cs.dot | neato -n -Gsplines=ortho -Tpdf -oDualMassOscillatorEq_cs.pdf")
-
-initialize(model)
-simulate(model)
-
-tcur = getCurrentTime(model)
-vars = {"System1.s1", "System2.s2"}
+tcur = oms2_getCurrentTime("DualMassOscillatorEq")
+vars = {"DualMassOscillatorEq.System1:s1", "DualMassOscillatorEq.System2:s2"}
 for _,var in ipairs(vars) do
-  print(var .. " at " .. tcur .. ": " .. getReal(model, var))
+  print(var .. " at " .. tcur .. ": " .. oms2_getReal(var))
 end
 
-terminate(model)
-
-unload(model)
+oms2_terminate("DualMassOscillatorEq")
+oms2_unloadModel("DualMassOscillatorEq")
 
 -- Result:
--- System1.s1 at 0.1: -0.44227660452253
--- System2.s2 at 0.1: -0.29696508616087
+-- DualMassOscillatorEq.System1:s1 at 0.1: -0.45012153166449
+-- DualMassOscillatorEq.System2:s2 at 0.1: -0.30237070431675
 -- info:    Logging information has been saved to "DualMassOscillatorEq_cs.log"
 -- endResult
