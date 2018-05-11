@@ -1,7 +1,7 @@
 -- status: correct
 -- teardown_command: rm -rf api-test02.log api_test02.xml api_test02b.xml api-test02_tmp
 
-setLogFile("api-test02.log")
+oms2_setLogFile("api-test02.log")
 
 status = oms2_setTempDirectory("./api-test02_tmp")
 print("status code: " .. status)
