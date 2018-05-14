@@ -5,11 +5,11 @@ TLM_External_Tools.lua \
 TLM_FMI_Submodels.lua \
 TLM_FMI_1D.lua \
 TLM_FMI_3D.lua \
-TLM_FMI_1D_CoarseGrained.lua \
-TLM_FMI_1D_FineGrained.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \
+TLM_FMI_1D_CoarseGrained.lua \
+TLM_FMI_1D_FineGrained.lua \
 
 # Dependency files that are not .lua or Makefile
 # Add them here or they will be cleaned.
