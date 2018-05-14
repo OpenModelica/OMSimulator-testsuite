@@ -1,17 +1,8 @@
 -- status: correct
--- teardown_command: rm tlm_ext.run tlm_ext_res.mat tlm_ext.csv 
+-- teardown_command: rm -rf tlm_ext.run tlm_ext_res.mat tlm_ext.csv TLM_External_Tools.log TLM_External_Tools_tmp/
 -- linux: yes
 -- mingw: no
 -- mac: no
-
---curdir = os.getenv("PWD")
---newpath = "export PATH="..curdir.."/../../OMTLMSimulator/bin:$PATH"
---tlmpath = "export OMTLMSimulatorPath="..curdir.."/../../OMTLMSimulator"
---os.execute(newpath)
---os.execute(tlmpath)
-
---print(newpath)
---print(tlmpath)
 
 oms2_setLogFile("TLM_External_Tools.log")
 oms2_newTLMModel("tlm_ext")
@@ -42,17 +33,15 @@ oms2_setStartTime("tlm_ext", 0.5)
 oms2_setStopTime("tlm_ext", 4)
 
 oms2_initialize("tlm_ext")
-
 oms2_simulate("tlm_ext")
 
-
-vars = {"adder.y","source1.y","source2.y"} 
-for _,var in ipairs(vars) do 
-  if 1 == compareSimulationResults("tlm_ext.csv", "../ReferenceFiles/TLM_External_Tools.csv", var, 1e-2, 1e-4) then 
-    print(var .. " is equal") 
-  else 
-    print(var .. " is not equal") 
-  end 
+vars = {"adder.y","source1.y","source2.y"}
+for _,var in ipairs(vars) do
+  if 1 == compareSimulationResults("tlm_ext.csv", "../ReferenceFiles/TLM_External_Tools.csv", var, 1e-2, 1e-4) then
+    print(var .. " is equal")
+  else
+    print(var .. " is not equal")
+  end
 end
 
 -- Result:

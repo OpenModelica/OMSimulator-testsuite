@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -f TLM_FMI_1D_CoarseGrained.log tlm1d_cg1.csv tlm1d_cg.run tlm1d_cg_res.mat TLMlogfile.log
+-- teardown_command: rm -rf TLM_FMI_1D_CoarseGrained.log tlm1d_cg.csv tlm1d_cg.run tlm1d_cg_res.mat TLMlogfile.log TLM_FMI_1D_CoarseGrained_tmp/
 -- linux: yes
 -- mingw: no
 -- mac: no
@@ -41,18 +41,15 @@ oms2_setStartTime("tlm1d_cg", 0)
 oms2_setStopTime("tlm1d_cg", 0.5)
 
 oms2_initialize("tlm1d_cg")
-
 oms2_simulate("tlm1d_cg")
 
-
-
-vars = {"fmi1.P.v [m/s]","fmi2.P.v [m/s]","fmi1.P.F [N]","fmi2.P.F [N]"} 
-for _,var in ipairs(vars) do 
-  if 1 == compareSimulationResults("tlm1d_cg.csv", "../ReferenceFiles/TLM_FMI_1D_CoarseGrained.csv", var, 1e-2, 1e-4) then 
-    print(var .. " is equal") 
-  else 
-    print(var .. " is not equal") 
-  end 
+vars = {"fmi1.P.v [m/s]","fmi2.P.v [m/s]","fmi1.P.F [N]","fmi2.P.F [N]"}
+for _,var in ipairs(vars) do
+  if 1 == compareSimulationResults("tlm1d_cg.csv", "../ReferenceFiles/TLM_FMI_1D_CoarseGrained.csv", var, 1e-2, 1e-4) then
+    print(var .. " is equal")
+  else
+    print(var .. " is not equal")
+  end
 end
 
 -- Result:

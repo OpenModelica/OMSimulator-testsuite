@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm tlm.run tlm_res.mat tlm.csv
+-- teardown_command: rm -rf TLM_FMI_Submodels.log TLM_FMI_Submodels_tmp/ tlm.run tlm_res.mat tlm.csv
 -- linux: yes
 -- mingw: no
 -- mac: no
@@ -42,17 +42,15 @@ oms2_setStartTime("tlm", 0)
 oms2_setStopTime("tlm", 1)
 
 oms2_initialize("tlm")
-
 oms2_simulate("tlm")
 
-
-vars = {"fmi1.out","fmi2.out"} 
-for _,var in ipairs(vars) do 
-  if 1 == compareSimulationResults("tlm.csv", "../ReferenceFiles/TLM_FMI_Submodels.csv", var, 1e-2, 1e-4) then 
-    print(var .. " is equal") 
-  else 
-    print(var .. " is not equal") 
-  end 
+vars = {"fmi1.out","fmi2.out"}
+for _,var in ipairs(vars) do
+  if 1 == compareSimulationResults("tlm.csv", "../ReferenceFiles/TLM_FMI_Submodels.csv", var, 1e-2, 1e-4) then
+    print(var .. " is equal")
+  else
+    print(var .. " is not equal")
+  end
 end
 
 -- Result:
