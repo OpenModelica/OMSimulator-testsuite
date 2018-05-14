@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -rf TLM_FMI_1D.log TLM_FMI_1D_tmp/ tlm1d.csv tlm1d.run tlm1d_res.mat TLMlogfile.log
+-- teardown_command: rm -rf TLM_FMI_1D.log TLM_FMI_1D_tmp/ tlm1d.csv tlm1d.run tlm1d_res.mat TLMlogfile.log fmi1_1d.mat fmi2_1d.mat
 -- linux: yes
 -- mingw: no
 -- mac: no
@@ -9,10 +9,12 @@ oms2_setTempDirectory("./TLM_FMI_1D_tmp")
 
 oms2_newFMIModel("fmi1")
 oms2_setCommunicationInterval("fmi1", 0.001)
+oms2_setResultFile("fmi1", "fmi1_1d.mat")
 oms2_addFMU("fmi1", "../FMUs/Mass.fmu", "mass")
 
 oms2_newFMIModel("fmi2")
 oms2_setCommunicationInterval("fmi2", 0.001);
+oms2_setResultFile("fmi2", "fmi2_1d.mat")
 oms2_addFMU("fmi2", "../FMUs/MassSpring.fmu", "mass")
 
 oms2_newTLMModel("tlm1d")

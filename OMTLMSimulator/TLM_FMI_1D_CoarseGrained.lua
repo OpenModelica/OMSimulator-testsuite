@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -rf TLM_FMI_1D_CoarseGrained.log tlm1d_cg.csv tlm1d_cg.run tlm1d_cg_res.mat TLMlogfile.log TLM_FMI_1D_CoarseGrained_tmp/
+-- teardown_command: rm -rf TLM_FMI_1D_CoarseGrained.log tlm1d_cg.csv tlm1d_cg.run tlm1d_cg_res.mat TLMlogfile.log TLM_FMI_1D_CoarseGrained_tmp/ fmi1_1d_cg.mat fmi2_1d_cg.mat
 -- linux: yes
 -- mingw: no
 -- mac: no
@@ -9,6 +9,7 @@ oms2_setTempDirectory("./TLM_FMI_1D_CoarseGrained_tmp")
 
 oms2_newFMIModel("fmi1")
 oms2_setCommunicationInterval("fmi1", 0.001)
+oms2_setResultFile("fmi1", "fmi1_1d_cg.mat")
 oms2_addFMU("fmi1", "../FMUs/TLM_CoarseGrained1_1D.fmu", "fmu")
 oms2_setRealParameter("fmi1.fmu:M1",0.005);
 oms2_setRealParameter("fmi1.fmu:B1",0.2);
@@ -19,6 +20,7 @@ oms2_setRealParameter("fmi1.fmu:K2",141);
 
 oms2_newFMIModel("fmi2")
 oms2_setCommunicationInterval("fmi2", 0.001);
+oms2_setResultFile("fmi2", "fmi2_1d_cg.mat")
 oms2_addFMU("fmi2", "../FMUs/TLM_CoarseGrained2_1D.fmu", "fmu")
 oms2_setRealParameter("fmi2.fmu:t_step1",0.1);
 oms2_setRealParameter("fmi2.fmu:F_y1",-100);

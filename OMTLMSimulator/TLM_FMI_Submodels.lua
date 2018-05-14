@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -rf TLM_FMI_Submodels.log TLM_FMI_Submodels_tmp/ tlm.run tlm_res.mat tlm.csv
+-- teardown_command: rm -rf TLM_FMI_Submodels.log TLM_FMI_Submodels_tmp/ tlm.run tlm_res.mat tlm.csv fmi1.mat fmi2.mat
 -- linux: yes
 -- mingw: no
 -- mac: no
@@ -8,7 +8,7 @@ oms2_setLogFile("TLM_FMI_Submodels.log")
 oms2_setTempDirectory("./TLM_FMI_Submodels_tmp")
 
 oms2_newFMIModel("fmi1")
-
+oms2_setResultFile("fmi1", "fmi1.mat")
 oms2_addFMU("fmi1", "../FMUs/Modelica.Blocks.Math.Add.fmu", "adder")
 oms2_addFMU("fmi1", "../FMUs/sine.fmu", "sine1")
 oms2_addFMU("fmi1", "../FMUs/sine.fmu", "sine2")
@@ -21,6 +21,7 @@ oms2_setRealParameter("fmi1.sine2:A",0.3);
 oms2_setRealParameter("fmi1.sine2:omega",20);
 
 oms2_newFMIModel("fmi2")
+oms2_setResultFile("fmi2", "fmi2.mat")
 oms2_addFMU("fmi2", "../FMUs/Modelica.Blocks.Math.Gain.fmu", "gain")
 oms2_setRealParameter("fmi2.gain:k",2);
 
