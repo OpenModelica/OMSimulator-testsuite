@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -f TLM_FMI_3D.log tlm3d.csv tlm3d.run tlm3d_res.mat
+-- teardown_command: rm -rf TLM_FMI_3D.log TLM_FMI_3D_tmp/ tlm3d.csv tlm3d.run tlm3d_res.mat
 -- linux: yes
 -- mingw: no
 -- mac: no
@@ -19,7 +19,7 @@ oms2_newTLMModel("tlm3d")
 oms2_addFMISubModel("tlm3d", "fmi1")
 oms2_addFMISubModel("tlm3d", "fmi2")
 oms2_addTLMInterface("tlm3d", "fmi1", "P", 3, bidirectional, "Mechanical", "pendulum:fmi.r[1]", "pendulum:fmi.r[2]", "pendulum:fmi.r[3]",
-                     "pendulum:fmi.A[1,1]", "pendulum:fmi.A[1,2]", "pendulum:fmi.A[1,3]", 
+                     "pendulum:fmi.A[1,1]", "pendulum:fmi.A[1,2]", "pendulum:fmi.A[1,3]",
                      "pendulum:fmi.A[2,1]", "pendulum:fmi.A[2,2]", "pendulum:fmi.A[2,3]",
                      "pendulum:fmi.A[3,1]", "pendulum:fmi.A[3,2]", "pendulum:fmi.A[3,3]",
                      "pendulum:fmi.v[1]", "pendulum:fmi.v[2]", "pendulum:fmi.v[3]",
@@ -27,7 +27,7 @@ oms2_addTLMInterface("tlm3d", "fmi1", "P", 3, bidirectional, "Mechanical", "pend
                      "pendulum:fmi.f[1]", "pendulum:fmi.f[2]", "pendulum:fmi.f[3]",
                      "pendulum:fmi.t[1]", "pendulum:fmi.t[2]", "pendulum:fmi.t[3]");
 oms2_addTLMInterface("tlm3d", "fmi2", "P", 3, bidirectional, "Mechanical", "pendulum:fmi.r[1]", "pendulum:fmi.r[2]", "pendulum:fmi.r[3]",
-                     "pendulum:fmi.A[1,1]", "pendulum:fmi.A[1,2]", "pendulum:fmi.A[1,3]", 
+                     "pendulum:fmi.A[1,1]", "pendulum:fmi.A[1,2]", "pendulum:fmi.A[1,3]",
                      "pendulum:fmi.A[2,1]", "pendulum:fmi.A[2,2]", "pendulum:fmi.A[2,3]",
                      "pendulum:fmi.A[3,1]", "pendulum:fmi.A[3,2]", "pendulum:fmi.A[3,3]",
                      "pendulum:fmi.v[1]", "pendulum:fmi.v[2]", "pendulum:fmi.v[3]",
@@ -44,18 +44,15 @@ oms2_setStartTime("tlm3d", 0)
 oms2_setStopTime("tlm3d", 0.1)
 
 oms2_initialize("tlm3d")
-
 oms2_simulate("tlm3d")
 
-
-
-vars = {"fmi1.P.R[cG][cG](1) [m]","fmi1.P.R[cG][cG](2) [m]","fmi1.P.R[cG][cG](3) [m]","fmi2.P.R[cG][cG](1) [m]","fmi2.P.R[cG][cG](2) [m]","fmi2.P.R[cG][cG](3) [m]"} 
- for _,var in ipairs(vars) do 
-   if 1 == compareSimulationResults("tlm3d.csv", "../ReferenceFiles/TLM_FMI_3D.csv", var, 1e-2, 1e-4) then 
-     print(var .. " is equal") 
-  else 
-    print(var .. " is not equal") 
-  end 
+vars = {"fmi1.P.R[cG][cG](1) [m]","fmi1.P.R[cG][cG](2) [m]","fmi1.P.R[cG][cG](3) [m]","fmi2.P.R[cG][cG](1) [m]","fmi2.P.R[cG][cG](2) [m]","fmi2.P.R[cG][cG](3) [m]"}
+ for _,var in ipairs(vars) do
+   if 1 == compareSimulationResults("tlm3d.csv", "../ReferenceFiles/TLM_FMI_3D.csv", var, 1e-2, 1e-4) then
+     print(var .. " is equal")
+  else
+    print(var .. " is not equal")
+  end
 end
 
 -- Result:
