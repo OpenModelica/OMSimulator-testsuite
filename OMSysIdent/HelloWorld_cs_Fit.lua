@@ -1,6 +1,6 @@
 -- name: HelloWorld_cs_Fit
 -- status: correct
--- teardown_command: rm HelloWorld_cs_Fit.log
+-- teardown_command: rm -f HelloWorld_cs_Fit.log
 
 -- Uncomment below if script shall be executed by a standard Lua interpreter (see README.md)
 -- require("package")

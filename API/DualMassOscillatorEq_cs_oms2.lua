@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm DualMassOscillatorEq_cs_oms2.log DualMassOscillatorEq_cs_oms2.mat
+-- teardown_command: rm -rf DualMassOscillatorEq_cs_oms2.log DualMassOscillatorEq_cs_oms2_tmp/ DualMassOscillatorEq_cs_oms2.mat DualMassInit.dot DualMassSim.dot
 -- linux: yes
 
 oms2_setLogFile("DualMassOscillatorEq_cs_oms2.log")
