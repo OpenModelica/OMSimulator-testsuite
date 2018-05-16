@@ -114,7 +114,7 @@ exitOnError(status)
 
 vars = {"limiter.u", "limiter.y"}
 for _,var in ipairs(vars) do
-  if 1 == compareSimulationResults("PI_Controller-lua.mat", "../ReferenceFiles/PI_Controller.mat", var, 1e-2, 1e-4) then
+  if 1 == oms2_compareSimulationResults("PI_Controller-lua.mat", "../ReferenceFiles/PI_Controller.mat", var, 1e-2, 1e-4) then
     print("info:    " .. var .. " is equal")
   else
     print("error:   " .. var .. " is not equal")
@@ -142,9 +142,7 @@ end
 -- info:    status code: 0
 -- info:    status code: 0
 -- info:    status code: 0
--- error:   limiter.u is not equal
--- error:   limiter.y is not equal
--- info:    0 warnings
--- info:    2 errors
+-- info:    limiter.u is equal
+-- info:    limiter.y is equal
 -- info:    Logging information has been saved to "PI_Controller-lua.log"
 -- endResult

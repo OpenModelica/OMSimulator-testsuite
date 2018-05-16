@@ -2,7 +2,7 @@
 -- status: correct
 -- teardown_command: rm -f HelloWorldWithInput_cs_Fit.log HelloWorldWithInput_cs_Fit_res.csv
 
-version = getVersion()
+version = oms2_getVersion()
 -- print(version)
 
 oms2_setLogFile("HelloWorldWithInput_cs_Fit.log")

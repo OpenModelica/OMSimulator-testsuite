@@ -7,30 +7,30 @@ session = OMSimulator()
 session.setLogFile("PI_Controller.log")
 session.setTempDirectory("./PI_Controller_tmp")
 
-model = session.newModel()
+session.newFMIModel("PI_Controller")
 
 # instantiate FMUs
-session.instantiateFMU(model, "../FMUs/Modelica.Blocks.Math.Add.fmu", "addP")
-session.instantiateFMU(model, "../FMUs/Modelica.Blocks.Math.Gain.fmu", "P")
-session.instantiateFMU(model, "../FMUs/Modelica.Blocks.Math.Add3.fmu", "addI")
-session.instantiateFMU(model, "../FMUs/Modelica.Blocks.Continuous.Integrator.fmu", "I")
-session.instantiateFMU(model, "../FMUs/Modelica.Blocks.Math.Add.fmu", "addPI")
-session.instantiateFMU(model, "../FMUs/Modelica.Blocks.Math.Gain.fmu", "gainPI")
-session.instantiateFMU(model, "../FMUs/Modelica.Blocks.Nonlinear.Limiter.fmu", "limiter")
-session.instantiateFMU(model, "../FMUs/Modelica.Blocks.Math.Add.fmu", "addSat")
-session.instantiateFMU(model, "../FMUs/Modelica.Blocks.Math.Gain.fmu", "gainTrack")
+session.addFMU("PI_Controller", "../FMUs/Modelica.Blocks.Math.Add.fmu", "addP")
+session.addFMU("PI_Controller", "../FMUs/Modelica.Blocks.Math.Gain.fmu", "P")
+session.addFMU("PI_Controller", "../FMUs/Modelica.Blocks.Math.Add3.fmu", "addI")
+session.addFMU("PI_Controller", "../FMUs/Modelica.Blocks.Continuous.Integrator.fmu", "I")
+session.addFMU("PI_Controller", "../FMUs/Modelica.Blocks.Math.Add.fmu", "addPI")
+session.addFMU("PI_Controller", "../FMUs/Modelica.Blocks.Math.Gain.fmu", "gainPI")
+session.addFMU("PI_Controller", "../FMUs/Modelica.Blocks.Nonlinear.Limiter.fmu", "limiter")
+session.addFMU("PI_Controller", "../FMUs/Modelica.Blocks.Math.Add.fmu", "addSat")
+session.addFMU("PI_Controller", "../FMUs/Modelica.Blocks.Math.Gain.fmu", "gainTrack")
 
 # add connections
-session.addConnection(model, "addP.y", "P.u")
-session.addConnection(model, "addI.y", "I.u")
-session.addConnection(model, "P.y", "addPI.u1")
-session.addConnection(model, "I.y", "addPI.u2")
-session.addConnection(model, "addPI.y", "gainPI.u")
-session.addConnection(model, "gainPI.y", "limiter.u")
-session.addConnection(model, "gainPI.y", "addSat.u2")
-session.addConnection(model, "limiter.y", "addSat.u1")
-session.addConnection(model, "addSat.y", "gainTrack.u")
-session.addConnection(model, "gainTrack.y", "addI.u3")
+session.addConnection("PI_Controller", "addP:y", "P:u")
+session.addConnection("PI_Controller", "addI:y", "I:u")
+session.addConnection("PI_Controller", "P:y", "addPI:u1")
+session.addConnection("PI_Controller", "I:y", "addPI:u2")
+session.addConnection("PI_Controller", "addPI:y", "gainPI:u")
+session.addConnection("PI_Controller", "gainPI:y", "limiter:u")
+session.addConnection("PI_Controller", "gainPI:y", "addSat:u2")
+session.addConnection("PI_Controller", "limiter:y", "addSat:u1")
+session.addConnection("PI_Controller", "addSat:y", "gainTrack:u")
+session.addConnection("PI_Controller", "gainTrack:y", "addI:u3")
 
 # parameters
 k = 100.0
@@ -41,52 +41,52 @@ Ni = 0.1
 xi_start = 0.0
 
 # set parameters
-session.setReal(model, "addP.k1", wp)
-session.setReal(model, "addP.k2", -1.0)
-session.setReal(model, "addI.k2", -1.0)
-session.setReal(model, "I.y_start", xi_start)
-session.setReal(model, "gainPI.k", k)
-session.setReal(model, "limiter.uMax", yMax)
-session.setReal(model, "addSat.k2", -1.0)
-session.setReal(model, "gainTrack.k", 1.0/(k*Ni))
+session.setReal("PI_Controller.addP:k1", wp)
+session.setReal("PI_Controller.addP:k2", -1.0)
+session.setReal("PI_Controller.addI:k2", -1.0)
+session.setReal("PI_Controller.I:y_start", xi_start)
+session.setReal("PI_Controller.gainPI:k", k)
+session.setReal("PI_Controller.limiter:uMax", yMax)
+session.setReal("PI_Controller.addSat:k2", -1.0)
+session.setReal("PI_Controller.gainTrack:k", 1.0/(k*Ni))
 
 # simulation settings
-session.setStopTime(model, 4.0)
-session.setCommunicationInterval(model, 1e-4)
+session.setStopTime("PI_Controller", 4.0)
+session.setCommunicationInterval("PI_Controller", 1e-4)
 
-session.exportCompositeStructure(model, "PI_Controller")
-session.exportDependencyGraph(model, "PI_Controller")
+session.exportCompositeStructure("PI_Controller", "PI_Controller.dot")
+session.exportDependencyGraphs("PI_Controller", "PI_Controller_simulation.dot", "PI_Controller_initialization.dot")
 #gvpr -c "N[$.degree==0]{delete(root, $)}" PI_Controller_simulation.dot | dot -Tpdf -o PI_Controller_simulation.pdf
 #gvpr -c "N[$.degree==0]{delete(root, $)}" PI_Controller_initialization.dot | dot -Tpdf -o PI_Controller_initialization.pdf
 #dot -Gsplines=none PI_Controller.dot | neato -n -Gsplines=ortho -Tpdf -oPI_Controller.pdf
 
 # instantiate lookup table
-session.instantiateTable(model, "setpoint.csv", "setpoint")
-session.instantiateTable(model, "drivetrain.csv", "driveTrain")
+session.addTable("PI_Controller", "setpoint.csv", "setpoint")
+session.addTable("PI_Controller", "drivetrain.csv", "driveTrain")
 
 # add connections
-session.addConnection(model, "setpoint.speed", "addP.u1")
-session.addConnection(model, "setpoint.speed", "addI.u1")
+session.addConnection("PI_Controller", "setpoint:speed", "addP:u1")
+session.addConnection("PI_Controller", "setpoint:speed", "addI:u1")
 
-session.addConnection(model, "driveTrain.w", "addP.u2")
-session.addConnection(model, "driveTrain.w", "addI.u2")
+session.addConnection("PI_Controller", "driveTrain:w", "addP:u2")
+session.addConnection("PI_Controller", "driveTrain:w", "addI:u2")
 
 # simulation settings
-session.setResultFile(model, "PI_Controller.mat")
+session.setResultFile("PI_Controller", "PI_Controller.mat")
 
 # simulation
 print("info:    Initialization")
-session.initialize(model)
-print("info:      limiter.u: " + str(session.getReal(model, "limiter.u")))
-print("info:      limiter.y: " + str(session.getReal(model, "limiter.y")))
+session.initialize("PI_Controller")
+print("info:      limiter.u: " + str(session.getReal("PI_Controller.limiter:u")[1]))
+print("info:      limiter.y: " + str(session.getReal("PI_Controller.limiter:y")[1]))
 
 print("info:    Simulation")
-session.simulate(model)
-print("info:      limiter.u: " + str(session.getReal(model, "limiter.u")))
-print("info:      limiter.y: " + str(session.getReal(model, "limiter.y")))
+session.simulate("PI_Controller")
+print("info:      limiter.u: " + str(session.getReal("PI_Controller.limiter:u")[1]))
+print("info:      limiter.y: " + str(session.getReal("PI_Controller.limiter:y")[1]))
 
-session.terminate(model)
-session.unload(model)
+session.terminate("PI_Controller")
+session.unloadModel("PI_Controller")
 
 vars = ["limiter.u", "limiter.y"]
 for var in vars:

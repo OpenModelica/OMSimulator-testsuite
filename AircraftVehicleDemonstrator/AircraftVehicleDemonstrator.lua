@@ -167,7 +167,7 @@ oms2_unloadModel("AircraftVehicleDemonstrator")
 
 vars = {"engine.pB.p", "eCS_Generic_Export.Meas_PACK_TEMP", "eCS_Generic_Export.Meas_PACK_PRESS"}
 for _,var in ipairs(vars) do
-  if 1 == compareSimulationResults("AircraftVehicleDemonstrator_res.mat", "../ReferenceFiles/AircraftVehicleDemonstrator.mat", var, 1e-2, 1e-4) then
+  if 1 == oms2_compareSimulationResults("AircraftVehicleDemonstrator_res.mat", "../ReferenceFiles/AircraftVehicleDemonstrator.mat", var, 1e-2, 1e-4) then
     print("info:    " .. var .. " is equal")
   else
     print("warning: " .. var .. " is not equal")

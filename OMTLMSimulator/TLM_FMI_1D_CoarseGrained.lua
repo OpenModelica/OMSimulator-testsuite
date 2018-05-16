@@ -47,7 +47,7 @@ oms2_simulate("tlm1d_cg")
 
 vars = {"fmi1.P.v [m/s]","fmi2.P.v [m/s]","fmi1.P.F [N]","fmi2.P.F [N]"}
 for _,var in ipairs(vars) do
-  if 1 == compareSimulationResults("tlm1d_cg.csv", "../ReferenceFiles/TLM_FMI_1D_CoarseGrained.csv", var, 1e-2, 1e-4) then
+  if 1 == oms2_compareSimulationResults("tlm1d_cg.csv", "../ReferenceFiles/TLM_FMI_1D_CoarseGrained.csv", var, 1e-2, 1e-4) then
     print(var .. " is equal")
   else
     print(var .. " is not equal")

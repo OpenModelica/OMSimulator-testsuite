@@ -37,7 +37,7 @@ oms2_simulate("tlm_ext")
 
 vars = {"adder.y","source1.y","source2.y"}
 for _,var in ipairs(vars) do
-  if 1 == compareSimulationResults("tlm_ext.csv", "../ReferenceFiles/TLM_External_Tools.csv", var, 1e-2, 1e-4) then
+  if 1 == oms2_compareSimulationResults("tlm_ext.csv", "../ReferenceFiles/TLM_External_Tools.csv", var, 1e-2, 1e-4) then
     print(var .. " is equal")
   else
     print(var .. " is not equal")

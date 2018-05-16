@@ -50,7 +50,7 @@ oms2_simulate("tlm3d")
 
 vars = {"fmi1.P.R[cG][cG](1) [m]","fmi1.P.R[cG][cG](2) [m]","fmi1.P.R[cG][cG](3) [m]","fmi2.P.R[cG][cG](1) [m]","fmi2.P.R[cG][cG](2) [m]","fmi2.P.R[cG][cG](3) [m]"}
  for _,var in ipairs(vars) do
-   if 1 == compareSimulationResults("tlm3d.csv", "../ReferenceFiles/TLM_FMI_3D.csv", var, 1e-2, 1e-4) then
+   if 1 == oms2_compareSimulationResults("tlm3d.csv", "../ReferenceFiles/TLM_FMI_3D.csv", var, 1e-2, 1e-4) then
      print(var .. " is equal")
   else
     print(var .. " is not equal")
