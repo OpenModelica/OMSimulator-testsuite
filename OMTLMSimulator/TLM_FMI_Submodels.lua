@@ -44,6 +44,9 @@ oms2_setStopTime("tlm", 1)
 
 oms2_initialize("tlm")
 oms2_simulate("tlm")
+oms2_terminate("tlm")
+
+oms2_unloadModel("tlm")
 
 vars = {"fmi1.out","fmi2.out"}
 for _,var in ipairs(vars) do
@@ -60,5 +63,7 @@ end
 -- Manager thread finished.
 -- fmi1.out is equal
 -- fmi2.out is equal
+-- info:    0 warnings
+-- info:    1 errors
 -- info:    Logging information has been saved to "TLM_FMI_Submodels.log"
 -- endResult

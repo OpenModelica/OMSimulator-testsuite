@@ -34,6 +34,9 @@ oms2_setStopTime("tlm_ext", 4)
 
 oms2_initialize("tlm_ext")
 oms2_simulate("tlm_ext")
+oms2_terminate("tlm_ext")
+
+oms2_unloadModel("tlm_ext")
 
 vars = {"adder.y","source1.y","source2.y"}
 for _,var in ipairs(vars) do
@@ -55,5 +58,7 @@ end
 -- adder.y is equal
 -- source1.y is equal
 -- source2.y is equal
--- info: Logging information has been saved to "TLM_External_Tools.log"
+-- info:    0 warnings
+-- info:    1 errors
+-- info:    Logging information has been saved to "TLM_External_Tools.log"
 -- endResult
