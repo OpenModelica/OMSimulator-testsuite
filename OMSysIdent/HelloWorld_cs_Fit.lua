@@ -10,7 +10,7 @@
 -- OMFitLua = package.loadlib("../../install/linux/lib/libOMSysIdent.so", "luaopen_OMFitLua")
 -- OMFitLua()
 
-version = getVersion()
+version = oms2_getVersion()
 -- print(version)
 
 oms2_setLogFile("HelloWorld_cs_Fit.log")

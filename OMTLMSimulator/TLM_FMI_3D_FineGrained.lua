@@ -20,9 +20,9 @@ oms2_addFMU("fmi2", "../FMUs/LowerPendulumFG.fmu", "pendulum")
 oms2_newTLMModel("tlm3d_fg")
 oms2_addFMISubModel("tlm3d_fg", "fmi1")
 oms2_addFMISubModel("tlm3d_fg", "fmi2")
-oms2_addTLMInterface("tlm3d_fg", "fmi1", "P", 3, bidirectional, "Mechanical", finegrained, 
+oms2_addTLMInterface("tlm3d_fg", "fmi1", "P", 3, bidirectional, "Mechanical", finegrained,
                      "pendulum:r[0]", "pendulum:r[1]", "pendulum:r[2]",
-                     "pendulum:phi[0]", "pendulum:phi[1]", "pendulum:phi[2]", 
+                     "pendulum:phi[0]", "pendulum:phi[1]", "pendulum:phi[2]",
                      "pendulum:phi[0]", "pendulum:phi[1]", "pendulum:phi[2]",
                      "pendulum:phi[0]", "pendulum:phi[1]", "pendulum:phi[2]",
                      "pendulum:v[0]", "pendulum:v[1]", "pendulum:v[2]",
@@ -35,9 +35,9 @@ oms2_addTLMInterface("tlm3d_fg", "fmi1", "P", 3, bidirectional, "Mechanical", fi
                      "pendulum:ci6[0]", "pendulum:ci6[1]", "pendulum:ci6[2]", "pendulum:ci6[3]", "pendulum:ci6[4]", "pendulum:ci6[5]", "pendulum:ci6[6]", "pendulum:ci6[7]", "pendulum:ci6[8]", "pendulum:ci6[9]",
                      "pendulum:ti[0]", "pendulum:ti[1]", "pendulum:ti[2]", "pendulum:ti[3]", "pendulum:ti[4]", "pendulum:ti[5]", "pendulum:ti[6]", "pendulum:ti[7]", "pendulum:ti[8]", "pendulum:ti[9]",
 										 "pendulum:Zt", "pendulum:Zr");
-oms2_addTLMInterface("tlm3d_fg", "fmi2", "P", 3, bidirectional, "Mechanical", finegrained, 
+oms2_addTLMInterface("tlm3d_fg", "fmi2", "P", 3, bidirectional, "Mechanical", finegrained,
                       "pendulum:r[0]", "pendulum:r[1]", "pendulum:r[2]",
-                     "pendulum:phi[0]", "pendulum:phi[1]", "pendulum:phi[2]", 
+                     "pendulum:phi[0]", "pendulum:phi[1]", "pendulum:phi[2]",
                      "pendulum:phi[0]", "pendulum:phi[1]", "pendulum:phi[2]",
                      "pendulum:phi[0]", "pendulum:phi[1]", "pendulum:phi[2]",
                      "pendulum:v[0]", "pendulum:v[1]", "pendulum:v[2]",
@@ -65,12 +65,12 @@ oms2_simulate("tlm3d_fg")
 
 
 
-vars = {"fmi1.P.R[cG][cG](1) [m]","fmi1.P.R[cG][cG](2) [m]"}  for _,var in ipairs(vars) do 
-   if 1 == compareSimulationResults("tlm3d_fg.csv", "../ReferenceFiles/TLM_FMI_3D_FineGrained.csv", var, 1e-2, 1e-4) then 
-     print(var .. " is equal") 
-  else 
-    print(var .. " is not equal") 
-  end 
+vars = {"fmi1.P.R[cG][cG](1) [m]","fmi1.P.R[cG][cG](2) [m]"}  for _,var in ipairs(vars) do
+   if 1 == oms2_compareSimulationResults("tlm3d_fg.csv", "../ReferenceFiles/TLM_FMI_3D_FineGrained.csv", var, 1e-2, 1e-4) then
+     print(var .. " is equal")
+  else
+    print(var .. " is not equal")
+  end
 end
 
 -- Result:
