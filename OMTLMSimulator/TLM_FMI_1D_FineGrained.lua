@@ -56,6 +56,9 @@ oms2_setStopTime("tlm1d_fg", 0.5)
 
 oms2_initialize("tlm1d_fg")
 oms2_simulate("tlm1d_fg")
+oms2_terminate("tlm1d_fg")
+
+oms2_unloadModel("tlm1d_fg")
 
 vars = {"fmi1.P.v [m/s]","fmi2.P.v [m/s]","fmi1.P.F [N]","fmi2.P.F [N]"}
 for _,var in ipairs(vars) do
@@ -74,5 +77,7 @@ end
 -- fmi2.P.v [m/s] is equal
 -- fmi1.P.F [N] is equal
 -- fmi2.P.F [N] is equal
+-- info:    0 warnings
+-- info:    1 errors
 -- info:    Logging information has been saved to "TLM_FMI_1D_FineGrained.log"
 -- endResult

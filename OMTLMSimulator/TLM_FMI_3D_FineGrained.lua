@@ -60,10 +60,10 @@ oms2_setStartTime("tlm3d_fg", 0)
 oms2_setStopTime("tlm3d_fg", 1)
 
 oms2_initialize("tlm3d_fg")
-
 oms2_simulate("tlm3d_fg")
+oms2_terminate("tlm3d_fg")
 
-
+oms2_unloadModel("tlm3d_fg")
 
 vars = {"fmi1.P.R[cG][cG](1) [m]","fmi1.P.R[cG][cG](2) [m]"}  for _,var in ipairs(vars) do
    if 1 == oms2_compareSimulationResults("tlm3d_fg.csv", "../ReferenceFiles/TLM_FMI_3D_FineGrained.csv", var, 1e-2, 1e-4) then
@@ -79,5 +79,7 @@ end
 -- Manager thread finished.
 -- fmi1.P.R[cG][cG](1) [m] is equal
 -- fmi1.P.R[cG][cG](2) [m] is equal
+-- info:    0 warnings
+-- info:    1 errors
 -- info:    Logging information has been saved to "TLM_FMI_3D_FineGrained.log"
 -- endResult
