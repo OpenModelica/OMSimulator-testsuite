@@ -1,6 +1,5 @@
--- name: HelloWorld_cs_Fit
 -- status: correct
--- teardown_command: rm -f HelloWorld_cs_Fit.log
+-- teardown_command: rm -f HelloWorld_cs_Fit.log HelloWorld_cs_Fit_res.mat
 
 -- Uncomment below if script shall be executed by a standard Lua interpreter (see README.md)
 -- require("package")
@@ -18,7 +17,6 @@ status = oms2_setTempDirectory(".")
 status = oms2_newFMIModel("HelloWorld_cs_Fit")
 -- setTolerance(model, 1e-5); -- 2018-04-25 Not yet supported in oms2 API
 
--- instantiate FMU
 -- add FMU
 status = oms2_addFMU("HelloWorld_cs_Fit", "../FMUs/HelloWorld_cs.fmu", "HelloWorld")
 
