@@ -2,13 +2,11 @@
 -- status: correct
 -- teardown_command: rm -f HelloWorld_cs_Fit.log
 
--- Uncomment below if script shall be executed by a standard Lua interpreter (see README.md)
+-- Uncomment below if script shall be executed by a standard Lua interpreter
 -- require("package")
 -- OMSimulatorLua = package.loadlib("../../install/linux/lib/libOMSimulatorLua.so", "luaopen_OMSimulatorLua")
 -- OMSimulatorLua()
--- FIXME OMFitLua is obsolete and execution be standard Lua interpreter needs to be fixed
--- OMFitLua = package.loadlib("../../install/linux/lib/libOMSysIdent.so", "luaopen_OMFitLua")
--- OMFitLua()
+
 
 version = oms2_getVersion()
 -- print(version)
