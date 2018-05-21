@@ -2,11 +2,11 @@ TEST = ../rtest -v
 
 TESTFILES = \
 HelloWorld_cs_Fit.lua \
+HelloWorld_cs_Fit.py \
 HelloWorldWithInput_cs_Fit.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \
-HelloWorld_cs_Fit.py \ # Python bindings need to be updated to oms2
 
 # Dependency files that are not .lua or Makefile
 # Add them here or they will be cleaned.
