@@ -1,5 +1,5 @@
-## status: OBSOLETE. Uses old oms1 API. Needs to be updated once Python bindings to oms2 exist
-## teardown_command: rm HelloWorld_cs_Fit_py.log
+## status: correct
+## teardown_command: rm HelloWorld_cs_Fit_py.log HelloWorld_cs_Fit_res.mat
 
 from OMSimulator import OMSimulator
 from OMSysIdent import OMSysIdent
@@ -7,16 +7,16 @@ import numpy as np
 
 session = OMSimulator()
 
-session.setLogFile("HelloWorld_cs_Fit_py.log")
-
 version = session.getVersion()
 
-model = session.newModel()
+session.setLogFile("HelloWorld_cs_Fit_py.log")
 session.setTempDirectory(".")
-session.setTolerance(model, 1e-5)
+model = "HelloWorld_cs_Fit"
+session.newFMIModel(model)
+# session.setTolerance(model, 1e-5) # 2018-04-25 Not yet supported in oms2 API
 
-# instantiate FMU
-session.instantiateFMU(model, "../FMUs/HelloWorld_cs.fmu", "HelloWorld")
+# add FMU
+session.addFMU(model, "../FMUs/HelloWorld_cs.fmu", "HelloWorld")
 
 # create simodel for model
 simodel = OMSysIdent(model)
@@ -55,7 +55,7 @@ print('HelloWorld.x_start estimation is OK: {0}'.format(is_OK2))
 
 # del simodel
 session.terminate(model)
-session.unload(model)
+session.unloadModel(model)
 
 ## Result:
 ## HelloWorld.a estimation is OK: True

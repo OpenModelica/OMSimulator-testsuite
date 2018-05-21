@@ -47,11 +47,11 @@ $diffcmd="diff -U 5 -w";
 $dwdiffcmd="dwdiff '-d()' -l -C 3 -c -L";
 $log="";
 $test_id = int(rand(9999));
-$tmpdir = "/tmp/omc-rtest-".(getpwuid($<)||getlogin()||"unknown")."/$dirname"."tmp_$test_id";
+$tmpdir = "/tmp/oms-rtest-".(getpwuid($<)||getlogin()||"unknown")."/$dirname"."tmp_$test_id";
 $tmpdir =~ s/\s/_/g;
 system "mkdir -p $tmpdir";
-$got = "$tmpdir/equations-got";
-$expected = "$tmpdir/equations-expected";
+$gotPrefix = "$tmpdir/equations-got";
+$expectedPrefix = "$tmpdir/equations-expected";
 $difference = "$tmpdir/equations-diff";
 $baseline = "$tmpdir/baseline";
 @keys = ();
@@ -282,8 +282,8 @@ sub dofile
         "win" => "",
         "mingw" => "",
         "mac" => "");
-    $expected = $expected . "tmp_expected-" . $f;
-    $got = $got . "_tmp_got-" . $f;
+    $expected = $expectedPrefix . "tmp_expected-" . $f;
+    $got = $gotPrefix . "_tmp_got-" . $f;
     $log = "$tmpdir/log-$f";
     $tc_err = 1;
     my ($ext) = $f =~ /(\.[^.]+)$/;
