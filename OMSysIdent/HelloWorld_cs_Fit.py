@@ -27,15 +27,15 @@ kNumSeries = 1
 kNumObservations = 11
 data_time = np.array([0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1])
 inputvars = []
-measurementvars = ["HelloWorld_cs_Fit.HelloWorld:x"]
+measurementvars = ["HelloWorld:x"]
 data_x = np.array([1, 0.9, 0.8100000000000001, 0.7290000000000001, 0.6561, 0.5904900000000001, 0.5314410000000001, 0.4782969000000001, 0.43046721, 0.387420489, 0.3486784401])
 
 simodel.initialize(kNumSeries, data_time, inputvars, measurementvars)
 # simodel.describe()
 
-simodel.addParameter("HelloWorld_cs_Fit.HelloWorld:x_start", 0.5);
-simodel.addParameter("HelloWorld_cs_Fit.HelloWorld:a", -0.5);
-simodel.addMeasurement(0, "HelloWorld_cs_Fit.HelloWorld:x", data_x)
+simodel.addParameter("HelloWorld:x_start", 0.5);
+simodel.addParameter("HelloWorld:a", -0.5);
+simodel.addMeasurement(0, "HelloWorld:x", data_x)
 # simodel.describe()
 
 simodel.setOptions_max_num_iterations(25)
@@ -44,8 +44,8 @@ simodel.solve("")
 status, state = simodel.getState()
 # print('status: {0}; state: {1}').format(OMSysIdent.oms_status_str(status), OMSysIdent.omsi_simodelstate_str(state))
 
-status, startvalue1, estimatedvalue1 = simodel.getParameter("HelloWorld_cs_Fit.HelloWorld:a")
-status, startvalue2, estimatedvalue2 = simodel.getParameter("HelloWorld_cs_Fit.HelloWorld:x_start")
+status, startvalue1, estimatedvalue1 = simodel.getParameter("HelloWorld:a")
+status, startvalue2, estimatedvalue2 = simodel.getParameter("HelloWorld:x_start")
 # print('HelloWorld.a startvalue1: {0}; estimatedvalue1: {1}'.format(startvalue1, estimatedvalue1))
 # print('HelloWorld.x_start startvalue2: {0}; estimatedvalue2: {1}'.format(startvalue2, estimatedvalue2))
 is_OK1 = estimatedvalue1 > -1.1 and estimatedvalue1 < -0.9
