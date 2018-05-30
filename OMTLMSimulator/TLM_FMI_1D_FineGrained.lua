@@ -77,7 +77,5 @@ end
 -- fmi2.P.v [m/s] is equal
 -- fmi1.P.F [N] is equal
 -- fmi2.P.F [N] is equal
--- info:    0 warnings
--- info:    1 errors
 -- info:    Logging information has been saved to "TLM_FMI_1D_FineGrained.log"
 -- endResult

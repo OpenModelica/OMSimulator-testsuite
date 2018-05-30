@@ -79,7 +79,5 @@ end
 -- Manager thread finished.
 -- fmi1.P.R[cG][cG](1) [m] is equal
 -- fmi1.P.R[cG][cG](2) [m] is equal
--- info:    0 warnings
--- info:    1 errors
 -- info:    Logging information has been saved to "TLM_FMI_3D_FineGrained.log"
 -- endResult
