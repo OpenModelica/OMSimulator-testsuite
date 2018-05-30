@@ -58,7 +58,5 @@ end
 -- adder.y is equal
 -- source1.y is equal
 -- source2.y is equal
--- info:    0 warnings
--- info:    1 errors
 -- info:    Logging information has been saved to "TLM_External_Tools.log"
 -- endResult
