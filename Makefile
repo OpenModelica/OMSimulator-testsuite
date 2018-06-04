@@ -1,4 +1,4 @@
-.PHONY: all difftool
+.PHONY: all test difftool partest
 
 all: difftool test
 
