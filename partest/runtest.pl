@@ -28,6 +28,9 @@ for(@ARGV){
   elsif(/-have-dwdiff/) {
     $rtest_extra_args = $rtest_extra_args . " -c";
   }
+  elsif(/-win/) {
+    $rtest_extra_args = $rtest_extra_args . " -win";
+  }
   elsif(/^--with-omc=(.*)$/) {
     $rtest_extra_args = $rtest_extra_args . " --with-omc=$1";
   }
@@ -239,7 +242,7 @@ while(<$test_log>) {
   elsif(/== Failed to set baseline.*time: (\d*)/) {
     $nfailed = 1;
     $time = $2;
-  }  
+  }
   elsif(/.*time: (\d*)/) {
     $nfailed = 0;
     $time = $1;

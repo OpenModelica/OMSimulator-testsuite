@@ -2,6 +2,7 @@
 -- teardown_command:
 -- linux: yes
 -- mingw: yes
+-- win: yes
 -- mac: yes
 
 oms2_setLoggingLevel(1)

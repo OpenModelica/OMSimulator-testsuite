@@ -55,6 +55,7 @@ my $with_xml_cmd = 0;
 my $withtxt = 0;
 my $have_dwdiff = "";
 my $rebase_test = "";
+my $win = "";
 
 {
   eval { require File::Which; 1; };
@@ -86,6 +87,7 @@ for(@ARGV){
     print("  -nodb         Don't store timing data.\n");
     print("  -nosavedb     Don't overwrite stored timing data.\n");
     print("  -veryfew      Run only a very small number of tests to see if runtests.pl is working.\n");
+    print("  -win          Force to use the VS version of OMSimulator.\n");
     print("  -with-txt     Output TXT log.\n");
     print("  -with-xml     Output XML log.\n");
     exit 1;
@@ -123,6 +125,9 @@ for(@ARGV){
   }
   elsif(/^-veryfew$/) {
     $veryfew = 1;
+  }
+  elsif(/^-win$/) {
+    $win = "-win";
   }
   elsif(/^-with-txt$/) {
     $withtxt = 1;
@@ -239,7 +244,7 @@ sub run_tests {
     (my $test_dir, my $test) = $test_full =~ /(.*)\/([^\/]*)$/;
 
     my $t0 = [gettimeofday];
-    my $cmd = "$testscript $test_full $have_dwdiff $nocolour $with_xml_cmd $rebase_test";
+    my $cmd = "$testscript $test_full $have_dwdiff $nocolour $with_xml_cmd $rebase_test $win";
     my $x = system("$cmd") >> 8;
     my $elapsed = tv_interval ( $t0, [gettimeofday]);
 
