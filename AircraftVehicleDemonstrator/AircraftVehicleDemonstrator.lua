@@ -146,7 +146,6 @@ oms2_addConnection("AircraftVehicleDemonstrator", "atmosphere_Model_FMU_sf:Alt",
 oms2_setRealParameter("AircraftVehicleDemonstrator.atmosphere_Model_FMU_sf:Parameters.Atmos.Value", 6) -- Hot climate
 
 -- simulation settings
-oms2_setCommunicationInterval("AircraftVehicleDemonstrator", 1e-3)
 --oms2_setResultFile("AircraftVehicleDemonstrator", "demoM27BB_step1e3_tol1e4_20s.mat")
 --oms2_setTolerance("AircraftVehicleDemonstrator", 1e-4)
 oms2_setStopTime("AircraftVehicleDemonstrator", 1)
@@ -160,7 +159,11 @@ oms2_exportDependencyGraphs("AircraftVehicleDemonstrator", "AircraftVehicleDemon
 --os.execute("gvpr -c \"N[$.degree==0]{delete(root, $)}\" AircraftVehicleDemonstrator_initialUnknowns.dot | dot -Tpdf -o AircraftVehicleDemonstrator_initialUnknowns.pdf")
 --os.execute("gvpr -c \"N[$.degree==0]{delete(root, $)}\" AircraftVehicleDemonstrator_outputs.dot | dot -Tpdf -o AircraftVehicleDemonstrator_outputs.pdf")
 
+oms2_setCommunicationInterval("AircraftVehicleDemonstrator", 1e-4)
+oms2_stepUntil("AircraftVehicleDemonstrator", 1e-3)
+oms2_setCommunicationInterval("AircraftVehicleDemonstrator", 1e-3)
 oms2_simulate("AircraftVehicleDemonstrator")
+
 oms2_terminate("AircraftVehicleDemonstrator")
 
 oms2_unloadModel("AircraftVehicleDemonstrator")
