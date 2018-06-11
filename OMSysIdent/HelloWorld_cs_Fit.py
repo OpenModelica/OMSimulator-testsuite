@@ -33,8 +33,8 @@ data_x = np.array([1, 0.9, 0.8100000000000001, 0.7290000000000001, 0.6561, 0.590
 simodel.initialize(kNumSeries, data_time, inputvars, measurementvars)
 # simodel.describe()
 
-simodel.addParameter("HelloWorld:x_start", 0.5);
-simodel.addParameter("HelloWorld:a", -0.5);
+simodel.addParameter("HelloWorld:x_start", 0.5)
+simodel.addParameter("HelloWorld:a", -0.5)
 simodel.addMeasurement(0, "HelloWorld:x", data_x)
 # simodel.describe()
 
