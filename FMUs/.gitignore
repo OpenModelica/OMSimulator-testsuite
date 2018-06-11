@@ -1,0 +1,16 @@
+/*.json
+/*.libs
+/*.log
+/*.makefile
+HelloWorld.fmu
+HelloWorldWithInput.fmu
+DualMassOscillator*.fmu
+Lin2DimODE.fmu
+Modelica.Blocks.Math.Feedback.fmu
+Modelica.Blocks.Math.Product.fmu
+Modelica.Blocks.Sources.Clock.fmu
+Modelica.Blocks.Sources.Constant.fmu
+Modelica.Blocks.Sources.Sine.fmu
+Modelica.Blocks.Sources.Step.fmu
+config.log
+sources

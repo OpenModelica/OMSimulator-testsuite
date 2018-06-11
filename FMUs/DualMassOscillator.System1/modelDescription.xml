@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fmiModelDescription
+  fmiVersion="2.0"
+  modelName="DualMassOscillator.System1"
+  guid="{8d542a88-ca4b-4101-811e-6be7ae20c0e1}"
+  description=""
+  generationTool="OpenModelica Compiler OMCompiler v1.13.0-dev.754+g030f49945"
+  generationDateAndTime="2018-06-11T14:02:15Z"
+  variableNamingConvention="structured"
+  numberOfEventIndicators="0">
+  <ModelExchange
+    modelIdentifier="DualMassOscillator_System1">
+  </ModelExchange>
+  <CoSimulation
+    modelIdentifier="DualMassOscillator_System1"
+    needsExecutionTool="false"
+    canHandleVariableCommunicationStepSize="true"
+    canInterpolateInputs="false"
+    maxOutputDerivativeOrder="1"
+    canRunAsynchronuously = "false"
+    canBeInstantiatedOnlyOncePerProcess="false"
+    canNotUseMemoryManagementFunctions="false"
+    canGetAndSetFMUstate="false"
+    canSerializeFMUstate="false"
+     />
+  <TypeDefinitions>
+    <SimpleType name="StateSelect">
+      <Enumeration>
+        <Item name="never" value="1"/>
+        <Item name="avoid" value="2"/>
+        <Item name="default" value="3"/>
+        <Item name="prefer" value="4"/>
+        <Item name="always" value="5"/>
+      </Enumeration>
+    </SimpleType>
+  </TypeDefinitions>
+  <LogCategories>
+    <Category name="logEvents" />
+    <Category name="logSingularLinearSystems" />
+    <Category name="logNonlinearSystems" />
+    <Category name="logDynamicStateSelection" />
+    <Category name="logStatusWarning" />
+    <Category name="logStatusDiscard" />
+    <Category name="logStatusError" />
+    <Category name="logStatusFatal" />
+    <Category name="logStatusPending" />
+    <Category name="logAll" />
+    <Category name="logFmi2Call" />
+  </LogCategories>
+  <DefaultExperiment startTime="0.0" stopTime="1.0" tolerance="1e-06"/>
+  <ModelVariables>
+  <!-- Index of variable = "1" -->
+  <ScalarVariable
+    name="mass1.s"
+    valueReference="0"
+    description="Absolute position of center of component (s = flange_a.s + L/2 = flange_b.s - L/2)"
+    variability="continuous"
+    causality="local"
+    initial="exact">
+    <Real start="1.0" unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "2" -->
+  <ScalarVariable
+    name="mass1.v"
+    valueReference="1"
+    description="Absolute velocity of component"
+    variability="continuous"
+    causality="local"
+    initial="exact">
+    <Real start="0.0" unit="m/s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "3" -->
+  <ScalarVariable
+    name="der(mass1.s)"
+    valueReference="2"
+    description="der(Absolute position of center of component (s = flange_a.s + L/2 = flange_b.s - L/2))"
+    variability="continuous"
+    causality="local"
+    initial="calculated">
+    <Real derivative="1" unit="m.s-1"/>
+  </ScalarVariable>
+  <!-- Index of variable = "4" -->
+  <ScalarVariable
+    name="der(mass1.v)"
+    valueReference="3"
+    description="der(Absolute velocity of component)"
+    variability="continuous"
+    causality="local"
+    initial="calculated">
+    <Real derivative="2" unit="m.s-2"/>
+  </ScalarVariable>
+  <!-- Index of variable = "5" -->
+  <ScalarVariable
+    name="der(der(mass1.flange_a.s))"
+    valueReference="4"
+    description="Absolute position of flange"
+    variability="continuous"
+    causality="local"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "6" -->
+  <ScalarVariable
+    name="der(accSensor.flange.s)"
+    valueReference="5"
+    description="Absolute position of flange"
+    variability="continuous"
+    causality="local"
+    initial="calculated">
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "7" -->
+  <ScalarVariable
+    name="der(accSensor.v)"
+    valueReference="6"
+    description="Absolute velocity of flange"
+    variability="continuous"
+    causality="local"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "8" -->
+  <ScalarVariable
+    name="der(mass1.flange_a.s)"
+    valueReference="7"
+    description="Absolute position of flange"
+    variability="continuous"
+    causality="local"
+    initial="calculated">
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "9" -->
+  <ScalarVariable
+    name="der(springDamper1.s_rel)"
+    valueReference="8"
+    description="Relative distance (= flange_b.s - flange_a.s)"
+    variability="continuous"
+    causality="local"
+    initial="calculated">
+    <Real/>
+  </ScalarVariable>
+  <!-- Index of variable = "10" -->
+  <ScalarVariable
+    name="der(springDamper1.v_rel)"
+    valueReference="9"
+    description="Relative velocity (= der(s_rel))"
+    variability="continuous"
+    causality="local"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "11" -->
+  <ScalarVariable
+    name="F"
+    valueReference="10"
+    variability="continuous"
+    causality="input"
+    >
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "12" -->
+  <ScalarVariable
+    name="a"
+    valueReference="11"
+    variability="continuous"
+    causality="output"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "13" -->
+  <ScalarVariable
+    name="accSensor.flange.f"
+    valueReference="12"
+    description="Cut force directed into flange"
+    variability="continuous"
+    causality="local"
+    initial="calculated">
+    <Real unit="N"/>
+  </ScalarVariable>
+  <!-- Index of variable = "14" -->
+  <ScalarVariable
+    name="accSensor.flange.s"
+    valueReference="13"
+    description="Absolute position of flange"
+    variability="continuous"
+    causality="local"
+    initial="exact">
+    <Real start="1.0" unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "15" -->
+  <ScalarVariable
+    name="accSensor.v"
+    valueReference="14"
+    description="Absolute velocity of flange"
+    variability="continuous"
+    causality="local"
+    initial="calculated">
+    <Real unit="m/s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "16" -->
+  <ScalarVariable
+    name="force.s_support"
+    valueReference="15"
+    description="Absolute position of support flange"
+    variability="continuous"
+    causality="local"
+    initial="calculated">
+    <Real unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "17" -->
+  <ScalarVariable
+    name="mass1.a"
+    valueReference="16"
+    description="Absolute acceleration of component"
+    variability="continuous"
+    causality="local"
+    initial="exact">
+    <Real start="0.0" unit="m/s2"/>
+  </ScalarVariable>
+  <!-- Index of variable = "18" -->
+  <ScalarVariable
+    name="mass1.flange_a.s"
+    valueReference="17"
+    description="Absolute position of flange"
+    variability="continuous"
+    causality="local"
+    initial="exact">
+    <Real start="1.0" unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "19" -->
+  <ScalarVariable
+    name="positionSensor.flange.f"
+    valueReference="18"
+    description="Cut force directed into flange"
+    variability="continuous"
+    causality="local"
+    initial="calculated">
+    <Real unit="N"/>
+  </ScalarVariable>
+  <!-- Index of variable = "20" -->
+  <ScalarVariable
+    name="s"
+    valueReference="19"
+    variability="continuous"
+    causality="output"
+    initial="exact">
+    <Real start="1.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "21" -->
+  <ScalarVariable
+    name="speedSensor.flange.f"
+    valueReference="20"
+    description="Cut force directed into flange"
+    variability="continuous"
+    causality="local"
+    initial="calculated">
+    <Real unit="N"/>
+  </ScalarVariable>
+  <!-- Index of variable = "22" -->
+  <ScalarVariable
+    name="springDamper1.f"
+    valueReference="21"
+    description="Forces between flanges (= flange_b.f)"
+    variability="continuous"
+    causality="local"
+    initial="exact">
+    <Real start="0.0" unit="N"/>
+  </ScalarVariable>
+  <!-- Index of variable = "23" -->
+  <ScalarVariable
+    name="springDamper1.f_c"
+    valueReference="22"
+    description="Spring force"
+    variability="continuous"
+    causality="local"
+    initial="exact">
+    <Real start="0.0" unit="N"/>
+  </ScalarVariable>
+  <!-- Index of variable = "24" -->
+  <ScalarVariable
+    name="springDamper1.f_d"
+    valueReference="23"
+    description="Damping force"
+    variability="continuous"
+    causality="local"
+    initial="exact">
+    <Real start="0.0" unit="N"/>
+  </ScalarVariable>
+  <!-- Index of variable = "25" -->
+  <ScalarVariable
+    name="springDamper1.lossPower"
+    valueReference="24"
+    description="Loss power leaving component via heatPort (&gt; 0, if heat is flowing out of component)"
+    variability="continuous"
+    causality="local"
+    initial="exact">
+    <Real start="0.0" unit="W"/>
+  </ScalarVariable>
+  <!-- Index of variable = "26" -->
+  <ScalarVariable
+    name="springDamper1.s_rel"
+    valueReference="25"
+    description="Relative distance (= flange_b.s - flange_a.s)"
+    variability="continuous"
+    causality="local"
+    initial="exact">
+    <Real start="0.0" unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "27" -->
+  <ScalarVariable
+    name="springDamper1.v_rel"
+    valueReference="26"
+    description="Relative velocity (= der(s_rel))"
+    variability="continuous"
+    causality="local"
+    initial="exact">
+    <Real start="0.0" unit="m/s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "28" -->
+  <ScalarVariable
+    name="v"
+    valueReference="27"
+    variability="continuous"
+    causality="output"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "29" -->
+  <ScalarVariable
+    name="fixed.s0"
+    valueReference="28"
+    description="Fixed offset position of housing"
+    variability="fixed"
+    causality="parameter"
+    initial="exact">
+    <Real start="0.0" unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "30" -->
+  <ScalarVariable
+    name="mass1.L"
+    valueReference="29"
+    description="Length of component, from left flange to right flange (= flange_b.s - flange_a.s)"
+    variability="fixed"
+    causality="parameter"
+    initial="exact">
+    <Real start="0.0" unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "31" -->
+  <ScalarVariable
+    name="mass1.m"
+    valueReference="30"
+    description="Mass of the sliding mass"
+    variability="fixed"
+    causality="parameter"
+    initial="exact">
+    <Real start="1.0" min="0.0" unit="kg"/>
+  </ScalarVariable>
+  <!-- Index of variable = "32" -->
+  <ScalarVariable
+    name="springDamper1.c"
+    valueReference="31"
+    description="Spring constant"
+    variability="fixed"
+    causality="parameter"
+    initial="exact">
+    <Real start="10000.0" min="0.0" unit="N/m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "33" -->
+  <ScalarVariable
+    name="springDamper1.d"
+    valueReference="32"
+    description="Damping constant"
+    variability="fixed"
+    causality="parameter"
+    initial="exact">
+    <Real start="2.0" min="0.0" unit="N.s/m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "34" -->
+  <ScalarVariable
+    name="springDamper1.s_nominal"
+    valueReference="33"
+    description="Nominal value of s_rel (used for scaling)"
+    variability="fixed"
+    causality="parameter"
+    initial="exact">
+    <Real start="0.0001" min="0.0" unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "35" -->
+  <ScalarVariable
+    name="springDamper1.s_rel0"
+    valueReference="34"
+    description="Unstretched spring length"
+    variability="fixed"
+    causality="parameter"
+    initial="exact">
+    <Real start="0.0" unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "36" -->
+  <ScalarVariable
+    name="accSensor.a"
+    valueReference="11"
+    description="Absolute acceleration of flange as output signal"
+    variability="continuous"
+    causality="local"
+    >
+    <Real unit="m/s2"/>
+  </ScalarVariable>
+  <!-- Index of variable = "37" -->
+  <ScalarVariable
+    name="fixed.flange.f"
+    valueReference="21"
+    description="Cut force directed into flange"
+    variability="continuous"
+    causality="local"
+    >
+    <Real unit="N"/>
+  </ScalarVariable>
+  <!-- Index of variable = "38" -->
+  <ScalarVariable
+    name="fixed.flange.s"
+    valueReference="28"
+    description="Absolute position of flange"
+    variability="continuous"
+    causality="local"
+    >
+    <Real unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "39" -->
+  <ScalarVariable
+    name="force.f"
+    valueReference="10"
+    description="Driving force as input signal"
+    variability="continuous"
+    causality="local"
+    >
+    <Real unit="N"/>
+  </ScalarVariable>
+  <!-- Index of variable = "40" -->
+  <ScalarVariable
+    name="force.flange.f"
+    valueReference="39"
+    description="Cut force directed into flange"
+    variability="continuous"
+    causality="local"
+    initial="calculated">
+    <Real unit="N"/>
+  </ScalarVariable>
+  <!-- Index of variable = "41" -->
+  <ScalarVariable
+    name="force.flange.s"
+    valueReference="19"
+    description="Absolute position of flange"
+    variability="continuous"
+    causality="local"
+    >
+    <Real unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "42" -->
+  <ScalarVariable
+    name="force.s"
+    valueReference="19"
+    description="Distance between flange and support (= flange.s - support.s)"
+    variability="continuous"
+    causality="local"
+    >
+    <Real unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "43" -->
+  <ScalarVariable
+    name="mass1.flange_a.f"
+    valueReference="42"
+    description="Cut force directed into flange"
+    variability="continuous"
+    causality="local"
+    initial="calculated">
+    <Real unit="N"/>
+  </ScalarVariable>
+  <!-- Index of variable = "44" -->
+  <ScalarVariable
+    name="mass1.flange_b.f"
+    valueReference="10"
+    description="Cut force directed into flange"
+    variability="continuous"
+    causality="local"
+    >
+    <Real unit="N"/>
+  </ScalarVariable>
+  <!-- Index of variable = "45" -->
+  <ScalarVariable
+    name="mass1.flange_b.s"
+    valueReference="19"
+    description="Absolute position of flange"
+    variability="continuous"
+    causality="local"
+    >
+    <Real unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "46" -->
+  <ScalarVariable
+    name="positionSensor.flange.s"
+    valueReference="19"
+    description="Absolute position of flange"
+    variability="continuous"
+    causality="local"
+    >
+    <Real unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "47" -->
+  <ScalarVariable
+    name="positionSensor.s"
+    valueReference="19"
+    description="Absolute position of flange as output signal"
+    variability="continuous"
+    causality="local"
+    >
+    <Real unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "48" -->
+  <ScalarVariable
+    name="speedSensor.flange.s"
+    valueReference="19"
+    description="Absolute position of flange"
+    variability="continuous"
+    causality="local"
+    >
+    <Real unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "49" -->
+  <ScalarVariable
+    name="speedSensor.v"
+    valueReference="27"
+    description="Absolute velocity of flange as output signal"
+    variability="continuous"
+    causality="local"
+    >
+    <Real unit="m/s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "50" -->
+  <ScalarVariable
+    name="springDamper1.flange_a.f"
+    valueReference="49"
+    description="Cut force directed into flange"
+    variability="continuous"
+    causality="local"
+    initial="calculated">
+    <Real unit="N"/>
+  </ScalarVariable>
+  <!-- Index of variable = "51" -->
+  <ScalarVariable
+    name="springDamper1.flange_a.s"
+    valueReference="28"
+    description="Absolute position of flange"
+    variability="continuous"
+    causality="local"
+    >
+    <Real unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "52" -->
+  <ScalarVariable
+    name="springDamper1.flange_b.f"
+    valueReference="21"
+    description="Cut force directed into flange"
+    variability="continuous"
+    causality="local"
+    >
+    <Real unit="N"/>
+  </ScalarVariable>
+  <!-- Index of variable = "53" -->
+  <ScalarVariable
+    name="springDamper1.flange_b.s"
+    valueReference="17"
+    description="Absolute position of flange"
+    variability="continuous"
+    causality="local"
+    >
+    <Real unit="m"/>
+  </ScalarVariable>
+  <!-- Index of variable = "54" -->
+  <ScalarVariable
+    name="mass1.stateSelect"
+    valueReference="0"
+    description="Priority to use s and v as states"
+    variability="fixed"
+    causality="parameter"
+    initial="exact">
+    <Enumeration declaredType="StateSelect" start="3"/>
+  </ScalarVariable>
+  <!-- Index of variable = "55" -->
+  <ScalarVariable
+    name="springDamper1.stateSelect"
+    valueReference="1"
+    description="Priority to use s_rel and v_rel as states"
+    variability="fixed"
+    causality="calculatedParameter"
+    initial="calculated">
+    <Enumeration declaredType="StateSelect"/>
+  </ScalarVariable>
+  <!-- Index of variable = "56" -->
+  <ScalarVariable
+    name="force.useSupport"
+    valueReference="0"
+    description="= true, if support flange enabled, otherwise implicitly grounded"
+    variability="fixed"
+    causality="calculatedParameter"
+    initial="calculated">
+    <Boolean/>
+  </ScalarVariable>
+  <!-- Index of variable = "57" -->
+  <ScalarVariable
+    name="springDamper1.useHeatPort"
+    valueReference="1"
+    description="=true, if heatPort is enabled"
+    variability="fixed"
+    causality="calculatedParameter"
+    initial="calculated">
+    <Boolean/>
+  </ScalarVariable>
+  </ModelVariables>
+  <ModelStructure>
+    <Outputs>
+      <Unknown index="12" dependencies="1 2 11" dependenciesKind="dependent dependent dependent" />
+      <Unknown index="20" dependencies="1" dependenciesKind="dependent" />
+      <Unknown index="28" dependencies="2" dependenciesKind="dependent" />
+    </Outputs>
+    <Derivatives>
+      <Unknown index="3" dependencies="2" dependenciesKind="dependent" />
+      <Unknown index="4" dependencies="1 2 11" dependenciesKind="dependent dependent dependent" />
+    </Derivatives>
+  </ModelStructure>
+</fmiModelDescription>

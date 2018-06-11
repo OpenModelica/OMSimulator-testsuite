@@ -8,5 +8,5 @@ equation
 end HelloWorld;
 "); getErrorString();
 
-buildModelFMU(HelloWorld, version="2.0", fmuType="me", fileNamePrefix="HelloWorld_me", platforms={"static"}); getErrorString();
-buildModelFMU(HelloWorld, version="2.0", fmuType="cs", fileNamePrefix="HelloWorld_cs", platforms={"static"}); getErrorString();
+cl := $TypeName(HelloWorld);
+runScript("GenerateFMU.mos");getErrorString();
