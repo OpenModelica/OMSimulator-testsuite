@@ -58,6 +58,7 @@ oms2_setTLMSocketData("tlm3d_fg","127.0.1.1",11172,12172)
 
 oms2_setStartTime("tlm3d_fg", 0)
 oms2_setStopTime("tlm3d_fg", 1)
+oms2_setLoggingInterval("tlm3d_fg", 1e-4)
 
 oms2_initialize("tlm3d_fg")
 oms2_simulate("tlm3d_fg")
