@@ -31,6 +31,7 @@ oms2_setTLMSocketData("tlm_ext","127.0.1.1",11142,12142)
 
 oms2_setStartTime("tlm_ext", 0.5)
 oms2_setStopTime("tlm_ext", 4)
+oms2_setLoggingInterval("tlm_ext", 1e-4)
 
 oms2_initialize("tlm_ext")
 oms2_simulate("tlm_ext")
