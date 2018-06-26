@@ -32,7 +32,7 @@ oms2_terminate("DualMassOscillatorEq")
 oms2_unloadModel("DualMassOscillatorEq")
 
 -- Result:
--- DualMassOscillatorEq.System1:s1 at 0.1: -0.607142765476
--- DualMassOscillatorEq.System2:s2 at 0.1: -0.067723471629764
+-- DualMassOscillatorEq.System1:s1 at 0.1: -1.6497591462092
+-- DualMassOscillatorEq.System2:s2 at 0.1: -1.2971553060887
 -- info:    Logging information has been saved to "DualMassOscillatorEq_me.log"
 -- endResult

@@ -44,10 +44,10 @@ oms2_terminate("DualMassOscillator")
 oms2_unloadModel("DualMassOscillator")
 
 -- Result:
--- DualMassOscillator.System1:s at 0.1: -0.607142765476
--- DualMassOscillator.System2:s at 0.1: -0.607142765476
--- DualMassOscillator.System1:s at 0.2: -0.075580314382809
--- DualMassOscillator.System2:s at 0.2: -0.075580314382809
+-- DualMassOscillator.System1:s at 0.1: -1.712965564278
+-- DualMassOscillator.System2:s at 0.1: -1.712965564278
+-- DualMassOscillator.System1:s at 0.2: -2.8386212485154
+-- DualMassOscillator.System2:s at 0.2: -2.8386212485154
 -- info:    2 warnings
 -- info:    0 errors
 -- info:    Logging information has been saved to "DualMassOscillator_me.log"
