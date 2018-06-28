@@ -42,4 +42,6 @@ print("status code: " .. status)
 -- status code: 0
 -- error:   [oms2::Scope::unloadModel] There is no model called "api_test01" in the scope.
 -- status code: 3
+-- info:    0 warnings
+-- info:    5 errors
 -- endResult

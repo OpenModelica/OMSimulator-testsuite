@@ -75,7 +75,7 @@ os.execute("cat api_test03.xml")
 -- 	</ssd:System>
 -- 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 -- </ssd:SystemStructureDescription>
+-- info:    Logging information has been saved to "api-test03.log"
 -- info:    0 warnings
 -- info:    1 errors
--- info:    Logging information has been saved to "api-test03.log"
 -- endResult
