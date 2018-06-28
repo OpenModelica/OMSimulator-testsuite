@@ -48,7 +48,7 @@ oms2_unloadModel("DualMassOscillator")
 -- DualMassOscillator.System2:s at 0.1: -1.712965564278
 -- DualMassOscillator.System1:s at 0.2: -2.8386212485154
 -- DualMassOscillator.System2:s at 0.2: -2.8386212485154
+-- info:    Logging information has been saved to "DualMassOscillator_me.log"
 -- info:    2 warnings
 -- info:    0 errors
--- info:    Logging information has been saved to "DualMassOscillator_me.log"
 -- endResult
