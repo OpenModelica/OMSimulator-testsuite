@@ -51,7 +51,6 @@ oms.setStopTime("RealNetwork1", 10.0)
 
 oms.initialize("RealNetwork1")
 oms.simulate("RealNetwork1")
-oms.terminate("RealNetwork1")
 
 oms.unloadModel("RealNetwork1")
 

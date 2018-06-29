@@ -39,7 +39,6 @@ tcur = oms2_getCurrentTime("DualMassOscillator")
 for _,var in ipairs(vars) do
   print(var .. " at " .. tcur .. ": " .. oms2_getReal(var))
 end
-oms2_terminate("DualMassOscillator")
 
 oms2_unloadModel("DualMassOscillator")
 

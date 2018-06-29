@@ -34,7 +34,6 @@ oms2_setLoggingInterval("tlm1d", 1e-4)
 
 oms2_initialize("tlm1d")
 oms2_simulate("tlm1d")
-oms2_terminate("tlm1d")
 
 oms2_unloadModel("tlm1d")
 

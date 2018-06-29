@@ -28,7 +28,6 @@ for _,var in ipairs(vars) do
   print(var .. " at " .. tcur .. ": " .. oms2_getReal(var))
 end
 
-oms2_terminate("DualMassOscillatorEq")
 oms2_unloadModel("DualMassOscillatorEq")
 
 -- Result:

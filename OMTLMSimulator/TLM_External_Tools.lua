@@ -35,7 +35,6 @@ oms2_setLoggingInterval("tlm_ext", 1e-4)
 
 oms2_initialize("tlm_ext")
 oms2_simulate("tlm_ext")
-oms2_terminate("tlm_ext")
 
 oms2_unloadModel("tlm_ext")
 

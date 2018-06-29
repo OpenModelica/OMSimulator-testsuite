@@ -33,8 +33,6 @@ for var in vars:
   (_, value) = session.getReal(var)
   print('{0} at {1}: {2}'.format(var, tcur, value))
 
-session.terminate("DualMassOscillator")
-
 session.unloadModel("DualMassOscillator")
 
 ## Result:
