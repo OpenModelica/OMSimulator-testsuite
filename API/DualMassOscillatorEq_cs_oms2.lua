@@ -45,8 +45,6 @@ for _,var in ipairs(vars) do
   print(var .. " at " .. stopTime .. ": " .. oms2_getReal(var))
 end
 
-oms2_terminate("DualMass")
-
 oms2_unloadModel("DualMass")
 
 -- Result:

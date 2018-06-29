@@ -45,7 +45,6 @@ oms2_setLoggingInterval("tlm1d_cg", 1e-4)
 
 oms2_initialize("tlm1d_cg")
 oms2_simulate("tlm1d_cg")
-oms2_terminate("tlm1d_cg")
 
 oms2_unloadModel("tlm1d_cg")
 

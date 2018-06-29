@@ -165,8 +165,6 @@ oms2_stepUntil("AircraftVehicleDemonstrator", 1e-3)
 oms2_setCommunicationInterval("AircraftVehicleDemonstrator", 1e-3)
 oms2_simulate("AircraftVehicleDemonstrator")
 
-oms2_terminate("AircraftVehicleDemonstrator")
-
 oms2_unloadModel("AircraftVehicleDemonstrator")
 
 vars = {"engine.pB.p", "eCS_Generic_Export.Meas_PACK_TEMP", "eCS_Generic_Export.Meas_PACK_PRESS"}

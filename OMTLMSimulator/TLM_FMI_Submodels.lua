@@ -45,8 +45,9 @@ oms2_setLoggingInterval("tlm", 1e-4)
 
 oms2_initialize("tlm")
 oms2_simulate("tlm")
-oms2_terminate("tlm")
 
+oms2_unloadModel("fmi1")
+oms2_unloadModel("fmi2")
 oms2_unloadModel("tlm")
 
 vars = {"fmi1.out","fmi2.out"}
