@@ -106,9 +106,6 @@ print("info:      limiter.u: " .. oms2_getReal("PI_Controller.limiter:u"))
 print("info:      limiter.y: " .. oms2_getReal("PI_Controller.limiter:y"))
 exitOnError(status)
 
-status = oms2_terminate("PI_Controller")
-exitOnError(status)
-
 status = oms2_unloadModel("PI_Controller")
 exitOnError(status)
 
@@ -139,7 +136,6 @@ end
 -- info:    Simulation
 -- info:      limiter.u: -10.014508893657
 -- info:      limiter.y: -10.014508893657
--- info:    status code: 0
 -- info:    status code: 0
 -- info:    status code: 0
 -- info:    limiter.u is equal

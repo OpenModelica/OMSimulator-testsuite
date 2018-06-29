@@ -62,7 +62,6 @@ oms2_setLoggingInterval("tlm3d_fg", 1e-4)
 
 oms2_initialize("tlm3d_fg")
 oms2_simulate("tlm3d_fg")
-oms2_terminate("tlm3d_fg")
 
 oms2_unloadModel("tlm3d_fg")
 

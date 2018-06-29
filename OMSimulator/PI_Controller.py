@@ -85,7 +85,6 @@ session.simulate("PI_Controller")
 print("info:      limiter.u: " + str(session.getReal("PI_Controller.limiter:u")[1]))
 print("info:      limiter.y: " + str(session.getReal("PI_Controller.limiter:y")[1]))
 
-session.terminate("PI_Controller")
 session.unloadModel("PI_Controller")
 
 vars = ["limiter.u", "limiter.y"]
