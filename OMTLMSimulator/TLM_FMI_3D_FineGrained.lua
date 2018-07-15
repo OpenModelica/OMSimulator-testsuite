@@ -80,4 +80,6 @@ end
 -- fmi1.P.R[cG][cG](1) [m] is equal
 -- fmi1.P.R[cG][cG](2) [m] is equal
 -- info:    Logging information has been saved to "TLM_FMI_3D_FineGrained.log"
+-- info:    2 warnings
+-- info:    0 errors
 -- endResult

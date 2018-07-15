@@ -66,4 +66,6 @@ end
 -- fmi1.out is equal
 -- fmi2.out is equal
 -- info:    Logging information has been saved to "TLM_FMI_Submodels.log"
+-- info:    5 warnings
+-- info:    0 errors
 -- endResult

@@ -16,6 +16,7 @@ DEPENDENCIES = \
 *.xml \
 Makefile \
 README.md \
+runRoot.sh \
 
 CLEAN = `ls | grep -w -v -f deps.tmp`
 

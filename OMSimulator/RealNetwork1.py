@@ -67,4 +67,6 @@ for signal in signals:
 ## gain.y is equal
 ## step.y is equal
 ## info:    Logging information has been saved to "RealNetwork1.log"
+## info:    8 warnings
+## info:    0 errors
 ## endResult

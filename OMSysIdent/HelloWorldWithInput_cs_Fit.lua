@@ -70,4 +70,6 @@ oms2_unloadModel("HelloWorldWithInput_cs_Fit")
 -- HelloWorldWithInput.a estimation is OK: true
 -- HelloWorldWithInput.x_start estimation is OK: true
 -- info:    Logging information has been saved to "HelloWorldWithInput_cs_Fit.log"
+-- info:    1 warnings
+-- info:    0 errors
 -- endResult

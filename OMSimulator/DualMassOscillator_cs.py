@@ -39,6 +39,6 @@ session.unloadModel("DualMassOscillator")
 ## DualMassOscillator.System1:mass1.s at 0.1: -0.437361150714
 ## DualMassOscillator.System2:mass2.s at 0.1: -0.284406319121
 ## info:    Logging information has been saved to "DualMassOscillator_cs.log"
-## info:    1 warnings
+## info:    3 warnings
 ## info:    0 errors
 ## endResult
