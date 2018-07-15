@@ -9,6 +9,14 @@ oms2_newFMIModel("DualMassOscillator")
 oms2_addFMU("DualMassOscillator", "../FMUs/DualMassOscillator.System1_me.fmu", "System1")
 oms2_addFMU("DualMassOscillator", "../FMUs/DualMassOscillator.System2_me.fmu", "System2")
 
+-- instantiate solvers
+oms2_addSolver("DualMassOscillator", "solver1", "cvode") -- associated with both FMUs
+oms2_addSolver("DualMassOscillator", "solver2", "cvode") -- not used
+
+-- connect solvers
+oms2_connectSolver("DualMassOscillator", "System1", "solver1")
+oms2_connectSolver("DualMassOscillator", "System2", "solver1")
+
 -- add connections
 oms2_addConnection("DualMassOscillator", "System1:F", "System2:F")
 oms2_addConnection("DualMassOscillator", "System1:s", "System2:s")
@@ -43,11 +51,11 @@ end
 oms2_unloadModel("DualMassOscillator")
 
 -- Result:
--- DualMassOscillator.System1:s at 0.1: -1.712965564278
--- DualMassOscillator.System2:s at 0.1: -1.712965564278
--- DualMassOscillator.System1:s at 0.2: -2.8386212485154
--- DualMassOscillator.System2:s at 0.2: -2.8386212485154
+-- DualMassOscillator.System1:s at 0.1: -0.91245626128124
+-- DualMassOscillator.System2:s at 0.1: -0.91245626128124
+-- DualMassOscillator.System1:s at 0.2: 5.5286163956831
+-- DualMassOscillator.System2:s at 0.2: 5.5286163956831
 -- info:    Logging information has been saved to "DualMassOscillator_me.log"
--- info:    2 warnings
+-- info:    4 warnings
 -- info:    0 errors
 -- endResult

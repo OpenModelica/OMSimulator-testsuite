@@ -141,4 +141,6 @@ end
 -- info:    limiter.u is equal
 -- info:    limiter.y is equal
 -- info:    Logging information has been saved to "PI_Controller-lua.log"
+-- info:    9 warnings
+-- info:    0 errors
 -- endResult

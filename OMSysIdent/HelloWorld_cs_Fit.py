@@ -18,6 +18,10 @@ session.newFMIModel(model)
 # add FMU
 session.addFMU(model, "../FMUs/HelloWorld_cs.fmu", "HelloWorld")
 
+# add solver
+session.addSolver(model, "solver1", "internal")
+session.connectSolver(model, "HelloWorld", "solver1")
+
 # create simodel for model
 simodel = OMSysIdent(model)
 # simodel.describe()

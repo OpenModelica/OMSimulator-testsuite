@@ -55,4 +55,6 @@ end
 -- fmi1.P.F [N] is equal
 -- fmi2.P.F [N] is equal
 -- info:    Logging information has been saved to "TLM_FMI_1D.log"
+-- info:    2 warnings
+-- info:    0 errors
 -- endResult
