@@ -20,6 +20,17 @@ oms2_addFMU("AircraftVehicleDemonstrator", "FMUs/eCS_Generic_Export.fmu", "eCS_G
 oms2_addFMU("AircraftVehicleDemonstrator", "FMUs/eCS_SW.fmu", "eCS_SW")
 oms2_addFMU("AircraftVehicleDemonstrator", "FMUs/engine.fmu", "engine")
 
+-- assign solvers
+oms2_addSolver("AircraftVehicleDemonstrator", "solver", "internal")
+oms2_connectSolver("AircraftVehicleDemonstrator", "atmosphere_Model_FMU_sf", "solver")
+oms2_connectSolver("AircraftVehicleDemonstrator", "bC", "solver")
+oms2_connectSolver("AircraftVehicleDemonstrator", "cockpit", "solver")
+oms2_connectSolver("AircraftVehicleDemonstrator", "consumer_A", "solver")
+oms2_connectSolver("AircraftVehicleDemonstrator", "consumer_B", "solver")
+oms2_connectSolver("AircraftVehicleDemonstrator", "eCS_Generic_Export", "solver")
+oms2_connectSolver("AircraftVehicleDemonstrator", "eCS_SW", "solver")
+oms2_connectSolver("AircraftVehicleDemonstrator", "engine", "solver")
+
 -- connections (input to eCS_Generic_Export)
 oms2_addConnection("AircraftVehicleDemonstrator", "eCS_Generic_Export:CABIN_TEMP_REQ_POS", "eCS_SW:CABIN_TEMP_REQ_POS")
 oms2_addConnection("AircraftVehicleDemonstrator", "eCS_Generic_Export:CABIN_TEMP_CMD_INH", "eCS_SW:CABIN_TEMP_CMD_INH")
