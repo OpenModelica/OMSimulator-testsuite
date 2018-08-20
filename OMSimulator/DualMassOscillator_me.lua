@@ -14,8 +14,8 @@ oms2_addSolver("DualMassOscillator", "solver1", "cvode") -- associated with both
 oms2_addSolver("DualMassOscillator", "solver2", "cvode") -- not used
 
 -- connect solvers
-oms2_connectSolver("DualMassOscillator", "System1", "solver1")
-oms2_connectSolver("DualMassOscillator", "System2", "solver1")
+oms2_addConnection("DualMassOscillator", "System1", "solver1")
+oms2_addConnection("DualMassOscillator", "System2", "solver1")
 
 -- add connections
 oms2_addConnection("DualMassOscillator", "System1:F", "System2:F")
