@@ -13,8 +13,8 @@ oms2_addFMU("DualMassOscillatorEq", "../FMUs/DualMassOscillator.System2Eq_me.fmu
 oms2_addSolver("DualMassOscillatorEq", "solver1", "cvode")
 
 -- connect solver
-oms2_connectSolver("DualMassOscillatorEq", "System1", "solver1")
-oms2_connectSolver("DualMassOscillatorEq", "System2", "solver1")
+oms2_addConnection("DualMassOscillatorEq", "System1", "solver1")
+oms2_addConnection("DualMassOscillatorEq", "System2", "solver1")
 
 -- add connections
 oms2_addConnection("DualMassOscillatorEq", "System1:in_F", "System2:out_F")

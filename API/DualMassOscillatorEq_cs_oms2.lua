@@ -16,8 +16,10 @@ status = oms2_addFMU("DualMass", "../FMUs/DualMassOscillator.System2Eq_cs.fmu", 
 oms2_addSolver("DualMass", "solver1", "internal")
 
 -- connect solver
-oms2_connectSolver("DualMass", "System1", "solver1")
-oms2_connectSolver("DualMass", "System2", "solver1")
+oms2_addConnection("DualMass", "System1", "solver1")
+oms2_deleteConnection("DualMass", "System1", "solver1")
+oms2_addConnection("DualMass", "System1", "solver1")
+oms2_addConnection("DualMass", "System2", "solver1")
 
 -- add connections
 status = oms2_addConnection("DualMass", "System1:in_F", "System2:out_F")
