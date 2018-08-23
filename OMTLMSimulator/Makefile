@@ -4,6 +4,7 @@ TESTFILES = \
 TLM_External_Tools.lua \
 TLM_FMI_Submodels.lua \
 TLM_FMI_1D.lua \
+TLM_FMI_ME_1D.lua \
 TLM_FMI_1D_CoarseGrained.lua \
 TLM_FMI_1D_FineGrained.lua \
 TLM_FMI_3D_FineGrained.lua \
