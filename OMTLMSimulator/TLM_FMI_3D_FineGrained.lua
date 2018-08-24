@@ -8,12 +8,12 @@ oms2_setLogFile("TLM_FMI_3D_FineGrained.log")
 oms2_setTempDirectory("./TLM_FMI_3D_FineGrained_tmp")
 
 oms2_newFMIModel("fmi1")
-oms2_setCommunicationInterval("fmi1", 0.0004)
+oms2_setCommunicationInterval("fmi1", 0.004)
 oms2_setResultFile("fmi1", "fmi1_3d_fg.mat")
 oms2_addFMU("fmi1", "../FMUs/UpperPendulumFG.fmu", "pendulum")
 
 oms2_newFMIModel("fmi2")
-oms2_setCommunicationInterval("fmi2", 0.0004)
+oms2_setCommunicationInterval("fmi2", 0.004)
 oms2_setResultFile("fmi2", "fmi2_3d_fg.mat")
 oms2_addFMU("fmi2", "../FMUs/LowerPendulumFG.fmu", "pendulum")
 
