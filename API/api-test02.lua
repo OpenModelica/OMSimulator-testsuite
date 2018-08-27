@@ -25,7 +25,7 @@ print("status code: " .. status)
 status = oms2_addConnection("api_test02", "System1:a", "System2:a")
 print("status code: " .. status)
 
-status = oms2_saveModel("api_test02.xml", "api_test02")
+status = oms2_saveModel("api_test02", "api_test02.xml")
 print("status code: " .. status)
 
 status = oms2_unloadModel("api_test02")
@@ -43,7 +43,7 @@ print("status code: " .. status)
 status = oms2_deleteConnection("api_test02", "System1:v", "System2:v")
 print("status code: " .. status)
 
-status = oms2_saveModel("api_test02b.xml", "api_test02")
+status = oms2_saveModel("api_test02", "api_test02b.xml")
 print("status code: " .. status)
 
 status = oms2_unloadModel("api_test02")
