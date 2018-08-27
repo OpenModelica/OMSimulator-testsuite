@@ -31,7 +31,7 @@ print("status code: " .. status)
 status = oms2_deleteSubModel("api_test03", "System1")
 print("status code: " .. status)
 
-status = oms2_saveModel("api_test03.xml", "api_test03")
+status = oms2_saveModel("api_test03", "api_test03.xml")
 print("status code: " .. status)
 
 status = oms2_unloadModel("api_test03")
