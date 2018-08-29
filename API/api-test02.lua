@@ -28,6 +28,8 @@ print("status code: " .. status)
 status = oms2_saveModel("api_test02", "api_test02.xml")
 print("status code: " .. status)
 
+status, source1 = oms2_listModel("api_test02")
+print("status code: " .. status)
 status = oms2_unloadModel("api_test02")
 print("status code: " .. status)
 
@@ -43,16 +45,17 @@ print("status code: " .. status)
 status = oms2_deleteConnection("api_test02", "System1:v", "System2:v")
 print("status code: " .. status)
 
-status = oms2_saveModel("api_test02", "api_test02b.xml")
+status, source2 = oms2_listModel("api_test02")
 print("status code: " .. status)
 
 status = oms2_unloadModel("api_test02")
 print("status code: " .. status)
 
-os.execute("cat api_test02.xml")
-os.execute("cat api_test02b.xml")
+print(source1)
+print(source2)
 
 -- Result:
+-- status code: 0
 -- status code: 0
 -- status code: 0
 -- status code: 0
@@ -114,6 +117,7 @@ os.execute("cat api_test02b.xml")
 -- 	</ssd:System>
 -- 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 -- </ssd:SystemStructureDescription>
+--
 -- <?xml version="1.0" encoding="UTF-8"?>
 -- <ssd:SystemStructureDescription name="api_test02" version="Draft20171219">
 -- 	<ssd:System name="api_test02">
@@ -153,5 +157,6 @@ os.execute("cat api_test02b.xml")
 -- 	</ssd:System>
 -- 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 -- </ssd:SystemStructureDescription>
+--
 -- info:    Logging information has been saved to "api-test02.log"
 -- endResult
