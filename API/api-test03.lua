@@ -31,13 +31,13 @@ print("status code: " .. status)
 status = oms2_deleteSubModel("api_test03", "System1")
 print("status code: " .. status)
 
-status = oms2_saveModel("api_test03", "api_test03.xml")
+status, source = oms2_listModel("api_test03")
 print("status code: " .. status)
 
 status = oms2_unloadModel("api_test03")
 print("status code: " .. status)
 
-os.execute("cat api_test03.xml")
+print(source)
 
 -- Result:
 -- status code: 0
@@ -75,6 +75,7 @@ os.execute("cat api_test03.xml")
 -- 	</ssd:System>
 -- 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 -- </ssd:SystemStructureDescription>
+--
 -- info:    Logging information has been saved to "api-test03.log"
 -- info:    0 warnings
 -- info:    1 errors
