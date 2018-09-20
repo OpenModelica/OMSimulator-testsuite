@@ -30,17 +30,17 @@ print("status code: " .. status)
 
 -- Result:
 -- status code: 0
--- error:   A model called "api_test01" is already in the scope.
+-- error:   [newFMIModel] A model called "api_test01" is already in the scope.
 -- status code: 3
--- error:   "test-01" is not a valid model name.
+-- error:   [NewModel] "test-01" is not a valid model name.
 -- status code: 3
--- error:   "01test" is not a valid model name.
+-- error:   [NewModel] "01test" is not a valid model name.
 -- status code: 3
--- error:   [oms2::Scope::unloadModel] There is no model called "01test" in the scope.
+-- error:   [unloadModel] [oms2::Scope::unloadModel] There is no model called "01test" in the scope.
 -- status code: 3
 -- info:    Removed model from scope: api_test01
 -- status code: 0
--- error:   [oms2::Scope::unloadModel] There is no model called "api_test01" in the scope.
+-- error:   [unloadModel] [oms2::Scope::unloadModel] There is no model called "api_test01" in the scope.
 -- status code: 3
 -- info:    0 warnings
 -- info:    5 errors
