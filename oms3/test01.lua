@@ -99,9 +99,11 @@ printStatus(status, 3)
 -- 			<ssd:System name="goo">
 -- 				<ssd:Elements />
 -- 				<ssd:Connectors />
+--				<ssd:Connections />
 -- 			</ssd:System>
 -- 		</ssd:Elements>
 -- 		<ssd:Connectors />
+--		<ssd:Connections />
 -- 	</ssd:System>
 -- </ssd:SystemStructureDescription>
 --
@@ -111,15 +113,18 @@ printStatus(status, 3)
 -- 		<ssd:System name="goo">
 -- 			<ssd:Elements />
 -- 			<ssd:Connectors />
+--			<ssd:Connections />
 -- 		</ssd:System>
 -- 	</ssd:Elements>
 -- 	<ssd:Connectors />
+--	<ssd:Connections />
 -- </ssd:System>
 --
 -- <?xml version="1.0"?>
 -- <ssd:System name="goo">
 -- 	<ssd:Elements />
 -- 	<ssd:Connectors />
+--	<ssd:Connections />
 -- </ssd:System>
 --
 -- error:   [newModel] A model "test" already exists in the scope
