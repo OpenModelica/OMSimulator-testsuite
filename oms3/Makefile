@@ -5,6 +5,7 @@ test01.lua \
 test02.lua \
 connections.lua \
 buses.lua \
+import_export.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \
