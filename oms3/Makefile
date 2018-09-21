@@ -3,6 +3,7 @@ TEST = ../rtest -v
 TESTFILES = \
 test01.lua \
 test02.lua \
+connections.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \
