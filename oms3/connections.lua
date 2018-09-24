@@ -88,12 +88,20 @@ printStatus(status, 0)
 -- status:  [correct] error
 -- error:   [addConnection] Type mismatch in connection: wc1.u2 -> wc2.y2
 -- status:  [correct] error
--- error: [addConnection] Connector is already connected: wc1.u1
+-- error:   [addConnection] Connector is already connected: wc1.u1
 -- status:  [correct] error
 -- <?xml version="1.0"?>
 -- <ssd:System name="tlm">
+-- 	<ssd:SimulationInformation>
+-- 		<ssd:Annotation type="org.openmodelica">
+-- 			<tlm:Master />
+-- 		</ssd:Annotation>
+-- 	</ssd:SimulationInformation>
 -- 	<ssd:Elements>
 -- 		<ssd:System name="wc2">
+-- 			<ssd:SimulationInformation>
+-- 				<FixedStepMaster description="oms-ma" stepSize="1e-1" />
+-- 			</ssd:SimulationInformation>
 -- 			<ssd:Elements />
 -- 			<ssd:Connectors>
 -- 				<ssd:Connector name="y1" kind="output" type="Real" />
@@ -103,6 +111,9 @@ printStatus(status, 0)
 -- 			<ssd:Connections />
 -- 		</ssd:System>
 -- 		<ssd:System name="wc1">
+-- 			<ssd:SimulationInformation>
+-- 				<FixedStepMaster description="oms-ma" stepSize="1e-1" />
+-- 			</ssd:SimulationInformation>
 -- 			<ssd:Elements />
 -- 			<ssd:Connectors>
 -- 				<ssd:Connector name="u1" kind="input" type="Real" />
@@ -117,8 +128,8 @@ printStatus(status, 0)
 -- 		<ssd:Connection startElement="wc1" startConnector="u1" endElement="wc2" endConnector="y1" />
 -- 	</ssd:Connections>
 -- </ssd:System>
--- 
+--
 -- status:  [correct] ok
--- info: 0 warnings
--- info: 3 errors
+-- info:    0 warnings
+-- info:    3 errors
 -- endResult
