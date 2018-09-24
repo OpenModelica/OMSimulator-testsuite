@@ -93,38 +93,53 @@ printStatus(status, 3)
 -- error:   [NewSystem] A WC system must be the root system or a subsystem of a TLM system.
 -- status:  [correct] error
 -- <?xml version="1.0"?>
--- <ssd:SystemStructureDescription name="test">
+-- <ssd:SystemStructureDescription name="test" version="Draft20180219">
 -- 	<ssd:System name="foo">
+-- 		<ssd:SimulationInformation>
+-- 			<FixedStepMaster description="oms-ma" stepSize="1e-1" />
+-- 		</ssd:SimulationInformation>
 -- 		<ssd:Elements>
 -- 			<ssd:System name="goo">
+-- 				<ssd:SimulationInformation>
+-- 					<VariableStepSolver description="e.g. cvode" absoluteTolerance="1e-4" relativeTolerance="1e-4" minimumStepSize="1e-4" maximumStepSize="1e-1" initialStepSize="1e-4" />
+-- 				</ssd:SimulationInformation>
 -- 				<ssd:Elements />
 -- 				<ssd:Connectors />
---				<ssd:Connections />
+-- 				<ssd:Connections />
 -- 			</ssd:System>
 -- 		</ssd:Elements>
 -- 		<ssd:Connectors />
---		<ssd:Connections />
+-- 		<ssd:Connections />
 -- 	</ssd:System>
 -- </ssd:SystemStructureDescription>
 --
 -- <?xml version="1.0"?>
 -- <ssd:System name="foo">
+-- 	<ssd:SimulationInformation>
+-- 		<FixedStepMaster description="oms-ma" stepSize="1e-1" />
+-- 	</ssd:SimulationInformation>
 -- 	<ssd:Elements>
 -- 		<ssd:System name="goo">
+-- 			<ssd:SimulationInformation>
+-- 				<VariableStepSolver description="e.g. cvode" absoluteTolerance="1e-4" relativeTolerance="1e-4" minimumStepSize="1e-4" maximumStepSize="1e-1" initialStepSize="1e-4" />
+-- 			</ssd:SimulationInformation>
 -- 			<ssd:Elements />
 -- 			<ssd:Connectors />
---			<ssd:Connections />
+-- 			<ssd:Connections />
 -- 		</ssd:System>
 -- 	</ssd:Elements>
 -- 	<ssd:Connectors />
---	<ssd:Connections />
+-- 	<ssd:Connections />
 -- </ssd:System>
 --
 -- <?xml version="1.0"?>
 -- <ssd:System name="goo">
+-- 	<ssd:SimulationInformation>
+-- 		<VariableStepSolver description="e.g. cvode" absoluteTolerance="1e-4" relativeTolerance="1e-4" minimumStepSize="1e-4" maximumStepSize="1e-1" initialStepSize="1e-4" />
+-- 	</ssd:SimulationInformation>
 -- 	<ssd:Elements />
 -- 	<ssd:Connectors />
---	<ssd:Connections />
+-- 	<ssd:Connections />
 -- </ssd:System>
 --
 -- error:   [newModel] A model "test" already exists in the scope
@@ -137,7 +152,7 @@ printStatus(status, 3)
 -- info:    New model "test" with corresponding temp directory <suppressed>
 -- status:  [correct] ok
 -- <?xml version="1.0"?>
--- <ssd:SystemStructureDescription name="test" />
+-- <ssd:SystemStructureDescription name="test" version="Draft20180219" />
 --
 -- status:  [correct] ok
 -- error:   [deleteModel] Model "foo" does not exist in the scope
