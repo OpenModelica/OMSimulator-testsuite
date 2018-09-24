@@ -4,6 +4,7 @@ TESTFILES = \
 test01.lua \
 test02.lua \
 connections.lua \
+buses.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \
