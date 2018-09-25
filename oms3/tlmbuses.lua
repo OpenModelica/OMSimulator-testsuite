@@ -26,28 +26,19 @@ function printStatus(status, expected)
 end
 
 status = oms3_setTempDirectory(".")
-printStatus(status, 0)
-
 status = oms3_newModel("model")
-printStatus(status, 0)
-
 status = oms3_addSystem("model.tlm", oms_system_tlm)
-printStatus(status, 0)
-
 status = oms3_addSystem("model.tlm.wc1", oms_system_wc)
-printStatus(status, 0)
-
 status = oms3_addConnector("model.tlm.wc1.y", output, oms_signal_type_real)
-printStatus(status, 0)
-
 status = oms3_addConnector("model.tlm.wc1.x", output, oms_signal_type_real)
-printStatus(status, 0)
-
 status = oms3_addConnector("model.tlm.wc1.v", output, oms_signal_type_real)
-printStatus(status, 0)
-
 status = oms3_addConnector("model.tlm.wc1.f", input, oms_signal_type_real)
-printStatus(status, 0)
+
+status = oms3_addSystem("model.tlm.wc2", oms_system_wc)
+status = oms3_addConnector("model.tlm.wc2.y", input, oms_signal_type_real)
+status = oms3_addConnector("model.tlm.wc2.x", output, oms_signal_type_real)
+status = oms3_addConnector("model.tlm.wc2.v", output, oms_signal_type_real)
+status = oms3_addConnector("model.tlm.wc2.f", input, oms_signal_type_real)
 
 status = oms3_addTLMBus("model.tlm.wc1.bus1", "input", 1, default)
 printStatus(status, 0)
@@ -75,6 +66,15 @@ printStatus(status, 0)
 status = oms3_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.f", "effort")
 printStatus(status, 0)
 
+status = oms3_addTLMBus("model.tlm.wc2.bus2", "output", 1, default)
+printStatus(status, 0)
+
+status = oms3_addConnectorToTLMBus("model.tlm.wc2.bus2","model.tlm.wc2.y", "value")
+printStatus(status, 0)
+
+status = oms3_addTLMConnection("model.tlm.wc1.bus1","model.tlm.wc2.bus2", 0.001,0.3,100,0)
+printStatus(status, 0)
+
 src, status = oms3_list("model.tlm")
 print(src)
 
@@ -85,21 +85,16 @@ printStatus(status, 0)
 -- info:    Set temp directory to    <suppressed>
 -- info:    Set working directory to <suppressed>
 -- info:    Set temp directory to    <suppressed>
--- status:  [correct] ok
 -- info:    New model "model" with corresponding temp directory <suppressed>
--- status:  [correct] ok
--- status:  [correct] ok
--- status:  [correct] ok
--- status:  [correct] ok
--- status:  [correct] ok
--- status:  [correct] ok
--- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- error:   [addConnectorToTLMBus] Connector not found in system: z
 -- status:  [correct] error
 -- error:   [addConnector] Unknown TLM variable type: effort
 -- status:  [correct] error
+-- status:  [correct] ok
+-- status:  [correct] ok
+-- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
@@ -112,6 +107,28 @@ printStatus(status, 0)
 -- 		</ssd:Annotation>
 -- 	</ssd:SimulationInformation>
 -- 	<ssd:Elements>
+-- 	  <ssd:System name="wc2">
+-- 	    <ssd:SimulationInformation>
+-- 	      <FixedStepMaster description="oms-ma" stepSize="1e-1" />
+-- 	    </ssd:SimulationInformation>
+-- 	    <ssd:Elements />
+-- 	    <ssd:Connectors>
+-- 	      <ssd:Connector name="y" kind="input" type="Real" />
+-- 	      <ssd:Connector name="x" kind="output" type="Real" />
+-- 	      <ssd:Connector name="v" kind="output" type="Real" />
+-- 	      <ssd:Connector name="f" kind="input" type="Real" />
+-- 	    </ssd:Connectors>
+-- 	    <ssd:Connections />
+-- 	    <ssd:Annotations>
+-- 	      <ssd:Annotation type="org.openmodelica">
+-- 	        <OMSimulator:Bus name="bus2" type="tlm" domain="output" dimensions="1" interpolation="none">
+-- 	          <Signals>
+-- 	            <Signal name="y" type="value" />
+-- 	          </Signals>
+-- 	        </OMSimulator:Bus>
+-- 	      </ssd:Annotation>
+-- 	    </ssd:Annotations>
+-- 	  </ssd:System>
 -- 		<ssd:System name="wc1">
 -- 			<ssd:SimulationInformation>
 -- 				<FixedStepMaster description="oms-ma" stepSize="1e-1" />
@@ -144,6 +161,13 @@ printStatus(status, 0)
 -- 	</ssd:Elements>
 -- 	<ssd:Connectors />
 -- 	<ssd:Connections />
+--  <ssd:Annotations>
+--    <ssd:Annotation type="org.openmodelica">
+--      <OMSimulator:BusConnections>
+--        <OMSimulator:TLMBusConnection startElement="wc1" startConnector="bus1" endElement="wc2" endConnector="bus2" delay="0.001000" alpha="0.300000" impedance="100.000000" impedancerot="0.000000" />
+--      </OMSimulator:BusConnections>
+--    </ssd:Annotation>
+--  </ssd:Annotations>
 -- </ssd:System>
 -- 
 -- status:  [correct] ok
