@@ -96,12 +96,12 @@ printStatus(status, 3)
 -- <ssd:SystemStructureDescription name="test" version="Draft20180219">
 -- 	<ssd:System name="foo">
 -- 		<ssd:SimulationInformation>
--- 			<FixedStepMaster description="oms-ma" stepSize="1e-1" />
+-- 			<FixedStepMaster description="oms-ma" stepSize="0.100000" />
 -- 		</ssd:SimulationInformation>
 -- 		<ssd:Elements>
 -- 			<ssd:System name="goo">
 -- 				<ssd:SimulationInformation>
--- 					<VariableStepSolver description="e.g. cvode" absoluteTolerance="1e-4" relativeTolerance="1e-4" minimumStepSize="1e-4" maximumStepSize="1e-1" initialStepSize="1e-4" />
+-- 					<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
 -- 				</ssd:SimulationInformation>
 -- 				<ssd:Elements />
 -- 				<ssd:Connectors />
@@ -116,12 +116,12 @@ printStatus(status, 3)
 -- <?xml version="1.0"?>
 -- <ssd:System name="foo">
 -- 	<ssd:SimulationInformation>
--- 		<FixedStepMaster description="oms-ma" stepSize="1e-1" />
+-- 		<FixedStepMaster description="oms-ma" stepSize="0.100000" />
 -- 	</ssd:SimulationInformation>
 -- 	<ssd:Elements>
 -- 		<ssd:System name="goo">
 -- 			<ssd:SimulationInformation>
--- 				<VariableStepSolver description="e.g. cvode" absoluteTolerance="1e-4" relativeTolerance="1e-4" minimumStepSize="1e-4" maximumStepSize="1e-1" initialStepSize="1e-4" />
+-- 				<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
 -- 			</ssd:SimulationInformation>
 -- 			<ssd:Elements />
 -- 			<ssd:Connectors />
@@ -135,7 +135,7 @@ printStatus(status, 3)
 -- <?xml version="1.0"?>
 -- <ssd:System name="goo">
 -- 	<ssd:SimulationInformation>
--- 		<VariableStepSolver description="e.g. cvode" absoluteTolerance="1e-4" relativeTolerance="1e-4" minimumStepSize="1e-4" maximumStepSize="1e-1" initialStepSize="1e-4" />
+-- 		<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
 -- 	</ssd:SimulationInformation>
 -- 	<ssd:Elements />
 -- 	<ssd:Connectors />
