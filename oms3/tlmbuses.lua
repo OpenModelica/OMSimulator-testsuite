@@ -102,9 +102,11 @@ printStatus(status, 0)
 -- <?xml version="1.0"?>
 -- <ssd:System name="tlm">
 -- 	<ssd:SimulationInformation>
--- 		<ssd:Annotation type="org.openmodelica">
--- 			<tlm:Master />
--- 		</ssd:Annotation>
+--    <ssd:Annotations>
+--   		<ssd:Annotation type="org.openmodelica">
+--   			<tlm:Master />
+--   		</ssd:Annotation>
+--    </ssd:Annotations>
 -- 	</ssd:SimulationInformation>
 -- 	<ssd:Elements>
 -- 	  <ssd:System name="wc2">

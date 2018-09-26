@@ -6,6 +6,7 @@ test02.lua \
 connections.lua \
 buses.lua \
 import_export.lua \
+tlmbuses.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \

@@ -97,6 +97,9 @@ printStatus(status, 0)
 status = oms3_addConnectorToTLMBus("test.eoo.foo2.tlm", "test.eoo.foo2.v", "flow")
 printStatus(status, 0)
 
+status = oms3_addTLMConnection("test.eoo.foo.tlm", "test.eoo.foo2.tlm", 0.001, 0.3, 100, 0)
+printStatus(status, 0)
+
 --status = oms3_addSubModel("test.eoo.foo.goo.A", "../FMUs/source.fmu")
 --printStatus(status, 0)
 
@@ -125,6 +128,7 @@ printStatus(status, 0)
 -- info:    Set temp directory to    <suppressed>
 -- info:    Set working directory to <suppressed>
 -- info:    New model "test" with corresponding temp directory <suppressed>
+-- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
@@ -227,6 +231,13 @@ printStatus(status, 0)
 -- 		</ssd:Elements>
 -- 		<ssd:Connectors />
 -- 		<ssd:Connections />
+--		<ssd:Annotations>
+--			<ssd:Annotation type="org.openmodelica">
+--				<OMSimulator:BusConnections>
+--					<OMSimulator:TLMBusConnection startElement="foo" startConnector="tlm" endElement="foo2" endConnector="tlm" delay="0.001000" alpha="0.300000" impedance="100.000000" impedancerot="0.000000" />
+--				</OMSimulator:BusConnections>
+--			</ssd:Annotation>
+--		</ssd:Annotations>
 -- 	</ssd:System>
 -- </ssd:SystemStructureDescription>
 -- 
@@ -312,6 +323,13 @@ printStatus(status, 0)
 -- 		</ssd:Elements>
 -- 		<ssd:Connectors />
 -- 		<ssd:Connections />
+--		<ssd:Annotations>
+--			<ssd:Annotation type="org.openmodelica">
+--				<OMSimulator:BusConnections>
+--					<OMSimulator:TLMBusConnection startElement="foo" startConnector="tlm" endElement="foo2" endConnector="tlm" delay="0.001000" alpha="0.300000" impedance="100.000000" impedancerot="0.000000" />
+--				</OMSimulator:BusConnections>
+--			</ssd:Annotation>
+--		</ssd:Annotations>
 -- 	</ssd:System>
 -- </ssd:SystemStructureDescription>
 -- 
