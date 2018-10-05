@@ -166,7 +166,7 @@ printStatus(status, 0)
 --  <ssd:Annotations>
 --    <ssd:Annotation type="org.openmodelica">
 --      <OMSimulator:BusConnections>
---        <OMSimulator:TLMBusConnection startElement="wc1" startConnector="bus1" endElement="wc2" endConnector="bus2" delay="0.001000" alpha="0.300000" impedance="100.000000" impedancerot="0.000000" />
+--        <OMSimulator:TLMBusConnection startElement="wc1" startConnector="bus1" endElement="wc2" endConnector="bus2" delay="0.001000" alpha="0.300000" linearimpedance="100.000000" angularimpedance="0.000000" />
 --      </OMSimulator:BusConnections>
 --    </ssd:Annotation>
 --  </ssd:Annotations>
