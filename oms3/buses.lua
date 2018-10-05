@@ -100,11 +100,11 @@ printStatus(status, 0)
 -- <?xml version="1.0"?>
 -- <ssd:System name="tlm">
 -- 	<ssd:SimulationInformation>
---    <ssd:Annotations>
---   		<ssd:Annotation type="org.openmodelica">
---   			<tlm:Master />
---   		</ssd:Annotation>
---    </ssd:Annotations>
+-- 		<ssd:Annotations>
+-- 			<ssd:Annotation type="org.openmodelica">
+-- 				<oms:TlmMaster />
+-- 			</ssd:Annotation>
+-- 		</ssd:Annotations>
 -- 	</ssd:SimulationInformation>
 -- 	<ssd:Elements>
 -- 		<ssd:System name="wc2">
@@ -120,12 +120,12 @@ printStatus(status, 0)
 -- 			<ssd:Connections />
 -- 			<ssd:Annotations>
 -- 				<ssd:Annotation type="org.openmodelica">
--- 					<OMSimulator:Bus name="bus2">
--- 						<Signals>
--- 							<Signal name="y1" />
--- 							<Signal name="y2" />
--- 						</Signals>
--- 					</OMSimulator:Bus>
+-- 					<oms:Bus name="bus2">
+-- 						<oms:Signals>
+-- 							<oms:Signal name="y1" />
+-- 							<oms:Signal name="y2" />
+-- 						</oms:Signals>
+-- 					</oms:Bus>
 -- 				</ssd:Annotation>
 -- 			</ssd:Annotations>
 -- 		</ssd:System>
@@ -142,12 +142,12 @@ printStatus(status, 0)
 -- 			<ssd:Connections />
 -- 			<ssd:Annotations>
 -- 				<ssd:Annotation type="org.openmodelica">
--- 					<OMSimulator:Bus name="bus1">
--- 						<Signals>
--- 							<Signal name="u1" />
--- 							<Signal name="u2" />
--- 						</Signals>
--- 					</OMSimulator:Bus>
+-- 					<oms:Bus name="bus1">
+-- 						<oms:Signals>
+-- 							<oms:Signal name="u1" />
+-- 							<oms:Signal name="u2" />
+-- 						</oms:Signals>
+-- 					</oms:Bus>
 -- 				</ssd:Annotation>
 -- 			</ssd:Annotations>
 -- 		</ssd:System>
@@ -159,9 +159,9 @@ printStatus(status, 0)
 -- 	</ssd:Connections>
 -- 	<ssd:Annotations>
 -- 		<ssd:Annotation type="org.openmodelica">
--- 			<OMSimulator:BusConnections>
--- 				<OMSimulator:BusConnection startElement="wc1" startConnector="bus1" endElement="wc2" endConnector="bus2" />
--- 			</OMSimulator:BusConnections>
+-- 			<oms:Connections>
+-- 				<oms:Connection startElement="wc1" startConnector="bus1" endElement="wc2" endConnector="bus2" />
+-- 			</oms:Connections>
 -- 		</ssd:Annotation>
 -- 	</ssd:Annotations>
 -- </ssd:System>

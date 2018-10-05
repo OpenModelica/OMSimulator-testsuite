@@ -158,11 +158,11 @@ printStatus(status, 0)
 -- <ssd:SystemStructureDescription name="test" version="Draft20180219">
 -- 	<ssd:System name="eoo">
 -- 		<ssd:SimulationInformation>
---      <ssd:Annotations>
---   			<ssd:Annotation type="org.openmodelica">
--- 	  			<tlm:Master />
--- 		  	</ssd:Annotation>
---      </ssd:Annotations>
+-- 			<ssd:Annotations>
+-- 				<ssd:Annotation type="org.openmodelica">
+-- 					<oms:TlmMaster />
+-- 				</ssd:Annotation>
+-- 			</ssd:Annotations>
 -- 		</ssd:SimulationInformation>
 -- 		<ssd:Elements>
 -- 			<ssd:System name="foo2">
@@ -178,13 +178,13 @@ printStatus(status, 0)
 -- 				<ssd:Connections />
 -- 				<ssd:Annotations>
 -- 					<ssd:Annotation type="org.openmodelica">
--- 						<OMSimulator:Bus name="tlm" type="tlm" domain="mechanical" dimensions="1" interpolation="none">
--- 							<Signals>
--- 							  <Signal name="x" type="state" />
--- 							  <Signal name="v" type="flow" />
--- 							  <Signal name="f" type="effort" />
--- 							</Signals>
--- 						</OMSimulator:Bus>
+-- 						<oms:Bus name="tlm" type="tlm" domain="mechanical" dimensions="1" interpolation="none">
+-- 							<oms:Signals>
+-- 								<oms:Signal name="x" type="state" />
+-- 								<oms:Signal name="v" type="flow" />
+-- 								<oms:Signal name="f" type="effort" />
+-- 							</oms:Signals>
+-- 						</oms:Bus>
 -- 					</ssd:Annotation>
 -- 				</ssd:Annotations>
 -- 			</ssd:System>
@@ -206,38 +206,38 @@ printStatus(status, 0)
 -- 					<ssd:Connector name="f" kind="input" type="Real" />
 -- 					<ssd:Connector name="x" kind="output" type="Real" />
 -- 					<ssd:Connector name="v" kind="output" type="Real" />
---					<ssd:Connector name="y1" kind="output" type="Real" />
---					<ssd:Connector name="y2" kind="output" type="Real" />
+-- 					<ssd:Connector name="y1" kind="output" type="Real" />
+-- 					<ssd:Connector name="y2" kind="output" type="Real" />
 -- 				</ssd:Connectors>
 -- 				<ssd:Connections />
 -- 				<ssd:Annotations>
 -- 					<ssd:Annotation type="org.openmodelica">
---						<OMSimulator:Bus name="bus">
---							<Signals>
---								<Signal name="y1" />
---								<Signal name="y2" />
---							</Signals>
---						</OMSimulator:Bus>
--- 						<OMSimulator:Bus name="tlm" type="tlm" domain="mechanical" dimensions="1" interpolation="none">
--- 							<Signals>
--- 							  <Signal name="x" type="state" />
--- 							  <Signal name="v" type="flow" />
--- 							  <Signal name="f" type="effort" />
--- 							</Signals>
--- 						</OMSimulator:Bus>
+-- 						<oms:Bus name="bus">
+-- 							<oms:Signals>
+-- 								<oms:Signal name="y1" />
+-- 								<oms:Signal name="y2" />
+-- 							</oms:Signals>
+-- 						</oms:Bus>
+-- 						<oms:Bus name="tlm" type="tlm" domain="mechanical" dimensions="1" interpolation="none">
+-- 							<oms:Signals>
+-- 								<oms:Signal name="x" type="state" />
+-- 								<oms:Signal name="v" type="flow" />
+-- 								<oms:Signal name="f" type="effort" />
+-- 							</oms:Signals>
+-- 						</oms:Bus>
 -- 					</ssd:Annotation>
 -- 				</ssd:Annotations>
 -- 			</ssd:System>
 -- 		</ssd:Elements>
 -- 		<ssd:Connectors />
 -- 		<ssd:Connections />
---		<ssd:Annotations>
---			<ssd:Annotation type="org.openmodelica">
---				<OMSimulator:BusConnections>
---					<OMSimulator:TLMBusConnection startElement="foo" startConnector="tlm" endElement="foo2" endConnector="tlm" delay="0.001000" alpha="0.300000" linearimpedance="100.000000" angularimpedance="0.000000" />
---				</OMSimulator:BusConnections>
---			</ssd:Annotation>
---		</ssd:Annotations>
+-- 		<ssd:Annotations>
+-- 			<ssd:Annotation type="org.openmodelica">
+-- 				<oms:Connections>
+-- 					<oms:Connection startElement="foo" startConnector="tlm" endElement="foo2" endConnector="tlm" delay="0.001000" alpha="0.300000" linearimpedance="100.000000" angularimpedance="0.000000" />
+-- 				</oms:Connections>
+-- 			</ssd:Annotation>
+-- 		</ssd:Annotations>
 -- 	</ssd:System>
 -- </ssd:SystemStructureDescription>
 -- 
@@ -250,11 +250,11 @@ printStatus(status, 0)
 -- <ssd:SystemStructureDescription name="test" version="Draft20180219">
 -- 	<ssd:System name="eoo">
 -- 		<ssd:SimulationInformation>
---      <ssd:Annotations>
---   			<ssd:Annotation type="org.openmodelica">
--- 	  			<tlm:Master />
--- 		  	</ssd:Annotation>
---      </ssd:Annotations>
+-- 			<ssd:Annotations>
+-- 				<ssd:Annotation type="org.openmodelica">
+-- 					<oms:TlmMaster />
+-- 				</ssd:Annotation>
+-- 			</ssd:Annotations>
 -- 		</ssd:SimulationInformation>
 -- 		<ssd:Elements>
 -- 			<ssd:System name="foo2">
@@ -270,13 +270,13 @@ printStatus(status, 0)
 -- 				<ssd:Connections />
 -- 				<ssd:Annotations>
 -- 					<ssd:Annotation type="org.openmodelica">
--- 						<OMSimulator:Bus name="tlm" type="tlm" domain="mechanical" dimensions="1" interpolation="none">
---							<Signals>
---								<Signal name="x" type="state" />
---								<Signal name="v" type="flow" />
---								<Signal name="f" type="effort" />
---							</Signals>
--- 						</OMSimulator:Bus>
+-- 						<oms:Bus name="tlm" type="tlm" domain="mechanical" dimensions="1" interpolation="none">
+-- 							<oms:Signals>
+-- 								<oms:Signal name="x" type="state" />
+-- 								<oms:Signal name="v" type="flow" />
+-- 								<oms:Signal name="f" type="effort" />
+-- 							</oms:Signals>
+-- 						</oms:Bus>
 -- 					</ssd:Annotation>
 -- 				</ssd:Annotations>
 -- 			</ssd:System>
@@ -298,38 +298,38 @@ printStatus(status, 0)
 -- 					<ssd:Connector name="f" kind="input" type="Real" />
 -- 					<ssd:Connector name="x" kind="output" type="Real" />
 -- 					<ssd:Connector name="v" kind="output" type="Real" />
---					<ssd:Connector name="y1" kind="output" type="Real" />
---					<ssd:Connector name="y2" kind="output" type="Real" />
+-- 					<ssd:Connector name="y1" kind="output" type="Real" />
+-- 					<ssd:Connector name="y2" kind="output" type="Real" />
 -- 				</ssd:Connectors>
 -- 				<ssd:Connections />
 -- 				<ssd:Annotations>
 -- 					<ssd:Annotation type="org.openmodelica">
---						<OMSimulator:Bus name="bus">
---							<Signals>
---								<Signal name="y1" />
---								<Signal name="y2" />
---							</Signals>
---						</OMSimulator:Bus>
--- 						<OMSimulator:Bus name="tlm" type="tlm" domain="mechanical" dimensions="1" interpolation="none">
---							<Signals>
---								<Signal name="x" type="state" />
---								<Signal name="v" type="flow" />
---								<Signal name="f" type="effort" />
---							</Signals>
--- 						</OMSimulator:Bus>
+-- 						<oms:Bus name="bus">
+-- 							<oms:Signals>
+-- 								<oms:Signal name="y1" />
+-- 								<oms:Signal name="y2" />
+-- 							</oms:Signals>
+-- 						</oms:Bus>
+-- 						<oms:Bus name="tlm" type="tlm" domain="mechanical" dimensions="1" interpolation="none">
+-- 							<oms:Signals>
+-- 								<oms:Signal name="x" type="state" />
+-- 								<oms:Signal name="v" type="flow" />
+-- 								<oms:Signal name="f" type="effort" />
+-- 							</oms:Signals>
+-- 						</oms:Bus>
 -- 					</ssd:Annotation>
 -- 				</ssd:Annotations>
 -- 			</ssd:System>
 -- 		</ssd:Elements>
 -- 		<ssd:Connectors />
 -- 		<ssd:Connections />
---		<ssd:Annotations>
---			<ssd:Annotation type="org.openmodelica">
---				<OMSimulator:BusConnections>
---					<OMSimulator:TLMBusConnection startElement="foo" startConnector="tlm" endElement="foo2" endConnector="tlm" delay="0.001000" alpha="0.300000" linearimpedance="100.000000" angularimpedance="0.000000" />
---				</OMSimulator:BusConnections>
---			</ssd:Annotation>
---		</ssd:Annotations>
+-- 		<ssd:Annotations>
+-- 			<ssd:Annotation type="org.openmodelica">
+-- 				<oms:Connections>
+-- 					<oms:Connection startElement="foo" startConnector="tlm" endElement="foo2" endConnector="tlm" delay="0.001000" alpha="0.300000" linearimpedance="100.000000" angularimpedance="0.000000" />
+-- 				</oms:Connections>
+-- 			</ssd:Annotation>
+-- 		</ssd:Annotations>
 -- 	</ssd:System>
 -- </ssd:SystemStructureDescription>
 -- 
