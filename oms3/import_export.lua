@@ -234,7 +234,7 @@ printStatus(status, 0)
 --		<ssd:Annotations>
 --			<ssd:Annotation type="org.openmodelica">
 --				<OMSimulator:BusConnections>
---					<OMSimulator:TLMBusConnection startElement="foo" startConnector="tlm" endElement="foo2" endConnector="tlm" delay="0.001000" alpha="0.300000" impedance="100.000000" impedancerot="0.000000" />
+--					<OMSimulator:TLMBusConnection startElement="foo" startConnector="tlm" endElement="foo2" endConnector="tlm" delay="0.001000" alpha="0.300000" linearimpedance="100.000000" angularimpedance="0.000000" />
 --				</OMSimulator:BusConnections>
 --			</ssd:Annotation>
 --		</ssd:Annotations>
@@ -326,7 +326,7 @@ printStatus(status, 0)
 --		<ssd:Annotations>
 --			<ssd:Annotation type="org.openmodelica">
 --				<OMSimulator:BusConnections>
---					<OMSimulator:TLMBusConnection startElement="foo" startConnector="tlm" endElement="foo2" endConnector="tlm" delay="0.001000" alpha="0.300000" impedance="100.000000" impedancerot="0.000000" />
+--					<OMSimulator:TLMBusConnection startElement="foo" startConnector="tlm" endElement="foo2" endConnector="tlm" delay="0.001000" alpha="0.300000" linearimpedance="100.000000" angularimpedance="0.000000" />
 --				</OMSimulator:BusConnections>
 --			</ssd:Annotation>
 --		</ssd:Annotations>
