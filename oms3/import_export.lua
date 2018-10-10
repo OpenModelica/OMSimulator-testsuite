@@ -1,11 +1,12 @@
 -- status: correct
--- teardown_command:
+-- teardown_command: rm -rf test.ssp import_export/
 -- linux: yes
 -- mingw: yes
 -- win: yes
 -- mac: yes
 
 oms3_setCommandLineOption("--suppressPath=true")
+oms3_setTempDirectory("./import_export/")
 
 function printStatus(status, expected)
   cmp = ""
@@ -32,6 +33,10 @@ status = oms3_addSystem("test.eoo", oms_system_tlm)
 printStatus(status, 0)
 
 status = oms3_addSystem("test.eoo.foo", oms_system_wc)
+printStatus(status, 0)
+
+-- CS FMU
+status = oms3_addSubModel("test.eoo.foo.A", "../FMUs/source.fmu")
 printStatus(status, 0)
 
 status = oms3_addSystem("test.eoo.foo.goo", oms_system_sc)
@@ -100,20 +105,17 @@ printStatus(status, 0)
 status = oms3_addTLMConnection("test.eoo.foo.tlm", "test.eoo.foo2.tlm", 0.001, 0.3, 100, 0)
 printStatus(status, 0)
 
---status = oms3_addSubModel("test.eoo.foo.goo.A", "../FMUs/source.fmu")
---printStatus(status, 0)
-
 src, status = oms3_list("test")
 printStatus(status, 0)
 print(src)
 
-status = oms3_export("test", "test.ssd");
+status = oms3_export("test", "test.ssp");
 printStatus(status, 0)
 
 status = oms3_delete("test")
 printStatus(status, 0)
 
-model, status = oms3_import("test.ssd");
+model, status = oms3_import("test.ssp");
 printStatus(status, 0)
 
 src, status = oms3_list(model)
@@ -127,7 +129,9 @@ printStatus(status, 0)
 -- Result:
 -- info:    Set temp directory to    <suppressed>
 -- info:    Set working directory to <suppressed>
+-- info:    Set temp directory to    <suppressed>
 -- info:    New model "test" with corresponding temp directory <suppressed>
+-- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
@@ -201,6 +205,7 @@ printStatus(status, 0)
 -- 						<ssd:Connectors />
 -- 						<ssd:Connections />
 -- 					</ssd:System>
+-- 					<ssd:Component name="A" type="application/x-fmu-sharedlibrary" source="resources/A.fmu" />
 -- 				</ssd:Elements>
 -- 				<ssd:Connectors>
 -- 					<ssd:Connector name="f" kind="input" type="Real" />
@@ -240,10 +245,16 @@ printStatus(status, 0)
 -- 		</ssd:Annotations>
 -- 	</ssd:System>
 -- </ssd:SystemStructureDescription>
--- 
+--
+-- info:    Set working directory to <suppressed>
+-- info:    Set working directory to <suppressed>
 -- status:  [correct] ok
 -- status:  [correct] ok
+-- info:    Set working directory to <suppressed>
 -- info:    New model "test" with corresponding temp directory <suppressed>
+-- info:    Set working directory to <suppressed>
+-- info:    Set working directory to <suppressed>
+-- info:    Set working directory to <suppressed>
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- <?xml version="1.0"?>
@@ -293,6 +304,7 @@ printStatus(status, 0)
 -- 						<ssd:Connectors />
 -- 						<ssd:Connections />
 -- 					</ssd:System>
+-- 					<ssd:Component name="A" type="application/x-fmu-sharedlibrary" source="resources/A.fmu" />
 -- 				</ssd:Elements>
 -- 				<ssd:Connectors>
 -- 					<ssd:Connector name="f" kind="input" type="Real" />
@@ -332,6 +344,6 @@ printStatus(status, 0)
 -- 		</ssd:Annotations>
 -- 	</ssd:System>
 -- </ssd:SystemStructureDescription>
--- 
+--
 -- status:  [correct] ok
 -- endResult
