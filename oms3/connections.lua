@@ -31,41 +31,41 @@ printStatus(status, 0)
 status = oms3_newModel("model")
 printStatus(status, 0)
 
-status = oms3_addSystem("model.tlm", oms_system_tlm)
+status = oms3_addSystem("model.wc", oms_system_wc)
 printStatus(status, 0)
 
-status = oms3_addSystem("model.tlm.wc1", oms_system_wc)
+status = oms3_addSystem("model.wc.sc1", oms_system_sc)
 printStatus(status, 0)
 
-status = oms3_addSystem("model.tlm.wc2", oms_system_wc)
+status = oms3_addSystem("model.wc.sc2", oms_system_sc)
 printStatus(status, 0)
 
-status = oms3_addConnector("model.tlm.wc1.u1", input, oms_signal_type_real)
-status = oms3_addConnector("model.tlm.wc1.u2", input, oms_signal_type_real)
-status = oms3_addConnector("model.tlm.wc1.y", output, oms_signal_type_real)
+status = oms3_addConnector("model.wc.sc1.u1", input, oms_signal_type_real)
+status = oms3_addConnector("model.wc.sc1.u2", input, oms_signal_type_real)
+status = oms3_addConnector("model.wc.sc1.y", output, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addConnector("model.tlm.wc2.y1", output, oms_signal_type_real)
-status = oms3_addConnector("model.tlm.wc2.y2", output, oms_signal_type_integer)
-status = oms3_addConnector("model.tlm.wc2.y3", output, oms_signal_type_real)
+status = oms3_addConnector("model.wc.sc2.y1", output, oms_signal_type_real)
+status = oms3_addConnector("model.wc.sc2.y2", output, oms_signal_type_integer)
+status = oms3_addConnector("model.wc.sc2.y3", output, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addConnection("model.tlm.wc1.u1", "model.tlm.wc2.y1")
+status = oms3_addConnection("model.wc.sc1.u1", "model.wc.sc2.y1")
 printStatus(status, 0)
 
 --Connecting input to input (illegal)
-status = oms3_addConnection("model.tlm.wc1.y", "model.tlm.wc2.y3")
+status = oms3_addConnection("model.wc.sc1.y", "model.wc.sc2.y3")
 printStatus(status, 3)
 
 --Connecting Real to Integer (illegal)
-status = oms3_addConnection("model.tlm.wc1.u2", "model.tlm.wc2.y2")
+status = oms3_addConnection("model.wc.sc1.u2", "model.wc.sc2.y2")
 printStatus(status, 3)
 
 --Connecting to already connected connector (illegal)
-status = oms3_addConnection("model.tlm.wc1.u1", "model.tlm.wc2.y3")
+status = oms3_addConnection("model.wc.sc1.u1", "model.wc.sc2.y3")
 printStatus(status, 3)
 
-src, status = oms3_list("model.tlm")
+src, status = oms3_list("model.wc")
 print(src)
 
 status = oms3_delete("model")
@@ -84,25 +84,21 @@ printStatus(status, 0)
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
--- error:   [addConnection] Causality mismatch in connection: wc1.y -> wc2.y3
+-- error:   [addConnection] Causality mismatch in connection: sc1.y -> sc2.y3
 -- status:  [correct] error
--- error:   [addConnection] Type mismatch in connection: wc1.u2 -> wc2.y2
+-- error:   [addConnection] Type mismatch in connection: sc1.u2 -> sc2.y2
 -- status:  [correct] error
--- error:   [addConnection] Connector is already connected: wc1.u1
+-- error:   [addConnection] Connector is already connected: sc1.u1
 -- status:  [correct] error
 -- <?xml version="1.0"?>
--- <ssd:System name="tlm">
+-- <ssd:System name="wc">
 -- 	<ssd:SimulationInformation>
--- 		<ssd:Annotations>
--- 			<ssd:Annotation type="org.openmodelica">
--- 				<oms:TlmMaster />
--- 			</ssd:Annotation>
--- 		</ssd:Annotations>
+--    <FixedStepMaster description="oms-ma" stepSize="0.100000" />
 -- 	</ssd:SimulationInformation>
 -- 	<ssd:Elements>
--- 		<ssd:System name="wc2">
+-- 		<ssd:System name="sc2">
 -- 			<ssd:SimulationInformation>
--- 				<FixedStepMaster description="oms-ma" stepSize="1e-1" />
+-- 				<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
 -- 			</ssd:SimulationInformation>
 -- 			<ssd:Elements />
 -- 			<ssd:Connectors>
@@ -112,9 +108,9 @@ printStatus(status, 0)
 -- 			</ssd:Connectors>
 -- 			<ssd:Connections />
 -- 		</ssd:System>
--- 		<ssd:System name="wc1">
+-- 		<ssd:System name="sc1">
 -- 			<ssd:SimulationInformation>
--- 				<FixedStepMaster description="oms-ma" stepSize="1e-1" />
+-- 				<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
 -- 			</ssd:SimulationInformation>
 -- 			<ssd:Elements />
 -- 			<ssd:Connectors>
@@ -127,7 +123,7 @@ printStatus(status, 0)
 -- 	</ssd:Elements>
 -- 	<ssd:Connectors />
 -- 	<ssd:Connections>
--- 		<ssd:Connection startElement="wc1" startConnector="u1" endElement="wc2" endConnector="y1" />
+-- 		<ssd:Connection startElement="sc1" startConnector="u1" endElement="sc2" endConnector="y1" />
 -- 	</ssd:Connections>
 -- </ssd:System>
 --
