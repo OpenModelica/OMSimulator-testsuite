@@ -205,7 +205,15 @@ printStatus(status, 0)
 -- 						<ssd:Connectors />
 -- 						<ssd:Connections />
 -- 					</ssd:System>
--- 					<ssd:Component name="A" type="application/x-fmu-sharedlibrary" source="resources/A.fmu" />
+-- 					<ssd:Component name="A" type="application/x-fmu-sharedlibrary" source="resources/A.fmu">
+-- 						<ssd:Connectors>
+-- 							<ssd:Connector name="A.y" kind="output" type="Real">
+-- 								<ssd:ConnectorGeometry x="1.000000" y="0.500000" />
+-- 							</ssd:Connector>
+-- 							<ssd:Connector name="A.A" kind="parameter" type="Real" />
+-- 							<ssd:Connector name="A.omega" kind="parameter" type="Real" />
+-- 						</ssd:Connectors>
+-- 					</ssd:Component>
 -- 				</ssd:Elements>
 -- 				<ssd:Connectors>
 -- 					<ssd:Connector name="f" kind="input" type="Real" />
@@ -304,7 +312,15 @@ printStatus(status, 0)
 -- 						<ssd:Connectors />
 -- 						<ssd:Connections />
 -- 					</ssd:System>
--- 					<ssd:Component name="A" type="application/x-fmu-sharedlibrary" source="resources/A.fmu" />
+-- 					<ssd:Component name="A" type="application/x-fmu-sharedlibrary" source="resources/A.fmu">
+-- 						<ssd:Connectors>
+-- 							<ssd:Connector name="A.y" kind="output" type="Real">
+-- 								<ssd:ConnectorGeometry x="1.000000" y="0.500000" />
+-- 							</ssd:Connector>
+-- 							<ssd:Connector name="A.A" kind="parameter" type="Real" />
+-- 							<ssd:Connector name="A.omega" kind="parameter" type="Real" />
+-- 						</ssd:Connectors>
+-- 					</ssd:Component>
 -- 				</ssd:Elements>
 -- 				<ssd:Connectors>
 -- 					<ssd:Connector name="f" kind="input" type="Real" />
