@@ -1,11 +1,12 @@
 TEST = ../rtest -v
 
 TESTFILES = \
+buses.lua \
+connections.lua \
+import_export.lua \
+simulation.lua \
 test01.lua \
 test02.lua \
-connections.lua \
-buses.lua \
-import_export.lua \
 tlmbuses.lua \
 
 # Run make failingtest
