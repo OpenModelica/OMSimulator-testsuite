@@ -111,6 +111,7 @@ printStatus(status, 3)
 -- 		<ssd:Connectors />
 -- 		<ssd:Connections />
 -- 	</ssd:System>
+-- 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 -- </ssd:SystemStructureDescription>
 --
 -- <?xml version="1.0"?>
@@ -152,7 +153,9 @@ printStatus(status, 3)
 -- info:    New model "test" with corresponding temp directory <suppressed>
 -- status:  [correct] ok
 -- <?xml version="1.0"?>
--- <ssd:SystemStructureDescription name="test" version="Draft20180219" />
+-- <ssd:SystemStructureDescription name="test" version="Draft20180219">
+-- 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
+-- </ssd:SystemStructureDescription>
 --
 -- status:  [correct] ok
 -- error:   [deleteModel] Model "foo" does not exist in the scope
