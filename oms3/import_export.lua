@@ -252,6 +252,7 @@ printStatus(status, 0)
 -- 			</ssd:Annotation>
 -- 		</ssd:Annotations>
 -- 	</ssd:System>
+-- 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 -- </ssd:SystemStructureDescription>
 --
 -- info:    Set working directory to <suppressed>
@@ -359,6 +360,7 @@ printStatus(status, 0)
 -- 			</ssd:Annotation>
 -- 		</ssd:Annotations>
 -- 	</ssd:System>
+-- 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 -- </ssd:SystemStructureDescription>
 --
 -- status:  [correct] ok
