@@ -28,6 +28,7 @@ end
 status = oms3_setTempDirectory(".")
 status = oms3_newModel("model")
 status = oms3_addSystem("model.tlm", oms_system_tlm)
+status = oms3_setTLMSocketData("model.tlm", "127.0.1.1", 11111, 11121)
 status = oms3_addSystem("model.tlm.wc1", oms_system_wc)
 status = oms3_addConnector("model.tlm.wc1.y", output, oms_signal_type_real)
 status = oms3_addConnector("model.tlm.wc1.x", output, oms_signal_type_real)
@@ -104,7 +105,7 @@ printStatus(status, 0)
 -- 	<ssd:SimulationInformation>
 -- 		<ssd:Annotations>
 -- 			<ssd:Annotation type="org.openmodelica">
--- 				<oms:TlmMaster />
+-- 				<oms:TlmMaster ip="127.0.1.1" managerport="11111" monitorport="11121" />
 -- 			</ssd:Annotation>
 -- 		</ssd:Annotations>
 -- 	</ssd:SimulationInformation>

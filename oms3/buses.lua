@@ -102,7 +102,7 @@ printStatus(status, 0)
 -- 	<ssd:SimulationInformation>
 -- 		<ssd:Annotations>
 -- 			<ssd:Annotation type="org.openmodelica">
--- 				<oms:TlmMaster />
+-- 				<oms:TlmMaster ip="" managerport="0" monitorport="0" />
 -- 			</ssd:Annotation>
 -- 		</ssd:Annotations>
 -- 	</ssd:SimulationInformation>
