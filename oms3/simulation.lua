@@ -32,11 +32,13 @@ printStatus(status, 0)
 status = oms3_addSystem("test.co_sim", oms_system_wc)
 printStatus(status, 0)
 
--- CS FMU
 status = oms3_addSubModel("test.co_sim.A", "../FMUs/source.fmu")
 printStatus(status, 0)
 
 status = oms3_addSubModel("test.co_sim.B", "../FMUs/source.fmu")
+printStatus(status, 0)
+
+status = oms3_instantiate("test")
 printStatus(status, 0)
 
 status = oms3_initialize("test")
@@ -53,6 +55,7 @@ printStatus(status, 0)
 -- info:    Set working directory to <suppressed>
 -- info:    Set temp directory to    <suppressed>
 -- info:    New model "test" with corresponding temp directory <suppressed>
+-- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
