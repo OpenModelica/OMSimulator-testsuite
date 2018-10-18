@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -rf test.ssp import_export/
+-- teardown_command: rm -rf test.ss import_export/
 -- linux: yes
 -- mingw: yes
 -- win: yes
@@ -31,6 +31,8 @@ printStatus(status, 0)
 
 status = oms3_addSystem("test.eoo", oms_system_tlm)
 printStatus(status, 0)
+
+status = oms3_setTLMSocketData("test.eoo", "127.0.1.1", 11111, 11121)
 
 status = oms3_addSystem("test.eoo.foo", oms_system_wc)
 printStatus(status, 0)
@@ -164,7 +166,7 @@ printStatus(status, 0)
 -- 		<ssd:SimulationInformation>
 -- 			<ssd:Annotations>
 -- 				<ssd:Annotation type="org.openmodelica">
--- 					<oms:TlmMaster />
+-- 					<oms:TlmMaster ip="127.0.1.1" managerport="11111" monitorport="11121" />
 -- 				</ssd:Annotation>
 -- 			</ssd:Annotations>
 -- 		</ssd:SimulationInformation>
@@ -272,7 +274,7 @@ printStatus(status, 0)
 -- 		<ssd:SimulationInformation>
 -- 			<ssd:Annotations>
 -- 				<ssd:Annotation type="org.openmodelica">
--- 					<oms:TlmMaster />
+-- 					<oms:TlmMaster ip="127.0.1.1" managerport="11111" monitorport="11121" />
 -- 				</ssd:Annotation>
 -- 			</ssd:Annotations>
 -- 		</ssd:SimulationInformation>
