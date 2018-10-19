@@ -153,9 +153,9 @@ printStatus(status, 0)
 -- 					</oms:Bus>
 -- 					<oms:Bus name="bus2" type="tlm" domain="mechanical" dimensions="1" interpolation="none">
 -- 						<oms:Signals>
--- 							<oms:Signal name="x" type="state" />
--- 							<oms:Signal name="v" type="flow" />
 -- 							<oms:Signal name="f" type="effort" />
+-- 							<oms:Signal name="v" type="flow" />
+-- 							<oms:Signal name="x" type="state" />
 -- 						</oms:Signals>
 -- 					</oms:Bus>
 -- 				</ssd:Annotation>
