@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -rf simulation/
+-- teardown_command: rm -rf simulation/ test_init.dot test_sim.dot
 -- linux: yes
 -- mingw: no
 -- win: no
@@ -38,10 +38,15 @@ printStatus(status, 0)
 status = oms3_addSubModel("test.co_sim.B", "../FMUs/source.fmu")
 printStatus(status, 0)
 
+oms3_exportDependencyGraphs("test.co_sim", "test_init.dot", "test_sim.dot")
+
 status = oms3_instantiate("test")
 printStatus(status, 0)
 
 status = oms3_initialize("test")
+printStatus(status, 0)
+
+status = oms3_simulate("test")
 printStatus(status, 0)
 
 status = oms3_terminate("test")
@@ -61,6 +66,10 @@ printStatus(status, 0)
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
+-- error:   [stepUntil] Not implemented
+-- status:  [wrong] error
 -- status:  [correct] ok
 -- status:  [correct] ok
+-- info:    0 warnings
+-- info:    1 errors
 -- endResult
