@@ -4,6 +4,7 @@ TESTFILES = \
 buses.lua \
 connections.lua \
 import_export.lua \
+PI_Controller.lua \
 simulation.lua \
 test01.lua \
 test02.lua \
