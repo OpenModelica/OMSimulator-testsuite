@@ -41,6 +41,10 @@ printStatus(status, 0)
 status = oms3_addSubModel("test.eoo.foo.A", "../FMUs/source.fmu")
 printStatus(status, 0)
 
+-- table
+status = oms3_addSubModel("test.eoo.foo.T", "setpoint.csv")
+printStatus(status, 0)
+
 status = oms3_addSystem("test.eoo.foo.goo", oms_system_sc)
 printStatus(status, 0)
 
@@ -160,6 +164,7 @@ printStatus(status, 0)
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
+-- status:  [correct] ok
 -- <?xml version="1.0"?>
 -- <ssd:SystemStructureDescription name="test" version="Draft20180219">
 -- 	<ssd:System name="eoo">
@@ -207,6 +212,16 @@ printStatus(status, 0)
 -- 						<ssd:Connectors />
 -- 						<ssd:Connections />
 -- 					</ssd:System>
+-- 					<ssd:Component name="T" type="application/table" source="resources/T.csv">
+-- 						<ssd:Connectors>
+-- 							<ssd:Connector name="time" kind="output" type="Real">
+-- 								<ssd:ConnectorGeometry x="1.000000" y="0.333333" />
+-- 							</ssd:Connector>
+-- 							<ssd:Connector name="speed" kind="output" type="Real">
+-- 								<ssd:ConnectorGeometry x="1.000000" y="0.666667" />
+-- 							</ssd:Connector>
+-- 						</ssd:Connectors>
+-- 					</ssd:Component>
 -- 					<ssd:Component name="A" type="application/x-fmu-sharedlibrary" source="resources/A.fmu">
 -- 						<ssd:Connectors>
 -- 							<ssd:Connector name="y" kind="output" type="Real">
@@ -315,6 +330,16 @@ printStatus(status, 0)
 -- 						<ssd:Connectors />
 -- 						<ssd:Connections />
 -- 					</ssd:System>
+-- 					<ssd:Component name="T" type="application/table" source="resources/T.csv">
+-- 						<ssd:Connectors>
+-- 							<ssd:Connector name="time" kind="output" type="Real">
+-- 								<ssd:ConnectorGeometry x="1.000000" y="0.333333" />
+-- 							</ssd:Connector>
+-- 							<ssd:Connector name="speed" kind="output" type="Real">
+-- 								<ssd:ConnectorGeometry x="1.000000" y="0.666667" />
+-- 							</ssd:Connector>
+-- 						</ssd:Connectors>
+-- 					</ssd:Component>
 -- 					<ssd:Component name="A" type="application/x-fmu-sharedlibrary" source="resources/A.fmu">
 -- 						<ssd:Connectors>
 -- 							<ssd:Connector name="y" kind="output" type="Real">
