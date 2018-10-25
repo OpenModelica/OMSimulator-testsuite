@@ -34,6 +34,16 @@ oms3_addConnection("PI_Controller.co_sim.limiter.y", "PI_Controller.co_sim.addSa
 oms3_addConnection("PI_Controller.co_sim.addSat.y", "PI_Controller.co_sim.gainTrack.u")
 oms3_addConnection("PI_Controller.co_sim.gainTrack.y", "PI_Controller.co_sim.addI.u3")
 
+-- instantiate lookup table
+oms3_addSubModel("PI_Controller.co_sim.setpoint", "setpoint.csv")
+oms3_addSubModel("PI_Controller.co_sim.driveTrain", "drivetrain.csv")
+
+-- add connections
+oms3_addConnection("PI_Controller.co_sim.setpoint.speed", "PI_Controller.co_sim.addP.u1")
+oms3_addConnection("PI_Controller.co_sim.setpoint.speed", "PI_Controller.co_sim.addI.u1")
+oms3_addConnection("PI_Controller.co_sim.driveTrain.w", "PI_Controller.co_sim.addP.u2")
+oms3_addConnection("PI_Controller.co_sim.driveTrain.w", "PI_Controller.co_sim.addI.u2")
+
 oms3_exportDependencyGraphs("PI_Controller.co_sim", "a.dot", "b.dot")
 
 oms3_instantiate("PI_Controller")
