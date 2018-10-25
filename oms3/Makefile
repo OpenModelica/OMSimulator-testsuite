@@ -17,7 +17,9 @@ FAILINGTESTFILES = \
 # Add them here or they will be cleaned.
 DEPENDENCIES = \
 *.lua \
+drivetrain.csv \
 Makefile \
+setpoint.csv \
 
 CLEAN = `ls | grep -w -v -f deps.tmp`
 
