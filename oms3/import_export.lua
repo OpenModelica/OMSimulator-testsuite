@@ -96,6 +96,12 @@ printStatus(status, 0)
 status = oms3_addConnector("test.eoo.foo2.v", output, oms_signal_type_real)
 printStatus(status, 0)
 
+status = oms3_addConnector("test.eoo.foo2.u1", input, oms_signal_type_real)
+printStatus(status, 0)
+
+status = oms3_addConnector("test.eoo.foo2.u2", input, oms_signal_type_real)
+printStatus(status, 0)
+
 status = oms3_addTLMBus("test.eoo.foo2.tlm", "mechanical", 1, default)
 printStatus(status, 0)
 
@@ -108,7 +114,25 @@ printStatus(status, 0)
 status = oms3_addConnectorToTLMBus("test.eoo.foo2.tlm", "test.eoo.foo2.v", "flow")
 printStatus(status, 0)
 
+status = oms3_addBus("test.eoo.foo2.bus")
+printStatus(status, 0)
+
+status = oms3_addConnectorToBus("test.eoo.foo2.bus", "test.eoo.foo2.u1")
+printStatus(status, 0)
+
+status = oms3_addConnectorToBus("test.eoo.foo2.bus", "test.eoo.foo2.u2")
+printStatus(status, 0)
+
 status = oms3_addTLMConnection("test.eoo.foo.tlm", "test.eoo.foo2.tlm", 0.001, 0.3, 100, 0)
+printStatus(status, 0)
+
+status = oms3_addConnection("test.eoo.foo.y1", "test.eoo.foo2.u1")
+printStatus(status, 0)
+
+status = oms3_addConnection("test.eoo.foo.y2", "test.eoo.foo2.u2")
+printStatus(status, 0)
+
+status = oms3_addConnection("test.eoo.foo.bus", "test.eoo.foo2.bus")
 printStatus(status, 0)
 
 src, status = oms3_list("test")
@@ -165,6 +189,14 @@ printStatus(status, 0)
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
+-- status:  [correct] ok
+-- status:  [correct] ok
+-- status:  [correct] ok
+-- status:  [correct] ok
+-- status:  [correct] ok
+-- status:  [correct] ok
+-- status:  [correct] ok
+-- status:  [correct] ok
 -- <?xml version="1.0"?>
 -- <ssd:SystemStructureDescription name="test" version="Draft20180219">
 -- 	<ssd:System name="eoo">
@@ -185,10 +217,18 @@ printStatus(status, 0)
 -- 					<ssd:Connector name="f" kind="input" type="Real" />
 -- 					<ssd:Connector name="x" kind="output" type="Real" />
 -- 					<ssd:Connector name="v" kind="output" type="Real" />
+-- 					<ssd:Connector name="u1" kind="input" type="Real" />
+-- 					<ssd:Connector name="u2" kind="input" type="Real" />
 -- 				</ssd:Connectors>
 -- 				<ssd:Connections />
 -- 				<ssd:Annotations>
 -- 					<ssd:Annotation type="org.openmodelica">
+-- 						<oms:Bus name="bus">
+-- 							<oms:Signals>
+-- 								<oms:Signal name="u1" />
+-- 								<oms:Signal name="u2" />
+-- 							</oms:Signals>
+-- 						</oms:Bus>
 -- 						<oms:Bus name="tlm" type="tlm" domain="mechanical" dimensions="1" interpolation="none">
 -- 							<oms:Signals>
 -- 								<oms:Signal name="f" type="effort" />
@@ -260,18 +300,22 @@ printStatus(status, 0)
 -- 			</ssd:System>
 -- 		</ssd:Elements>
 -- 		<ssd:Connectors />
--- 		<ssd:Connections />
+-- 		<ssd:Connections>
+-- 			<ssd:Connection startElement="foo" startConnector="y1" endElement="foo2" endConnector="u1" />
+-- 			<ssd:Connection startElement="foo" startConnector="y2" endElement="foo2" endConnector="u2" />
+-- 		</ssd:Connections>
 -- 		<ssd:Annotations>
 -- 			<ssd:Annotation type="org.openmodelica">
 -- 				<oms:Connections>
 -- 					<oms:Connection startElement="foo" startConnector="tlm" endElement="foo2" endConnector="tlm" delay="0.001000" alpha="0.300000" linearimpedance="100.000000" angularimpedance="0.000000" />
+-- 					<oms:Connection startElement="foo" startConnector="bus" endElement="foo2" endConnector="bus" />
 -- 				</oms:Connections>
 -- 			</ssd:Annotation>
 -- 		</ssd:Annotations>
 -- 	</ssd:System>
 -- 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 -- </ssd:SystemStructureDescription>
---
+-- 
 -- info:    Set working directory to <suppressed>
 -- info:    Set working directory to <suppressed>
 -- status:  [correct] ok
@@ -303,10 +347,18 @@ printStatus(status, 0)
 -- 					<ssd:Connector name="f" kind="input" type="Real" />
 -- 					<ssd:Connector name="x" kind="output" type="Real" />
 -- 					<ssd:Connector name="v" kind="output" type="Real" />
+-- 					<ssd:Connector name="u1" kind="input" type="Real" />
+-- 					<ssd:Connector name="u2" kind="input" type="Real" />
 -- 				</ssd:Connectors>
 -- 				<ssd:Connections />
 -- 				<ssd:Annotations>
 -- 					<ssd:Annotation type="org.openmodelica">
+-- 						<oms:Bus name="bus">
+-- 							<oms:Signals>
+-- 								<oms:Signal name="u1" />
+-- 								<oms:Signal name="u2" />
+-- 							</oms:Signals>
+-- 						</oms:Bus>
 -- 						<oms:Bus name="tlm" type="tlm" domain="mechanical" dimensions="1" interpolation="none">
 -- 							<oms:Signals>
 -- 								<oms:Signal name="f" type="effort" />
@@ -378,17 +430,21 @@ printStatus(status, 0)
 -- 			</ssd:System>
 -- 		</ssd:Elements>
 -- 		<ssd:Connectors />
--- 		<ssd:Connections />
+-- 		<ssd:Connections>
+-- 			<ssd:Connection startElement="foo" startConnector="y1" endElement="foo2" endConnector="u1" />
+-- 			<ssd:Connection startElement="foo" startConnector="y2" endElement="foo2" endConnector="u2" />
+-- 		</ssd:Connections>
 -- 		<ssd:Annotations>
 -- 			<ssd:Annotation type="org.openmodelica">
 -- 				<oms:Connections>
 -- 					<oms:Connection startElement="foo" startConnector="tlm" endElement="foo2" endConnector="tlm" delay="0.001000" alpha="0.300000" linearimpedance="100.000000" angularimpedance="0.000000" />
+-- 					<oms:Connection startElement="foo" startConnector="bus" endElement="foo2" endConnector="bus" />
 -- 				</oms:Connections>
 -- 			</ssd:Annotation>
 -- 		</ssd:Annotations>
 -- 	</ssd:System>
 -- 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 -- </ssd:SystemStructureDescription>
---
+-- 
 -- status:  [correct] ok
 -- endResult
