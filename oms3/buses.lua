@@ -63,14 +63,13 @@ status = oms3_addConnection("model.tlm.wc1.u1","model.tlm.wc2.y1")
 printStatus(status, 0)
 
 status = oms3_addConnection("model.tlm.wc1.bus1","model.tlm.wc2.bus2")
-printStatus(status, 3)
+printStatus(status, 0)
 
 status = oms3_addConnection("model.tlm.wc1.u2","model.tlm.wc2.y2")
 printStatus(status, 0)
 
-status = oms3_addConnection("model.tlm.wc1.bus1","model.tlm.wc2.bus2")
-printStatus(status, 0)
-
+status = oms3_addConnection("model.tlm.wc2.bus2","model.tlm.wc1.bus1")
+printStatus(status, 3)
 
 src, status = oms3_list("model.tlm")
 print(src)
@@ -93,10 +92,10 @@ printStatus(status, 0)
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
--- error:   [addConnection] All connectors in each bus must be connected to a connector in the other bus before creating bus connection.
+-- status:  [correct] ok
+-- status:  [correct] ok
+-- error:   [addConnection] Connection <"wc2.bus2", "wc1.bus1"> exists already in system "model.tlm"
 -- status:  [correct] error
--- status:  [correct] ok
--- status:  [correct] ok
 -- <?xml version="1.0"?>
 -- <ssd:System name="tlm">
 -- 	<ssd:SimulationInformation>
@@ -109,7 +108,7 @@ printStatus(status, 0)
 -- 	<ssd:Elements>
 -- 		<ssd:System name="wc2">
 -- 			<ssd:SimulationInformation>
--- 				<FixedStepMaster description="oms-ma" stepSize="1e-1" />
+-- 				<FixedStepMaster description="oms-ma" stepSize="0.100000" />
 -- 			</ssd:SimulationInformation>
 -- 			<ssd:Elements />
 -- 			<ssd:Connectors>
@@ -131,7 +130,7 @@ printStatus(status, 0)
 -- 		</ssd:System>
 -- 		<ssd:System name="wc1">
 -- 			<ssd:SimulationInformation>
--- 				<FixedStepMaster description="oms-ma" stepSize="1e-1" />
+-- 				<FixedStepMaster description="oms-ma" stepSize="0.100000" />
 -- 			</ssd:SimulationInformation>
 -- 			<ssd:Elements />
 -- 			<ssd:Connectors>
@@ -165,7 +164,7 @@ printStatus(status, 0)
 -- 		</ssd:Annotation>
 -- 	</ssd:Annotations>
 -- </ssd:System>
--- 
+--
 -- status:  [correct] ok
 -- info:    0 warnings
 -- info:    2 errors
