@@ -43,6 +43,17 @@ oms3_exportDependencyGraphs("test.co_sim", "test_init.dot", "test_sim.dot")
 status = oms3_instantiate("test")
 printStatus(status, 0)
 
+v, status = oms3_getReal("test.co_sim.A.A")
+printStatus(status, 0)
+print(v)
+
+status = oms3_setReal("test.co_sim.A.A", v + 1.0)
+printStatus(status, 0)
+
+v, status = oms3_getReal("test.co_sim.A.A")
+printStatus(status, 0)
+print(v)
+
 status = oms3_initialize("test")
 printStatus(status, 0)
 
@@ -65,6 +76,11 @@ printStatus(status, 0)
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
+-- status:  [correct] ok
+-- 1.0
+-- status:  [correct] ok
+-- status:  [correct] ok
+-- 2.0
 -- status:  [correct] ok
 -- error:   [stepUntil] Not implemented
 -- status:  [wrong] error
