@@ -45,20 +45,28 @@ printStatus(status, 0)
 
 v, status = oms3_getReal("test.co_sim.A.A")
 printStatus(status, 0)
-print(v)
+print("test.co_sim.A.A: " .. v)
 
 status = oms3_setReal("test.co_sim.A.A", v + 1.0)
 printStatus(status, 0)
 
 v, status = oms3_getReal("test.co_sim.A.A")
 printStatus(status, 0)
-print(v)
+print("test.co_sim.A.A: " .. v)
 
 status = oms3_initialize("test")
 printStatus(status, 0)
 
+v, status = oms3_getReal("test.co_sim.A.y")
+printStatus(status, 0)
+print("test.co_sim.A.y: " .. v)
+
 status = oms3_simulate("test")
 printStatus(status, 0)
+
+v, status = oms3_getReal("test.co_sim.A.y")
+printStatus(status, 0)
+print("test.co_sim.A.y: " .. v)
 
 status = oms3_terminate("test")
 printStatus(status, 0)
@@ -77,15 +85,16 @@ printStatus(status, 0)
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
--- 1.0
+-- test.co_sim.A.A: 1.0
 -- status:  [correct] ok
 -- status:  [correct] ok
--- 2.0
--- status:  [correct] ok
--- error:   [stepUntil] Not implemented
--- status:  [wrong] error
+-- test.co_sim.A.A: 2.0
 -- status:  [correct] ok
 -- status:  [correct] ok
--- info:    0 warnings
--- info:    1 errors
+-- test.co_sim.A.y: 0.0
+-- status:  [correct] ok
+-- status:  [correct] ok
+-- test.co_sim.A.y: 1.6829419696158
+-- status:  [correct] ok
+-- status:  [correct] ok
 -- endResult
