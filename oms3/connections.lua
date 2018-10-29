@@ -68,6 +68,12 @@ printStatus(status, 3)
 src, status = oms3_list("model.wc")
 print(src)
 
+status = oms3_deleteConnection("model.wc.sc1.u1", "model.wc.sc2.y1")
+printStatus(status, 0)
+
+src, status = oms3_list("model.wc")
+print(src)
+
 status = oms3_delete("model")
 printStatus(status, 0)
 
@@ -93,7 +99,7 @@ printStatus(status, 0)
 -- <?xml version="1.0"?>
 -- <ssd:System name="wc">
 -- 	<ssd:SimulationInformation>
---    <FixedStepMaster description="oms-ma" stepSize="0.100000" />
+-- 		<FixedStepMaster description="oms-ma" stepSize="0.100000" />
 -- 	</ssd:SimulationInformation>
 -- 	<ssd:Elements>
 -- 		<ssd:System name="sc2">
@@ -126,7 +132,43 @@ printStatus(status, 0)
 -- 		<ssd:Connection startElement="sc1" startConnector="u1" endElement="sc2" endConnector="y1" />
 -- 	</ssd:Connections>
 -- </ssd:System>
---
+-- 
+-- status:  [correct] ok
+-- <?xml version="1.0"?>
+-- <ssd:System name="wc">
+-- 	<ssd:SimulationInformation>
+-- 		<FixedStepMaster description="oms-ma" stepSize="0.100000" />
+-- 	</ssd:SimulationInformation>
+-- 	<ssd:Elements>
+-- 		<ssd:System name="sc2">
+-- 			<ssd:SimulationInformation>
+-- 				<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
+-- 			</ssd:SimulationInformation>
+-- 			<ssd:Elements />
+-- 			<ssd:Connectors>
+-- 				<ssd:Connector name="y1" kind="output" type="Real" />
+-- 				<ssd:Connector name="y2" kind="output" type="Integer" />
+-- 				<ssd:Connector name="y3" kind="output" type="Real" />
+-- 			</ssd:Connectors>
+-- 			<ssd:Connections />
+-- 		</ssd:System>
+-- 		<ssd:System name="sc1">
+-- 			<ssd:SimulationInformation>
+-- 				<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
+-- 			</ssd:SimulationInformation>
+-- 			<ssd:Elements />
+-- 			<ssd:Connectors>
+-- 				<ssd:Connector name="u1" kind="input" type="Real" />
+-- 				<ssd:Connector name="u2" kind="input" type="Real" />
+-- 				<ssd:Connector name="y" kind="output" type="Real" />
+-- 			</ssd:Connectors>
+-- 			<ssd:Connections />
+-- 		</ssd:System>
+-- 	</ssd:Elements>
+-- 	<ssd:Connectors />
+-- 	<ssd:Connections />
+-- </ssd:System>
+-- 
 -- status:  [correct] ok
 -- info:    0 warnings
 -- info:    3 errors
