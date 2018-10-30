@@ -89,6 +89,7 @@ printStatus(status, 0)
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- test.co_sim.A.A: 2.0
+-- info:    Result file: test_res.mat (bufferSize=10)
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- test.co_sim.A.y: 0.0
