@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -rf pi_controller_tmp/
+-- teardown_command: rm -rf pi_controller_tmp/ PI_Controller_init.dot PI_Controller_sim.dot PI_Controller.mat
 -- linux: yes
 -- mingw: no
 -- win: no
@@ -44,13 +44,53 @@ oms3_addConnection("PI_Controller.co_sim.setpoint.speed", "PI_Controller.co_sim.
 oms3_addConnection("PI_Controller.co_sim.driveTrain.w", "PI_Controller.co_sim.addP.u2")
 oms3_addConnection("PI_Controller.co_sim.driveTrain.w", "PI_Controller.co_sim.addI.u2")
 
-oms3_exportDependencyGraphs("PI_Controller.co_sim", "a.dot", "b.dot")
+-- simulation settings
+oms3_setStartTime("PI_Controller", 0.0)
+oms3_setStopTime("PI_Controller", 4.0)
+oms3_setFixedStepSize("PI_Controller.co_sim", 1e-4)
+oms3_setResultFile("PI_Controller", "PI_Controller.mat", 100)
+
+oms3_exportDependencyGraphs("PI_Controller.co_sim", "PI_Controller_init.dot", "PI_Controller_sim.dot")
 
 oms3_instantiate("PI_Controller")
-oms3_initialize("PI_Controller")
-oms3_simulate("PI_Controller")
-oms3_terminate("PI_Controller")
 
+-- set parameters
+k = 100.0
+yMax = 12.0
+yMin = -yMax
+wp = 1.0
+Ni = 0.1
+xi_start = 0.0
+oms3_setReal("PI_Controller.co_sim.addP.k1", wp)
+oms3_setReal("PI_Controller.co_sim.addP.k2", -1.0)
+oms3_setReal("PI_Controller.co_sim.addI.k2", -1.0)
+oms3_setReal("PI_Controller.co_sim.I.y_start", xi_start)
+oms3_setReal("PI_Controller.co_sim.gainPI.k", k)
+oms3_setReal("PI_Controller.co_sim.limiter.uMax", yMax)
+oms3_setReal("PI_Controller.co_sim.addSat.k2", -1.0)
+oms3_setReal("PI_Controller.co_sim.gainTrack.k", 1.0/(k*Ni))
+
+print("info:    Parameter settings")
+print("info:      PI_Controller.co_sim.addP.k1: " .. oms3_getReal("PI_Controller.co_sim.addP.k1"))
+print("info:      PI_Controller.co_sim.addP.k2: " .. oms3_getReal("PI_Controller.co_sim.addP.k2"))
+print("info:      PI_Controller.co_sim.addI.k2: " .. oms3_getReal("PI_Controller.co_sim.addI.k2"))
+print("info:      PI_Controller.co_sim.I.y_start: " .. oms3_getReal("PI_Controller.co_sim.I.y_start"))
+print("info:      PI_Controller.co_sim.gainPI.k: " .. oms3_getReal("PI_Controller.co_sim.gainPI.k"))
+print("info:      PI_Controller.co_sim.limiter.uMax: " .. oms3_getReal("PI_Controller.co_sim.limiter.uMax"))
+print("info:      PI_Controller.co_sim.addSat.k2: " .. oms3_getReal("PI_Controller.co_sim.addSat.k2"))
+print("info:      PI_Controller.co_sim.gainTrack.k: " .. oms3_getReal("PI_Controller.co_sim.gainTrack.k"))
+
+oms3_initialize("PI_Controller")
+print("info:    Initialization")
+print("info:      limiter.u: " .. oms3_getReal("PI_Controller.co_sim.limiter.u"))
+print("info:      limiter.y: " .. oms3_getReal("PI_Controller.co_sim.limiter.y"))
+
+oms3_simulate("PI_Controller")
+print("info:    Simulation")
+print("info:      limiter.u: " .. oms3_getReal("PI_Controller.co_sim.limiter.u"))
+print("info:      limiter.y: " .. oms3_getReal("PI_Controller.co_sim.limiter.y"))
+
+oms3_terminate("PI_Controller")
 oms3_delete("PI_Controller")
 
 -- Result:
@@ -58,7 +98,16 @@ oms3_delete("PI_Controller")
 -- info:    Set working directory to <suppressed>
 -- info:    Set temp directory to    <suppressed>
 -- info:    New model "PI_Controller" with corresponding temp directory <suppressed>
--- info:    Result file: PI_Controller_res.mat (bufferSize=10)
+-- info:    Parameter settings
+-- info:      PI_Controller.co_sim.addP.k1: 1.0
+-- info:      PI_Controller.co_sim.addP.k2: -1.0
+-- info:      PI_Controller.co_sim.addI.k2: -1.0
+-- info:      PI_Controller.co_sim.I.y_start: 0.0
+-- info:      PI_Controller.co_sim.gainPI.k: 100.0
+-- info:      PI_Controller.co_sim.limiter.uMax: 12.0
+-- info:      PI_Controller.co_sim.addSat.k2: -1.0
+-- info:      PI_Controller.co_sim.gainTrack.k: 0.1
+-- info:    Result file: PI_Controller.mat (bufferSize=100)
 -- info:    Parameter PI_Controller.co_sim.limiter._block_jacobian_check will not be stored in the result file, because the signal type is not supported
 -- info:    Parameter PI_Controller.co_sim.limiter._block_solver_experimental_mode will not be stored in the result file, because the signal type is not supported
 -- info:    Parameter PI_Controller.co_sim.limiter._block_solver_profiling will not be stored in the result file, because the signal type is not supported
@@ -287,4 +336,10 @@ oms3_delete("PI_Controller")
 -- info:    Parameter PI_Controller.co_sim.I._use_jacobian_equilibration will not be stored in the result file, because the signal type is not supported
 -- info:    Parameter PI_Controller.co_sim.I._use_newton_for_brent will not be stored in the result file, because the signal type is not supported
 -- info:    Variable PI_Controller.co_sim.I.initType will not be stored in the result file, because the signal type is not supported
+-- info:    Initialization
+-- info:      limiter.u: 0.0
+-- info:      limiter.y: 0.0
+-- info:    Simulation
+-- info:      limiter.u: -10.014508893656
+-- info:      limiter.y: -10.014508893656
 -- endResult
