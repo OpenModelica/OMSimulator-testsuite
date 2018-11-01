@@ -153,8 +153,8 @@ printStatus(status, 0)
 -- 	</ssd:Elements>
 -- 	<ssd:Connectors />
 -- 	<ssd:Connections>
--- 		<ssd:Connection startElement="wc1" startConnector="u1" endElement="wc2" endConnector="y1" />
--- 		<ssd:Connection startElement="wc1" startConnector="u2" endElement="wc2" endConnector="y2" />
+-- 		<ssd:Connection startElement="wc2" startConnector="y1" endElement="wc1" endConnector="u1" />
+-- 		<ssd:Connection startElement="wc2" startConnector="y2" endElement="wc1" endConnector="u2" />
 -- 	</ssd:Connections>
 -- 	<ssd:Annotations>
 -- 		<ssd:Annotation type="org.openmodelica">

@@ -112,7 +112,7 @@ printStatus(status, 0)
 -- 	<ssd:Elements>
 -- 		<ssd:System name="wc2">
 -- 			<ssd:SimulationInformation>
--- 				<FixedStepMaster description="oms-ma" stepSize="1e-1" />
+-- 				<FixedStepMaster description="oms-ma" stepSize="0.100000" />
 -- 			</ssd:SimulationInformation>
 -- 			<ssd:Elements />
 -- 			<ssd:Connectors>
@@ -134,7 +134,7 @@ printStatus(status, 0)
 -- 		</ssd:System>
 -- 		<ssd:System name="wc1">
 -- 			<ssd:SimulationInformation>
--- 				<FixedStepMaster description="oms-ma" stepSize="1e-1" />
+-- 				<FixedStepMaster description="oms-ma" stepSize="0.100000" />
 -- 			</ssd:SimulationInformation>
 -- 			<ssd:Elements />
 -- 			<ssd:Connectors>
@@ -172,7 +172,7 @@ printStatus(status, 0)
 -- 		</ssd:Annotation>
 -- 	</ssd:Annotations>
 -- </ssd:System>
--- 
+--
 -- status:  [correct] ok
 -- info:    0 warnings
 -- info:    2 errors
