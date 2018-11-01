@@ -129,10 +129,10 @@ printStatus(status, 0)
 -- 	</ssd:Elements>
 -- 	<ssd:Connectors />
 -- 	<ssd:Connections>
--- 		<ssd:Connection startElement="sc1" startConnector="u1" endElement="sc2" endConnector="y1" />
+-- 		<ssd:Connection startElement="sc2" startConnector="y1" endElement="sc1" endConnector="u1" />
 -- 	</ssd:Connections>
 -- </ssd:System>
--- 
+--
 -- status:  [correct] ok
 -- <?xml version="1.0"?>
 -- <ssd:System name="wc">
@@ -168,7 +168,7 @@ printStatus(status, 0)
 -- 	<ssd:Connectors />
 -- 	<ssd:Connections />
 -- </ssd:System>
--- 
+--
 -- status:  [correct] ok
 -- info:    0 warnings
 -- info:    3 errors
