@@ -9,6 +9,7 @@ simulation.lua \
 test01.lua \
 test02.lua \
 tlmbuses.lua \
+tlmsignals.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \
