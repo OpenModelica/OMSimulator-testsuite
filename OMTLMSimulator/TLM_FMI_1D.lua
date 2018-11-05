@@ -24,7 +24,7 @@ oms2_addTLMInterface("tlm1d", "fmi1", "P", 1, bidirectional, "Mechanical", "mass
 oms2_addTLMInterface("tlm1d", "fmi2", "P", 1, bidirectional, "Mechanical", "mass:x", "mass:v", "mass:f")
 oms2_addTLMConnection("tlm1d", "fmi1:P", "fmi2:P", 0.001, 0.5, 10, 0)
 
-oms2_setTLMSocketData("tlm1d","127.0.1.1",11132,12132)
+oms2_setTLMSocketData("tlm1d","127.0.1.1",11121,12121)
 
 -- oms2_describe("tlm1d")
 

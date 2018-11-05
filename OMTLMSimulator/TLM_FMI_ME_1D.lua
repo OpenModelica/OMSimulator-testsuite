@@ -30,7 +30,7 @@ oms2_addConnection("fmi1", "mass1", "solver1")
 oms2_addSolver("fmi2", "solver2", "cvode")
 oms2_addConnection("fmi2", "mass2", "solver2")
 
-oms2_setTLMSocketData("tlm1d_me","127.0.1.1",11111,12111)
+oms2_setTLMSocketData("tlm1d_me","127.0.1.1",11171,12171)
 
 -- oms2_describe("tlm1d_me")
 
