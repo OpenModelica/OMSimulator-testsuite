@@ -143,7 +143,7 @@ printStatus(status, 3)
 -- 	<ssd:Connections />
 -- </ssd:System>
 --
--- error:   [newModel] A model "test" already exists in the scope
+-- error:   [newModel] "test" already exists in the scope
 -- status:  [correct] error
 -- status:  [correct] ok
 -- info:    New model "test" with corresponding temp directory <suppressed>
@@ -158,7 +158,7 @@ printStatus(status, 3)
 -- </ssd:SystemStructureDescription>
 --
 -- status:  [correct] ok
--- error:   [deleteModel] Model "foo" does not exist in the scope
+-- error:   [oms3_delete] Model "foo" does not exist in the scope
 -- status:  [correct] error
 -- info:    0 warnings
 -- info:    4 errors
