@@ -47,7 +47,7 @@ oms2_addTLMInterface("tlm1d_fg", "fmi2", "P", 1, bidirectional, "Mechanical", fi
                      "fmu:time6", "fmu:time7", "fmu:time8", "fmu:time9", "fmu:time10",
                      "fmu:impedance")
 oms2_addTLMConnection("tlm1d_fg", "fmi1:P", "fmi2:P", 1e-3, 0.0, 0.1, 0)
-oms2_setTLMSocketData("tlm1d_fg","127.0.1.1",11162,12162)
+oms2_setTLMSocketData("tlm1d_fg","127.0.1.1",11131,12131)
 
 -- oms2_describe("tlm1d_fg")
 
