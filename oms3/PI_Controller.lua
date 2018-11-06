@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -rf pi_controller_tmp/ PI_Controller_init.dot PI_Controller_sim.dot PI_Controller.mat
+-- teardown_command: rm -rf pi_controller_tmp/ PI_Controller_init.dot PI_Controller_sim.dot PI_Controller.mat PI_Controller.ssp
 -- linux: yes
 -- mingw: no
 -- win: no
@@ -58,6 +58,10 @@ oms3_exportDependencyGraphs("PI_Controller.co_sim", "PI_Controller_init.dot", "P
 --os.execute("gvpr -c \"N[$.degree==0]{delete(root, $)}\" PI_Controller_init.dot | dot -Tpdf -o PI_Controller_init.pdf")
 --os.execute("gvpr -c \"N[$.degree==0]{delete(root, $)}\" PI_Controller_sim.dot | dot -Tpdf -o PI_Controller_sim.pdf")
 
+oms3_export("PI_Controller", "PI_Controller.ssp");
+oms3_delete("PI_Controller")
+oms3_import("PI_Controller.ssp");
+
 oms3_instantiate("PI_Controller")
 
 -- set parameters
@@ -104,6 +108,13 @@ oms3_delete("PI_Controller")
 -- info:    Set working directory to <suppressed>
 -- info:    Set temp directory to    <suppressed>
 -- info:    New model "PI_Controller" with corresponding temp directory <suppressed>
+-- info:    Set working directory to <suppressed>
+-- info:    Set working directory to <suppressed>
+-- info:    Set working directory to <suppressed>
+-- info:    New model "PI_Controller" with corresponding temp directory <suppressed>
+-- info:    Set working directory to <suppressed>
+-- info:    Set working directory to <suppressed>
+-- info:    Set working directory to <suppressed>
 -- info:    Parameter settings
 -- info:      PI_Controller.co_sim.addP.k1: 1.0
 -- info:      PI_Controller.co_sim.addP.k2: -1.0
@@ -113,7 +124,7 @@ oms3_delete("PI_Controller")
 -- info:      PI_Controller.co_sim.limiter.uMax: 12.0
 -- info:      PI_Controller.co_sim.addSat.k2: -1.0
 -- info:      PI_Controller.co_sim.gainTrack.k: 0.1
--- info:    Result file: PI_Controller.mat (bufferSize=100)
+-- info:    Result file: PI_Controller_res.mat (bufferSize=10)
 -- info:    Initialization
 -- info:      limiter.u: 0.0
 -- info:      limiter.y: 0.0
