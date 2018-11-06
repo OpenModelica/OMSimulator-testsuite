@@ -87,11 +87,7 @@ status = oms3_delete("model")
 printStatus(status, 0)
 
 -- Result:
--- info:    Set temp directory to    <suppressed>
--- info:    Set working directory to <suppressed>
--- info:    Set temp directory to    <suppressed>
 -- status:  [correct] ok
--- info:    New model "model" with corresponding temp directory <suppressed>
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
@@ -175,7 +171,7 @@ printStatus(status, 0)
 -- 		</ssd:Annotation>
 -- 	</ssd:Annotations>
 -- </ssd:System>
--- 
+--
 -- status:  [correct] ok
 -- <?xml version="1.0"?>
 -- <ssd:System name="tlm">
@@ -245,7 +241,7 @@ printStatus(status, 0)
 -- 		</ssd:Annotation>
 -- 	</ssd:Annotations>
 -- </ssd:System>
--- 
+--
 -- status:  [correct] ok
 -- info:    0 warnings
 -- info:    2 errors

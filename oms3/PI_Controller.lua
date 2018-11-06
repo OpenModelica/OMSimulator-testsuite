@@ -104,17 +104,6 @@ oms3_terminate("PI_Controller")
 oms3_delete("PI_Controller")
 
 -- Result:
--- info:    Set temp directory to    <suppressed>
--- info:    Set working directory to <suppressed>
--- info:    Set temp directory to    <suppressed>
--- info:    New model "PI_Controller" with corresponding temp directory <suppressed>
--- info:    Set working directory to <suppressed>
--- info:    Set working directory to <suppressed>
--- info:    Set working directory to <suppressed>
--- info:    New model "PI_Controller" with corresponding temp directory <suppressed>
--- info:    Set working directory to <suppressed>
--- info:    Set working directory to <suppressed>
--- info:    Set working directory to <suppressed>
 -- info:    Parameter settings
 -- info:      PI_Controller.co_sim.addP.k1: 1.0
 -- info:      PI_Controller.co_sim.addP.k2: -1.0
