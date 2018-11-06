@@ -51,7 +51,7 @@ oms3_addConnection("PI_Controller.co_sim.setpoint.speed", "PI_Controller.co_sim.
 -- simulation settings
 oms3_setStartTime("PI_Controller", 0.0)
 oms3_setStopTime("PI_Controller", 4.0)
-oms3_setFixedStepSize("PI_Controller.co_sim", 1e-4)
+oms3_setFixedStepSize("PI_Controller.co_sim", 1e-3)
 oms3_setResultFile("PI_Controller", "PI_Controller.mat", 100)
 
 oms3_exportDependencyGraphs("PI_Controller.co_sim", "PI_Controller_init.dot", "PI_Controller_sim.dot")
@@ -118,6 +118,6 @@ oms3_delete("PI_Controller")
 -- info:      limiter.u: 0.0
 -- info:      limiter.y: 0.0
 -- info:    Simulation
--- info:      limiter.u: -10.014508893656
--- info:      limiter.y: -10.014508893656
+-- info:      limiter.u: -10.041848601893
+-- info:      limiter.y: -10.041848601893
 -- endResult
