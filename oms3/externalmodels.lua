@@ -46,11 +46,7 @@ status = oms3_delete("model")
 printStatus(status, 0)
 
 -- Result:
--- info:    Set temp directory to    <suppressed>
--- info:    Set working directory to <suppressed>
--- info:    Set temp directory to    <suppressed>
 -- status:  [correct] ok
--- info:    New model "model" with corresponding temp directory <suppressed>
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
@@ -59,7 +55,7 @@ printStatus(status, 0)
 -- 	<ssd:SimulationInformation>
 -- 		<ssd:Annotations>
 -- 			<ssd:Annotation type="org.openmodelica">
--- 				<tlm:Master />
+-- 				<oms:TlmMaster ip="" managerport="0" monitorport="0" />
 -- 			</ssd:Annotation>
 -- 		</ssd:Annotations>
 -- 	</ssd:SimulationInformation>
@@ -67,15 +63,15 @@ printStatus(status, 0)
 -- 		<ssd:Component name="external" source="resources/external.mo">
 -- 			<ssd:Annotations>
 -- 				<ssd:Annotation type="org.openmodelica">
--- 					<OMSimulator:Bus name="tlmbus" type="tlm" domain="mechanical" dimensions="1" interpolation="none">
--- 						<Signals />
--- 					</OMSimulator:Bus>
+-- 					<oms:Bus name="tlmbus" type="tlm" domain="mechanical" dimensions="1" interpolation="none">
+-- 						<oms:Signals />
+-- 					</oms:Bus>
 -- 				</ssd:Annotation>
 -- 			</ssd:Annotations>
 -- 			<ssd:SimulationInformation>
 -- 				<ssd:Annotations>
 -- 					<ssd:Annotation type="org.openmodelica">
--- 						<OMSimulator:ExternalModel startscript="resources/startscript.sh" />
+-- 						<oms:ExternalModel startscript="resources/startscript.sh" />
 -- 					</ssd:Annotation>
 -- 				</ssd:Annotations>
 -- 			</ssd:SimulationInformation>
@@ -84,6 +80,6 @@ printStatus(status, 0)
 -- 	<ssd:Connectors />
 -- 	<ssd:Connections />
 -- </ssd:System>
--- 
+--
 -- status:  [correct] ok
 -- endResult

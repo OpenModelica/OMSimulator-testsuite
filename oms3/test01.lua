@@ -80,11 +80,7 @@ status = oms3_delete("foo")
 printStatus(status, 3)
 
 -- Result:
--- info:    Set temp directory to    <suppressed>
--- info:    Set working directory to <suppressed>
--- info:    Set temp directory to    <suppressed>
 -- status:  [correct] ok
--- info:    New model "test" with corresponding temp directory <suppressed>
 -- status:  [correct] ok
 -- error:   [addSystem] Model "test" does not contain any system
 -- status:  [correct] error
@@ -146,11 +142,9 @@ printStatus(status, 3)
 -- error:   [newModel] "test" already exists in the scope
 -- status:  [correct] error
 -- status:  [correct] ok
--- info:    New model "test" with corresponding temp directory <suppressed>
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
--- info:    New model "test" with corresponding temp directory <suppressed>
 -- status:  [correct] ok
 -- <?xml version="1.0"?>
 -- <ssd:SystemStructureDescription name="test" version="Draft20180219">

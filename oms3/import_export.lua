@@ -157,10 +157,6 @@ printStatus(status, 0)
 
 
 -- Result:
--- info:    Set temp directory to    <suppressed>
--- info:    Set working directory to <suppressed>
--- info:    Set temp directory to    <suppressed>
--- info:    New model "test" with corresponding temp directory <suppressed>
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
@@ -315,16 +311,9 @@ printStatus(status, 0)
 -- 	</ssd:System>
 -- 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 -- </ssd:SystemStructureDescription>
--- 
--- info:    Set working directory to <suppressed>
--- info:    Set working directory to <suppressed>
+--
 -- status:  [correct] ok
 -- status:  [correct] ok
--- info:    Set working directory to <suppressed>
--- info:    New model "test" with corresponding temp directory <suppressed>
--- info:    Set working directory to <suppressed>
--- info:    Set working directory to <suppressed>
--- info:    Set working directory to <suppressed>
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- <?xml version="1.0"?>
@@ -445,6 +434,6 @@ printStatus(status, 0)
 -- 	</ssd:System>
 -- 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 -- </ssd:SystemStructureDescription>
--- 
+--
 -- status:  [correct] ok
 -- endResult

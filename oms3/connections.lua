@@ -78,11 +78,7 @@ status = oms3_delete("model")
 printStatus(status, 0)
 
 -- Result:
--- info:    Set temp directory to    <suppressed>
--- info:    Set working directory to <suppressed>
--- info:    Set temp directory to    <suppressed>
 -- status:  [correct] ok
--- info:    New model "model" with corresponding temp directory <suppressed>
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
