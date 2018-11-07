@@ -20,6 +20,8 @@ test02.py \
 tlmbuses.lua \
 tlmbuses.py \
 tlmsignals.lua \
+tlm1d.lua \
+tlm1dfg.lua
 
 # Run make failingtest
 FAILINGTESTFILES = \
