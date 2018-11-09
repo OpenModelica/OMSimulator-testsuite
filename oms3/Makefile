@@ -3,6 +3,7 @@ TEST = ../rtest -v
 TESTFILES = \
 buses.lua \
 connections.lua \
+DualMassOscillatorEq_me.lua \
 import_export.lua \
 PI_Controller.lua \
 simulation.lua \
