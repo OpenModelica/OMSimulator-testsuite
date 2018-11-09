@@ -11,6 +11,14 @@ test01.lua \
 test02.lua \
 tlmbuses.lua \
 tlmsignals.lua \
+buses.py \
+connections.py \
+externalmodels \
+import_export.py \
+simulation.py \
+test01.py \
+test02.py \
+tlmbuses.py \
 
 # Run make failingtest
 FAILINGTESTFILES = \
@@ -19,6 +27,7 @@ FAILINGTESTFILES = \
 # Add them here or they will be cleaned.
 DEPENDENCIES = \
 *.lua \
+*.py \
 drivetrain.csv \
 Makefile \
 setpoint.csv \
