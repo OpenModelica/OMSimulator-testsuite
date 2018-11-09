@@ -3,7 +3,7 @@
 ## linux: yes
 ## mingw: yes
 ## win: yes
-## mac: yes
+## mac: no
 
 from OMSimulator import OMSimulator
 session=OMSimulator()
@@ -16,14 +16,14 @@ def printStatus(status, expected):
     cmp = "correct"
   else:
     cmp = "wrong"
-  
+
   if 0 == status:
     status = "ok"
   elif 1 == status:
     status = "warning"
   elif 3 == status:
     status = "error"
-  print("status:  [", cmp, "] ",status)
+  print "status:  [%s] %s" % (cmp, status)
 
 status = session.oms3_setTempDirectory(".")
 status = session.oms3_newModel("model")
@@ -77,37 +77,33 @@ status = session.oms3_addTLMConnection("model.tlm.wc1.bus1","model.tlm.wc2.bus2"
 printStatus(status, 0)
 
 src, status = session.oms3_list("model.tlm")
-print(src)
+print src
 
 status = session.oms3_deleteConnectorFromTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.x")
 printStatus(status, 0)
 
 status, src = session.oms3_list("model.tlm")
-print(src)
+print src
 
 status = session.oms3_delete("model")
 printStatus(status, 0)
 
 ## Result:
-## info:    Set temp directory to    <suppressed>
-## info:    Set working directory to <suppressed>
-## info:    Set temp directory to    <suppressed>
-## info:    New model "model" with corresponding temp directory <suppressed>
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
+## status:  [correct] ok
+## status:  [correct] ok
 ## error:   [addConnectorToTLMBus] Connector "z" not found in system "model.tlm.wc1"
-## ('status:  [', 'correct', '] ', 'error')
+## status:  [correct] error
 ## error:   [addConnector] Unknown TLM variable type: effort
-## ('status:  [', 'correct', '] ', 'error')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
+## status:  [correct] error
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
 ## 0
-## ('status:  [', 'correct', '] ', 'ok')
+## status:  [correct] ok
 ## <?xml version="1.0"?>
 ## <ssd:System name="tlm">
 ## 	<ssd:SimulationInformation>
@@ -163,7 +159,6 @@ printStatus(status, 0)
 ## 						<oms:Signals>
 ## 							<oms:Signal name="f" type="effort" />
 ## 							<oms:Signal name="v" type="flow" />
-## 							<oms:Signal name="x" type="state" />
 ## 						</oms:Signals>
 ## 					</oms:Bus>
 ## 				</ssd:Annotation>
@@ -180,8 +175,8 @@ printStatus(status, 0)
 ## 		</ssd:Annotation>
 ## 	</ssd:Annotations>
 ## </ssd:System>
-## 
-## ('status:  [', 'correct', '] ', 'ok')
+##
+## status:  [correct] ok
 ## info:    0 warnings
 ## info:    2 errors
 ## endResult

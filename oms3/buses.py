@@ -1,9 +1,9 @@
 ## status: correct
-## teardown_command: 
+## teardown_command:
 ## linux: yes
 ## mingw: yes
 ## win: yes
-## mac: yes
+## mac: no
 
 from OMSimulator import OMSimulator
 session=OMSimulator()
@@ -16,14 +16,14 @@ def printStatus(status, expected):
     cmp = "correct"
   else:
     cmp = "wrong"
-  
+
   if 0 == status:
     status = "ok"
   elif 1 == status:
     status = "warning"
   elif 3 == status:
     status = "error"
-  print("status:  [", cmp, "] ",status)
+  print "status:  [%s] %s" % (cmp, status)
 
 status = session.oms3_setTempDirectory(".")
 printStatus(status, 0)
@@ -87,25 +87,21 @@ status = session.oms3_delete("model")
 printStatus(status, 0)
 
 ## Result:
-## info:    Set temp directory to    <suppressed>
-## info:    Set working directory to <suppressed>
-## info:    Set temp directory to    <suppressed>
-## ('status:  [', 'correct', '] ', 'ok')
-## info:    New model "model" with corresponding temp directory <suppressed>
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
 ## error:   [addConnectorToBus] Bus and connector must belong to same system
-## ('status:  [', 'correct', '] ', 'error')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
+## status:  [correct] error
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
 ## error:   [addConnection] Connection <"wc2.bus2", "wc1.bus1"> exists already in system "model.tlm"
-## ('status:  [', 'correct', '] ', 'error')
+## status:  [correct] error
 ## <?xml version="1.0"?>
 ## <ssd:System name="tlm">
 ## 	<ssd:SimulationInformation>
@@ -175,8 +171,8 @@ printStatus(status, 0)
 ## 		</ssd:Annotation>
 ## 	</ssd:Annotations>
 ## </ssd:System>
-## 
-## ('status:  [', 'correct', '] ', 'ok')
+##
+## status:  [correct] ok
 ## <?xml version="1.0"?>
 ## <ssd:System name="tlm">
 ## 	<ssd:SimulationInformation>
@@ -245,8 +241,8 @@ printStatus(status, 0)
 ## 		</ssd:Annotation>
 ## 	</ssd:Annotations>
 ## </ssd:System>
-## 
-## ('status:  [', 'correct', '] ', 'ok')
+##
+## status:  [correct] ok
 ## info:    0 warnings
 ## info:    2 errors
 ## endResult

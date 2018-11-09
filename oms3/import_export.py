@@ -3,7 +3,7 @@
 ## linux: yes
 ## mingw: yes
 ## win: yes
-## mac: yes
+## mac: no
 
 from OMSimulator import OMSimulator
 session=OMSimulator()
@@ -13,20 +13,19 @@ session.oms3_setTempDirectory("./import_export/")
 
 def printStatus(status, expected):
   cmp = ""
-  if status==expected:
+  if status == expected:
     cmp = "correct"
   else:
     cmp = "wrong"
 
-  if 0 == status: 
+  if 0 == status:
     status = "ok"
-  elif 1 == status: 
+  elif 1 == status:
     status = "warning"
-  elif 3 == status: 
+  elif 3 == status:
     status = "error"
-  print("status:  [", cmp, "] ",status)
+  print "status:  [%s] %s" % (cmp, status)
 
-  
 status = session.oms3_newModel("test")
 printStatus(status, 0)
 
@@ -157,46 +156,42 @@ status = session.oms3_delete(model)
 printStatus(status, 0)
 
 ## Result:
-## info:    Set temp directory to    <suppressed>
-## info:    Set working directory to <suppressed>
-## info:    Set temp directory to    <suppressed>
-## info:    New model "test" with corresponding temp directory <suppressed>
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
 ## <?xml version="1.0"?>
 ## <ssd:SystemStructureDescription name="test" version="Draft20180219">
 ## 	<ssd:System name="eoo">
@@ -246,7 +241,7 @@ printStatus(status, 0)
 ## 				<ssd:Elements>
 ## 					<ssd:System name="goo">
 ## 						<ssd:SimulationInformation>
-## 							<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
+## 							<VariableStepSolver description="euler" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
 ## 						</ssd:SimulationInformation>
 ## 						<ssd:Elements />
 ## 						<ssd:Connectors />
@@ -315,18 +310,11 @@ printStatus(status, 0)
 ## 	</ssd:System>
 ## 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 ## </ssd:SystemStructureDescription>
-## 
-## info:    Set working directory to <suppressed>
-## info:    Set working directory to <suppressed>
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## info:    Set working directory to <suppressed>
-## info:    New model "test" with corresponding temp directory <suppressed>
-## info:    Set working directory to <suppressed>
-## info:    Set working directory to <suppressed>
-## info:    Set working directory to <suppressed>
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
+##
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
 ## <?xml version="1.0"?>
 ## <ssd:SystemStructureDescription name="test" version="Draft20180219">
 ## 	<ssd:System name="eoo">
@@ -376,7 +364,7 @@ printStatus(status, 0)
 ## 				<ssd:Elements>
 ## 					<ssd:System name="goo">
 ## 						<ssd:SimulationInformation>
-## 							<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
+## 							<VariableStepSolver description="euler" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
 ## 						</ssd:SimulationInformation>
 ## 						<ssd:Elements />
 ## 						<ssd:Connectors />
@@ -445,6 +433,6 @@ printStatus(status, 0)
 ## 	</ssd:System>
 ## 	<ssd:DefaultExperiment startTime="0.000000" stopTime="1.000000" />
 ## </ssd:SystemStructureDescription>
-## 
-## ('status:  [', 'correct', '] ', 'ok')
+##
+## status:  [correct] ok
 ## endResult
