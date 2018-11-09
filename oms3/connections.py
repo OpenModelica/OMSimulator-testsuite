@@ -1,9 +1,9 @@
 ## status: correct
-## teardown_command: 
+## teardown_command:
 ## linux: yes
 ## mingw: yes
 ## win: yes
-## mac: yes
+## mac: no
 
 from OMSimulator import OMSimulator
 session=OMSimulator()
@@ -16,15 +16,14 @@ def printStatus(status, expected):
     cmp = "correct"
   else:
     cmp = "wrong"
-  
+
   if 0 == status:
     status = "ok"
   elif 1 == status:
     status = "warning"
   elif 3 == status:
     status = "error"
-  print("status:  [", cmp, "] ",status)
-  
+  print "status:  [%s] %s" % (cmp, status)
 
 status = session.oms3_setTempDirectory(".")
 printStatus(status, 0)
@@ -79,24 +78,20 @@ status = session.oms3_delete("model")
 printStatus(status, 0)
 
 ## Result:
-## info:    Set temp directory to    <suppressed>
-## info:    Set working directory to <suppressed>
-## info:    Set temp directory to    <suppressed>
-## ('status:  [', 'correct', '] ', 'ok')
-## info:    New model "model" with corresponding temp directory <suppressed>
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
 ## error:   [addConnection] Causality mismatch in connection: sc1.y -> sc2.y3
-## ('status:  [', 'correct', '] ', 'error')
+## status:  [correct] error
 ## error:   [addConnection] Type mismatch in connection: sc1.u2 -> sc2.y2
-## ('status:  [', 'correct', '] ', 'error')
+## status:  [correct] error
 ## error:   [addConnection] Connector is already connected: sc1.u1
-## ('status:  [', 'correct', '] ', 'error')
+## status:  [correct] error
 ## <?xml version="1.0"?>
 ## <ssd:System name="wc">
 ## 	<ssd:SimulationInformation>
@@ -105,7 +100,7 @@ printStatus(status, 0)
 ## 	<ssd:Elements>
 ## 		<ssd:System name="sc2">
 ## 			<ssd:SimulationInformation>
-## 				<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
+## 				<VariableStepSolver description="euler" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
 ## 			</ssd:SimulationInformation>
 ## 			<ssd:Elements />
 ## 			<ssd:Connectors>
@@ -117,7 +112,7 @@ printStatus(status, 0)
 ## 		</ssd:System>
 ## 		<ssd:System name="sc1">
 ## 			<ssd:SimulationInformation>
-## 				<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
+## 				<VariableStepSolver description="euler" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
 ## 			</ssd:SimulationInformation>
 ## 			<ssd:Elements />
 ## 			<ssd:Connectors>
@@ -133,8 +128,8 @@ printStatus(status, 0)
 ## 		<ssd:Connection startElement="sc2" startConnector="y1" endElement="sc1" endConnector="u1" />
 ## 	</ssd:Connections>
 ## </ssd:System>
-## 
-## ('status:  [', 'correct', '] ', 'ok')
+##
+## status:  [correct] ok
 ## <?xml version="1.0"?>
 ## <ssd:System name="wc">
 ## 	<ssd:SimulationInformation>
@@ -143,7 +138,7 @@ printStatus(status, 0)
 ## 	<ssd:Elements>
 ## 		<ssd:System name="sc2">
 ## 			<ssd:SimulationInformation>
-## 				<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
+## 				<VariableStepSolver description="euler" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
 ## 			</ssd:SimulationInformation>
 ## 			<ssd:Elements />
 ## 			<ssd:Connectors>
@@ -155,7 +150,7 @@ printStatus(status, 0)
 ## 		</ssd:System>
 ## 		<ssd:System name="sc1">
 ## 			<ssd:SimulationInformation>
-## 				<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
+## 				<VariableStepSolver description="euler" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
 ## 			</ssd:SimulationInformation>
 ## 			<ssd:Elements />
 ## 			<ssd:Connectors>
@@ -169,8 +164,8 @@ printStatus(status, 0)
 ## 	<ssd:Connectors />
 ## 	<ssd:Connections />
 ## </ssd:System>
-## 
-## ('status:  [', 'correct', '] ', 'ok')
+##
+## status:  [correct] ok
 ## info:    0 warnings
 ## info:    3 errors
 ## endResult

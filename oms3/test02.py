@@ -3,7 +3,7 @@
 ## linux: yes
 ## mingw: yes
 ## win: yes
-## mac: yes
+## mac: no
 
 from OMSimulator import OMSimulator
 session=OMSimulator()
@@ -16,25 +16,24 @@ def printStatus(status, expected):
     cmp = "correct"
   else:
     cmp = "wrong"
-  
+
   if 0 == status:
     status = "ok"
   elif 1 == status:
     status = "warning"
   elif 3 == status:
     status = "error"
-  print("status:  [", cmp, "] ",status)
+  print "status:  [%s] %s" % (cmp, status)
 
 def printType(t):
   if session.oms_system_tlm == t:
-    print("type: oms_system_tlm")
+    print "type: oms_system_tlm"
   elif session.oms_system_wc == t:
-    print("type: oms_system_wc")
+    print "type: oms_system_wc"
   elif session.oms_system_sc == t:
-    print("type: oms_system_sc")
+    print "type: oms_system_sc"
   else:
-    print("Unknown type")
- 
+    print "Unknown type"
 
 status = session.oms3_newModel("test")
 printStatus(status, 0)
@@ -68,23 +67,20 @@ status = session.oms3_delete("test")
 printStatus(status, 0)
 
 ## Result:
-## info:    Set temp directory to    <suppressed>
-## info:    Set working directory to <suppressed>
-## info:    New model "test" with corresponding temp directory <suppressed>
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
 ## error:   [oms3_getSystemType] Model "test" does not contain system ""
 ## Unknown type
-## ('status:  [', 'correct', '] ', 'error')
+## status:  [correct] error
 ## type: oms_system_tlm
-## ('status:  [', 'correct', '] ', 'ok')
+## status:  [correct] ok
 ## type: oms_system_wc
-## ('status:  [', 'correct', '] ', 'ok')
+## status:  [correct] ok
 ## type: oms_system_sc
-## ('status:  [', 'correct', '] ', 'ok')
-## ('status:  [', 'correct', '] ', 'ok')
+## status:  [correct] ok
+## status:  [correct] ok
 ## info:    0 warnings
 ## info:    1 errors
 ## endResult
