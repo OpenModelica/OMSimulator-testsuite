@@ -2,7 +2,7 @@
 ## teardown_command: rm -rf tlmbuses-py/
 ## linux: yes
 ## mingw: yes
-## win: yes
+## win: no
 ## mac: no
 
 from OMSimulator import OMSimulator
