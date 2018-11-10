@@ -1,5 +1,5 @@
 ## status: correct
-## teardown_command:
+## teardown_command: rm -rf import_export-py/ test-py.ssp
 ## linux: yes
 ## mingw: yes
 ## win: yes
@@ -9,7 +9,7 @@ from OMSimulator import OMSimulator
 session=OMSimulator()
 
 session.oms3_setCommandLineOption("--suppressPath=true")
-session.oms3_setTempDirectory("./import_export/")
+session.oms3_setTempDirectory("./import_export-py/")
 
 def printStatus(status, expected):
   cmp = ""
@@ -139,13 +139,13 @@ status, src = session.oms3_list("test")
 printStatus(status, 0)
 print(src)
 
-status = session.oms3_export("test", "test.ssp");
+status = session.oms3_export("test", "test-py.ssp")
 printStatus(status, 0)
 
 status = session.oms3_delete("test")
 printStatus(status, 0)
 
-status, model = session.oms3_import("test.ssp");
+status, model = session.oms3_import("test-py.ssp")
 printStatus(status, 0)
 
 status, src = session.oms3_list(model)

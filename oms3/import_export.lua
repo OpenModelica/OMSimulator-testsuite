@@ -1,12 +1,12 @@
 -- status: correct
--- teardown_command: rm -rf test.ss import_export/
+-- teardown_command: rm -rf test.ssp import_export-lua/
 -- linux: yes
 -- mingw: yes
 -- win: yes
 -- mac: yes
 
 oms3_setCommandLineOption("--suppressPath=true")
-oms3_setTempDirectory("./import_export/")
+oms3_setTempDirectory("./import_export-lua/")
 
 function printStatus(status, expected)
   cmp = ""

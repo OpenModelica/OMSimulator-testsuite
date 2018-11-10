@@ -1,5 +1,5 @@
 ## status: correct
-## teardown_command:
+## teardown_command: rm -rf tlmbuses-py/
 ## linux: yes
 ## mingw: yes
 ## win: yes
@@ -9,6 +9,7 @@ from OMSimulator import OMSimulator
 session=OMSimulator()
 
 session.oms3_setCommandLineOption("--suppressPath=true")
+session.oms3_setTempDirectory("./tlmbuses-py/")
 
 def printStatus(status, expected):
   cmp = ""
@@ -25,21 +26,20 @@ def printStatus(status, expected):
     status = "error"
   print "status:  [%s] %s" % (cmp, status)
 
-status = session.oms3_setTempDirectory(".")
-status = session.oms3_newModel("model")
-status = session.oms3_addSystem("model.tlm", session.oms_system_tlm)
-status = session.oms3_setTLMSocketData("model.tlm", "127.0.1.1", 11111, 11121)
-status = session.oms3_addSystem("model.tlm.wc1", session.oms_system_wc)
-status = session.oms3_addConnector("model.tlm.wc1.y", session.output, session.oms_signal_type_real)
-status = session.oms3_addConnector("model.tlm.wc1.x", session.output, session.oms_signal_type_real)
-status = session.oms3_addConnector("model.tlm.wc1.v", session.output, session.oms_signal_type_real)
-status = session.oms3_addConnector("model.tlm.wc1.f", session.input, session.oms_signal_type_real)
+session.oms3_newModel("model")
+session.oms3_addSystem("model.tlm", session.oms_system_tlm)
+session.oms3_setTLMSocketData("model.tlm", "127.0.1.1", 11111, 11121)
+session.oms3_addSystem("model.tlm.wc1", session.oms_system_wc)
+session.oms3_addConnector("model.tlm.wc1.y", session.output, session.oms_signal_type_real)
+session.oms3_addConnector("model.tlm.wc1.x", session.output, session.oms_signal_type_real)
+session.oms3_addConnector("model.tlm.wc1.v", session.output, session.oms_signal_type_real)
+session.oms3_addConnector("model.tlm.wc1.f", session.input, session.oms_signal_type_real)
 
-status = session.oms3_addSystem("model.tlm.wc2", session.oms_system_wc)
-status = session.oms3_addConnector("model.tlm.wc2.y", session.input, session.oms_signal_type_real)
-status = session.oms3_addConnector("model.tlm.wc2.x", session.output, session.oms_signal_type_real)
-status = session.oms3_addConnector("model.tlm.wc2.v", session.output, session.oms_signal_type_real)
-status = session.oms3_addConnector("model.tlm.wc2.f", session.input, session.oms_signal_type_real)
+session.oms3_addSystem("model.tlm.wc2", session.oms_system_wc)
+session.oms3_addConnector("model.tlm.wc2.y", session.input, session.oms_signal_type_real)
+session.oms3_addConnector("model.tlm.wc2.x", session.output, session.oms_signal_type_real)
+session.oms3_addConnector("model.tlm.wc2.v", session.output, session.oms_signal_type_real)
+session.oms3_addConnector("model.tlm.wc2.f", session.input, session.oms_signal_type_real)
 
 status = session.oms3_addTLMBus("model.tlm.wc1.bus1", "input", 1, session.default)
 printStatus(status, 0)

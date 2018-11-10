@@ -1,5 +1,5 @@
 ## status: correct
-## teardown_command: rm -rf simulation/ test_init.dot test_sim.dot
+## teardown_command: rm -rf simulation-py/ test_init.dot test_sim.dot
 ## linux: yes
 ## mingw: no
 ## win: no
@@ -9,6 +9,7 @@ from OMSimulator import OMSimulator
 session=OMSimulator()
 
 session.oms3_setCommandLineOption("--suppressPath=true")
+session.oms3_setTempDirectory("./simulation-py/")
 
 def printStatus(status, expected):
   cmp = ""
@@ -24,9 +25,6 @@ def printStatus(status, expected):
   elif 3 == status:
     status = "error"
   print "status:  [%s] %s" % (cmp, status)
-
-session.oms3_setCommandLineOption("--suppressPath=true")
-session.oms3_setTempDirectory("./simulation/")
 
 status = session.oms3_newModel("test")
 printStatus(status, 0)

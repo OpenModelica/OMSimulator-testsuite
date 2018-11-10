@@ -1,11 +1,12 @@
 -- status: correct
--- teardown_command:
+-- teardown_command: rm -rf test02-lua/
 -- linux: yes
 -- mingw: yes
 -- win: yes
 -- mac: yes
 
 oms3_setCommandLineOption("--suppressPath=true")
+oms3_setTempDirectory("./test02-lua/")
 
 function printStatus(status, expected)
   cmp = ""

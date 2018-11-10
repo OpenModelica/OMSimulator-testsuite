@@ -1,12 +1,12 @@
 -- status: correct
--- teardown_command: rm -f DualMassOscillatorEq_me.mat
+-- teardown_command: rm -rf dualmassoscillatoreq_me-lua/ DualMassOscillatorEq_me.mat
 -- linux: yes
 -- mingw: no
 -- win: no
 -- mac: no
 
 oms3_setCommandLineOption("--suppressPath=true")
-oms3_setTempDirectory("./dualmassoscillatoreq_me/")
+oms3_setTempDirectory("./dualmassoscillatoreq_me-lua/")
 
 oms3_newModel("DualMassOscillatorEq")
 oms3_addSystem("DualMassOscillatorEq.root", oms_system_sc)

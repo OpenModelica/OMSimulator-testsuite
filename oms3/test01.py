@@ -1,5 +1,5 @@
 ## status: correct
-## teardown_command:
+## teardown_command: rm -rf test01-py/
 ## linux: yes
 ## mingw: yes
 ## win: yes
@@ -25,7 +25,7 @@ def printStatus(status, expected):
     status = "error"
   print "status:  [%s] %s" % (cmp, status)
 
-status = session.oms3_setTempDirectory(".")
+status = session.oms3_setTempDirectory("./test01-py/")
 printStatus(status, 0)
 
 status = session.oms3_newModel("test")
