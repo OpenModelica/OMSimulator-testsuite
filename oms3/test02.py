@@ -2,7 +2,7 @@
 ## teardown_command: rm -rf test02-py/
 ## linux: yes
 ## mingw: yes
-## win: yes
+## win: no
 ## mac: no
 
 from OMSimulator import OMSimulator

@@ -2,7 +2,7 @@
 ## teardown_command: rm -rf import_export-py/ test-py.ssp
 ## linux: yes
 ## mingw: yes
-## win: yes
+## win: no
 ## mac: no
 
 from OMSimulator import OMSimulator
