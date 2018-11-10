@@ -1,11 +1,11 @@
 -- status: correct
--- teardown_command: rm -rf tlmsignals.log2 tlmsignals_tmp/ tlmsignals.run2 tlmsignals.csv2
+-- teardown_command: rm -rf tlmsignals.log tlmsignals-lua/ tlmsignals.run tlmsignals.csv
 -- linux: yes
 -- mingw: no
 -- mac: no
 
 oms3_setLogFile("tlmsignals.log")
-oms3_setTempDirectory("./tlmsignals_tmp")
+oms3_setTempDirectory("./tlmsignals-lua/")
 
 oms3_newModel("model");
 
@@ -23,8 +23,8 @@ oms3_addTLMBus("model.tlmsignals.wc1.out","output",1);
 oms3_addTLMBus("model.tlmsignals.wc1.in","input",1);
 oms3_addConnector("model.tlmsignals.wc1.y",output,oms_signal_type_real);
 oms3_addConnector("model.tlmsignals.wc1.u",input,oms_signal_type_real);
-oms3_addConnection("model.tlmsignals.wc1.adder.y","model.tlmsignals.wc1.y"); 
-oms3_addConnection("model.tlmsignals.wc1.u","model.tlmsignals.wc1.gain.u"); 
+oms3_addConnection("model.tlmsignals.wc1.adder.y","model.tlmsignals.wc1.y");
+oms3_addConnection("model.tlmsignals.wc1.u","model.tlmsignals.wc1.gain.u");
 oms3_addConnectorToTLMBus("model.tlmsignals.wc1.out","model.tlmsignals.wc1.y", "value");
 oms3_addConnectorToTLMBus("model.tlmsignals.wc1.in","model.tlmsignals.wc1.u", "value");
 
@@ -35,8 +35,8 @@ oms3_addTLMBus("model.tlmsignals.wc2.out","output",1);
 oms3_addTLMBus("model.tlmsignals.wc2.in","input",1);
 oms3_addConnector("model.tlmsignals.wc2.y",output,oms_signal_type_real);
 oms3_addConnector("model.tlmsignals.wc2.u",input,oms_signal_type_real);
-oms3_addConnection("model.tlmsignals.wc2.gain.y","model.tlmsignals.wc2.y"); 
-oms3_addConnection("model.tlmsignals.wc2.u","model.tlmsignals.wc2.gain.u"); 
+oms3_addConnection("model.tlmsignals.wc2.gain.y","model.tlmsignals.wc2.y");
+oms3_addConnection("model.tlmsignals.wc2.u","model.tlmsignals.wc2.gain.u");
 oms3_addConnectorToTLMBus("model.tlmsignals.wc2.out","model.tlmsignals.wc2.y", "value");
 oms3_addConnectorToTLMBus("model.tlmsignals.wc2.in","model.tlmsignals.wc2.u", "value");
 
@@ -76,5 +76,3 @@ end
 -- wc2.out is equal
 -- info:    Logging information has been saved to "tlmsignals.log"
 -- endResult
-
---]]

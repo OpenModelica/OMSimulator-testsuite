@@ -1,5 +1,5 @@
 ## status: correct
-## teardown_command:
+## teardown_command: rm -rf test02-py/
 ## linux: yes
 ## mingw: yes
 ## win: yes
@@ -9,6 +9,7 @@ from OMSimulator import OMSimulator
 session=OMSimulator()
 
 session.oms3_setCommandLineOption("--suppressPath=true")
+session.oms3_setTempDirectory("./test02-py/")
 
 def printStatus(status, expected):
   cmp = ""

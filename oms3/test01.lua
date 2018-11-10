@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command:
+-- teardown_command: rm -rf test01-lua/
 -- linux: yes
 -- mingw: yes
 -- win: yes
@@ -25,7 +25,7 @@ function printStatus(status, expected)
   print("status:  [" .. cmp .. "] " .. status)
 end
 
-status = oms3_setTempDirectory(".")
+status = oms3_setTempDirectory("./test01-lua/")
 printStatus(status, 0)
 
 status = oms3_newModel("test")

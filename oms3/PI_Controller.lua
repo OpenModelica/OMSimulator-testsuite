@@ -1,12 +1,12 @@
 -- status: correct
--- teardown_command: rm -rf pi_controller_tmp/ PI_Controller_init.dot PI_Controller_sim.dot PI_Controller.mat PI_Controller.ssp
+-- teardown_command: rm -rf PI_Controller-lua/ PI_Controller_init.dot PI_Controller_sim.dot PI_Controller_res.mat PI_Controller.ssp
 -- linux: yes
 -- mingw: no
 -- win: no
 -- mac: no
 
 oms3_setCommandLineOption("--suppressPath=true")
-oms3_setTempDirectory("./pi_controller_tmp/")
+oms3_setTempDirectory("./PI_Controller-lua/")
 
 oms3_newModel("PI_Controller")
 oms3_addSystem("PI_Controller.co_sim", oms_system_wc)

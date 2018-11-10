@@ -2,23 +2,24 @@ TEST = ../rtest -v
 
 TESTFILES = \
 buses.lua \
+buses.py \
 connections.lua \
+connections.py \
 DualMassOscillatorEq_me.lua \
+externalmodels.lua \
+externalmodels.py \
 import_export.lua \
+import_export.py \
 PI_Controller.lua \
 simulation.lua \
-test01.lua \
-test02.lua \
-tlmbuses.lua \
-tlmsignals.lua \
-buses.py \
-connections.py \
-externalmodels \
-import_export.py \
 simulation.py \
+test01.lua \
 test01.py \
+test02.lua \
 test02.py \
+tlmbuses.lua \
 tlmbuses.py \
+tlmsignals.lua \
 
 # Run make failingtest
 FAILINGTESTFILES = \

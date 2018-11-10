@@ -1,12 +1,12 @@
 -- status: correct
--- teardown_command: rm -rf simulation/ test_init.dot test_sim.dot
+-- teardown_command: rm -rf simulation-lua/ test_init.dot test_sim.dot
 -- linux: yes
 -- mingw: no
 -- win: no
 -- mac: no
 
 oms3_setCommandLineOption("--suppressPath=true")
-oms3_setTempDirectory("./simulation/")
+oms3_setTempDirectory("./simulation-lua/")
 
 function printStatus(status, expected)
   cmp = ""

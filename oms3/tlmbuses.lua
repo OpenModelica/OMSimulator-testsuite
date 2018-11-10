@@ -1,11 +1,12 @@
 -- status: correct
--- teardown_command:
+-- teardown_command: rm -rf tlmbuses-lua/
 -- linux: yes
 -- mingw: yes
 -- win: yes
 -- mac: yes
 
 oms3_setCommandLineOption("--suppressPath=true")
+oms3_setTempDirectory("./tlmbuses-lua/")
 
 function printStatus(status, expected)
   cmp = ""
@@ -25,21 +26,20 @@ function printStatus(status, expected)
   print("status:  [" .. cmp .. "] " .. status)
 end
 
-status = oms3_setTempDirectory(".")
-status = oms3_newModel("model")
-status = oms3_addSystem("model.tlm", oms_system_tlm)
-status = oms3_setTLMSocketData("model.tlm", "127.0.1.1", 11111, 11121)
-status = oms3_addSystem("model.tlm.wc1", oms_system_wc)
-status = oms3_addConnector("model.tlm.wc1.y", output, oms_signal_type_real)
-status = oms3_addConnector("model.tlm.wc1.x", output, oms_signal_type_real)
-status = oms3_addConnector("model.tlm.wc1.v", output, oms_signal_type_real)
-status = oms3_addConnector("model.tlm.wc1.f", input, oms_signal_type_real)
+oms3_newModel("model")
+oms3_addSystem("model.tlm", oms_system_tlm)
+oms3_setTLMSocketData("model.tlm", "127.0.1.1", 11111, 11121)
+oms3_addSystem("model.tlm.wc1", oms_system_wc)
+oms3_addConnector("model.tlm.wc1.y", output, oms_signal_type_real)
+oms3_addConnector("model.tlm.wc1.x", output, oms_signal_type_real)
+oms3_addConnector("model.tlm.wc1.v", output, oms_signal_type_real)
+oms3_addConnector("model.tlm.wc1.f", input, oms_signal_type_real)
 
-status = oms3_addSystem("model.tlm.wc2", oms_system_wc)
-status = oms3_addConnector("model.tlm.wc2.y", input, oms_signal_type_real)
-status = oms3_addConnector("model.tlm.wc2.x", output, oms_signal_type_real)
-status = oms3_addConnector("model.tlm.wc2.v", output, oms_signal_type_real)
-status = oms3_addConnector("model.tlm.wc2.f", input, oms_signal_type_real)
+oms3_addSystem("model.tlm.wc2", oms_system_wc)
+oms3_addConnector("model.tlm.wc2.y", input, oms_signal_type_real)
+oms3_addConnector("model.tlm.wc2.x", output, oms_signal_type_real)
+oms3_addConnector("model.tlm.wc2.v", output, oms_signal_type_real)
+oms3_addConnector("model.tlm.wc2.f", input, oms_signal_type_real)
 
 status = oms3_addTLMBus("model.tlm.wc1.bus1", "input", 1, default)
 printStatus(status, 0)
