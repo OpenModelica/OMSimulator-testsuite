@@ -21,7 +21,8 @@ tlmbuses.lua \
 tlmbuses.py \
 tlmsignals.lua \
 tlm1d.lua \
-tlm1dfg.lua
+tlm1dfg.lua \
+tlm3d.lua
 
 # Run make failingtest
 FAILINGTESTFILES = \

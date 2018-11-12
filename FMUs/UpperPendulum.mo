@@ -7,9 +7,17 @@ model UpperPendulum
     Placement(visible = true, transformation(origin = {48, 78}, extent = {{-12, -12}, {12, 12}}, rotation = 0)));
   FMITLM.FMITLM_Interface_3D.FMITLMInterface3D fmi annotation(
     Placement(visible = true, transformation(origin = {88, 78}, extent = {{-10, -10}, {10, 10}}, rotation = 0)));
+  output Real r[3];
+  output Real v[3];
+  output Real w[3];
+  output Real A[3,3];
   input Real f[3];
   input Real t[3];
 equation
+  r = fmi.r;
+  v = fmi.v;
+  w = fmi.w;
+  A = fmi.A;
   fmi.f = f;
   fmi.t = t;
   connect(bodycylinder1.frame_b, fmi.frame_a) annotation(
