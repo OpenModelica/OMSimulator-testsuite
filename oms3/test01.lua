@@ -97,7 +97,7 @@ printStatus(status, 3)
 -- 		<ssd:Elements>
 -- 			<ssd:System name="goo">
 -- 				<ssd:SimulationInformation>
--- 					<VariableStepSolver description="euler" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
+-- 					<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
 -- 				</ssd:SimulationInformation>
 -- 				<ssd:Elements />
 -- 				<ssd:Connectors />
@@ -118,7 +118,7 @@ printStatus(status, 3)
 -- 	<ssd:Elements>
 -- 		<ssd:System name="goo">
 -- 			<ssd:SimulationInformation>
--- 				<VariableStepSolver description="euler" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
+-- 				<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
 -- 			</ssd:SimulationInformation>
 -- 			<ssd:Elements />
 -- 			<ssd:Connectors />
@@ -132,7 +132,7 @@ printStatus(status, 3)
 -- <?xml version="1.0"?>
 -- <ssd:System name="goo">
 -- 	<ssd:SimulationInformation>
--- 		<VariableStepSolver description="euler" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
+-- 		<VariableStepSolver description="cvode" absoluteTolerance="0.000100" relativeTolerance="0.000100" minimumStepSize="0.000100" maximumStepSize="0.100000" initialStepSize="0.000100" />
 -- 	</ssd:SimulationInformation>
 -- 	<ssd:Elements />
 -- 	<ssd:Connectors />

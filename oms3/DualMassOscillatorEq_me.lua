@@ -40,11 +40,15 @@ oms3_terminate("DualMassOscillatorEq")
 oms3_delete("DualMassOscillatorEq")
 
 -- Result:
+-- info:    maximum step size for 'DualMassOscillatorEq.root': 0.100000
 -- info:    Result file: DualMassOscillatorEq_me.mat (bufferSize=100)
 -- info:    Initialization
 -- info:      system1.s1: 1.0
 -- info:      system2.s2: 2.0
 -- info:    Simulation
--- info:      system1.s1: -0.54421963612682
--- info:      system2.s2: -0.27706149855102
+-- info:      system1.s1: -0.45474456279851
+-- info:      system2.s2: -0.34949856562324
+-- info:    Final Statistics for 'DualMassOscillatorEq.root':
+--          NumSteps = 671 NumRhsEvals  = 872 NumLinSolvSetups = 98
+--          NumNonlinSolvIters = 871 NumNonlinSolvConvFails = 0 NumErrTestFails = 43
 -- endResult
