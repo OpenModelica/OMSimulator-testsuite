@@ -188,6 +188,7 @@ for _,var in ipairs(vars) do
   end
 end
 
+
 -- Result:
 -- Starting TLM simulation.
 -- Monitoring thread finished.
@@ -200,4 +201,3 @@ end
 -- wc2.P.R[cG][cG](3) [m] is equal
 -- info:    Logging information has been saved to "tlm3d.log"
 -- endResult
-
