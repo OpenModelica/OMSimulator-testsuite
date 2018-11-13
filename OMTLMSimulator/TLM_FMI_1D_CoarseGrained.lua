@@ -35,7 +35,7 @@ oms2_addFMISubModel("tlm1d_cg", "fmi2")
 oms2_addTLMInterface("tlm1d_cg", "fmi1", "P", 1, bidirectional, "Mechanical", coarsegrained, "fmu:position", "fmu:velocity", "fmu:wave", "fmu:impedance")
 oms2_addTLMInterface("tlm1d_cg", "fmi2", "P", 1, bidirectional, "Mechanical", coarsegrained, "fmu:position", "fmu:velocity", "fmu:wave", "fmu:impedance")
 oms2_addTLMConnection("tlm1d_cg", "fmi1:P", "fmi2:P", 1e-4, 0.0, 0.1, 0)
-oms2_setTLMSocketData("tlm1d_cg","127.0.1.1",11151,12151)
+oms2_setTLMSocketData("tlm1d_cg","127.0.1.1",11811,12811)
 
 -- oms2_describe("tlm1d_cg")
 

@@ -43,7 +43,7 @@ oms3_addConnectorToTLMBus("model.tlmsignals.wc2.in","model.tlmsignals.wc2.u", "v
 oms3_addTLMConnection("model.tlmsignals.wc1.out","model.tlmsignals.wc2.in", 0.01, 0, 0, 0);
 oms3_addTLMConnection("model.tlmsignals.wc2.out","model.tlmsignals.wc1.in", 0.01, 0, 0, 0);
 
-oms3_setTLMSocketData("model.tlmsignals","127.0.1.1",11115,12115)
+oms3_setTLMSocketData("model.tlmsignals","127.0.1.1",11111,12111)
 
 oms3_setStartTime("model",0);
 oms3_setStopTime("model",1);

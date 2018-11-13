@@ -73,7 +73,7 @@ oms3_addConnection("model.tlm1dfg.wc2.fmu.P","model.tlm1dfg.wc2.P");
 
 oms3_addTLMConnection("model.tlm1dfg.wc1.P","model.tlm1dfg.wc2.P", 0.001, 0.2, 0.1, 0);
 
-oms3_setTLMSocketData("model.tlm1dfg","127.0.1.1",11113,12113)
+oms3_setTLMSocketData("model.tlm1dfg","127.0.1.1",11311,12311)
 
 oms3_setStartTime("model",0);
 oms3_setStopTime("model",0.5);

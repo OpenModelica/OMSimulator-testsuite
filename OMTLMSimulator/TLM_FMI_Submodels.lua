@@ -35,7 +35,7 @@ oms2_addTLMInterface("tlm", "fmi2", "out", 1, output, "Signal", "gain:y")
 oms2_addTLMConnection("tlm", "fmi1:out", "fmi2:in", 0.01, 0, 0, 0)
 oms2_addTLMConnection("tlm", "fmi2:out", "fmi1:in", 0.01, 0, 0, 0)
 
-oms2_setTLMSocketData("tlm","127.0.1.1",11111,12111)
+oms2_setTLMSocketData("tlm","127.0.1.1",11411,12411)
 
 -- oms2_describe("tlm")
 
