@@ -52,7 +52,7 @@ oms2_addTLMInterface("tlm3d_fg", "fmi2", "P", 3, bidirectional, "Mechanical", fi
 										 "pendulum:Zt", "pendulum:Zr");
 oms2_addTLMConnection("tlm3d_fg", "fmi1:P", "fmi2:P", 0.001, 0.3, 100000, 0)
 
-oms2_setTLMSocketData("tlm3d_fg","127.0.1.1",11161,12161)
+oms2_setTLMSocketData("tlm3d_fg","127.0.1.1",13211,13111)
 
 -- oms2_describe("tlm3d_fg")
 

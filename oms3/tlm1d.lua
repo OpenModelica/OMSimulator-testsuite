@@ -41,7 +41,7 @@ oms3_addConnectorToTLMBus("model.tlm1d.wc2.P","model.tlm1d.wc2.f", "effort");
 
 oms3_addTLMConnection("model.tlm1d.wc1.P","model.tlm1d.wc2.P", 0.001, 0.5, 10, 0);
 
-oms3_setTLMSocketData("model.tlm1d","127.0.1.1",11117,12117)
+oms3_setTLMSocketData("model.tlm1d","127.0.1.1",11211,12211)
 
 oms3_setStartTime("model",0);
 oms3_setStopTime("model",2);

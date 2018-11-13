@@ -25,7 +25,7 @@ oms2_addTLMConnection("tlm_ext", "adder:x1", "source2:y", 0,0,0,0)
 oms2_addTLMConnection("tlm_ext", "adder:x2", "source1:y", 0,0,0,0)
 oms2_addTLMConnection("tlm_ext", "gain:y", "adder:y",     0,0,0,0)
 
-oms2_setTLMSocketData("tlm_ext","127.0.1.1",11181,12181)
+oms2_setTLMSocketData("tlm_ext","127.0.1.1",11511,12511)
 
 -- oms2_describe("tlm_ext")
 
