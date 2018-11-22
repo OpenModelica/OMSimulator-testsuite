@@ -66,7 +66,7 @@ printStatus(status, 0)
 status = oms3_addConnector("test.eoo.foo.y2", output, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addTLMBus("test.eoo.foo.tlm", "mechanical", 1, default)
+status = oms3_addTLMBus("test.eoo.foo.tlm", oms_tlm_domain_mechanical, 1, default)
 printStatus(status, 0)
 
 status = oms3_addConnectorToTLMBus("test.eoo.foo.tlm", "test.eoo.foo.f", "effort")
@@ -102,7 +102,7 @@ printStatus(status, 0)
 status = oms3_addConnector("test.eoo.foo2.u2", input, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addTLMBus("test.eoo.foo2.tlm", "mechanical", 1, default)
+status = oms3_addTLMBus("test.eoo.foo2.tlm", oms_tlm_domain_mechanical, 1, default)
 printStatus(status, 0)
 
 status = oms3_addConnectorToTLMBus("test.eoo.foo2.tlm", "test.eoo.foo2.f", "effort")

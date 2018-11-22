@@ -41,7 +41,7 @@ oms3_addConnector("model.tlm.wc2.x", output, oms_signal_type_real)
 oms3_addConnector("model.tlm.wc2.v", output, oms_signal_type_real)
 oms3_addConnector("model.tlm.wc2.f", input, oms_signal_type_real)
 
-status = oms3_addTLMBus("model.tlm.wc1.bus1", "input", 1, default)
+status = oms3_addTLMBus("model.tlm.wc1.bus1", oms_tlm_domain_input, 1, default)
 printStatus(status, 0)
 
 status = oms3_addConnectorToTLMBus("model.tlm.wc1.bus1","model.tlm.wc1.y", "value")
@@ -55,7 +55,7 @@ printStatus(status, 3)
 status = oms3_addConnectorToTLMBus("model.tlm.wc1.bus1","model.tlm.wc1.y", "effort")
 printStatus(status, 3)
 
-status = oms3_addTLMBus("model.tlm.wc1.bus2", "mechanical", 1, default)
+status = oms3_addTLMBus("model.tlm.wc1.bus2", oms_tlm_domain_mechanical, 1, default)
 printStatus(status, 0)
 
 status = oms3_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.x", "state")
@@ -67,7 +67,7 @@ printStatus(status, 0)
 status = oms3_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.f", "effort")
 printStatus(status, 0)
 
-status = oms3_addTLMBus("model.tlm.wc2.bus2", "output", 1, default)
+status = oms3_addTLMBus("model.tlm.wc2.bus2", oms_tlm_domain_output, 1, default)
 printStatus(status, 0)
 
 status = oms3_addConnectorToTLMBus("model.tlm.wc2.bus2","model.tlm.wc2.y", "value")
