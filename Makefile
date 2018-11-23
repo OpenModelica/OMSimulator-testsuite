@@ -31,5 +31,9 @@ oms3.log: difftool
 	@$(MAKE) -C oms3 -f Makefile test > $@
 	@grep == oms3.log
 
+ssc.log: difftool
+	@$(MAKE) -C StepSizeControl -f Makefile test > $@
+	@grep == ssc.log
+
 difftool:
 	@$(MAKE) -C difftool
