@@ -91,7 +91,7 @@ printStatus(status, 0)
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
--- error:   [addConnectorToBus] Bus and connector must belong to same system
+-- error: [addConnectorToBus] Bus "wc1.bus1" and connector "wc2.y1" do not belong to same system
 -- status:  [correct] error
 -- status:  [correct] ok
 -- status:  [correct] ok
