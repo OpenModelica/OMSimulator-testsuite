@@ -64,6 +64,10 @@ printStatus(status, 0)
 status = session.oms3_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.v", "flow")
 printStatus(status, 0)
 
+## Test adding already existing variable type to TLm bus
+status = session.oms3_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.f", "flow")
+printStatus(status, 3)
+
 status = session.oms3_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.f", "effort")
 printStatus(status, 0)
 
@@ -93,11 +97,13 @@ printStatus(status, 0)
 ## status:  [correct] ok
 ## error:   [addConnectorToTLMBus] Connector "z" not found in system "model.tlm.wc1"
 ## status:  [correct] error
-## error:   [addConnector] Unknown TLM variable type: effort
+## error:   [addConnector] Unknown TLM variable type: "effort"
 ## status:  [correct] error
 ## status:  [correct] ok
 ## status:  [correct] ok
 ## status:  [correct] ok
+## error:   [addConnector] TLM bus connector "bus2" already contains a variable with type "flow"
+## status:  [correct] error
 ## status:  [correct] ok
 ## status:  [correct] ok
 ## status:  [correct] ok
@@ -178,5 +184,5 @@ printStatus(status, 0)
 ##
 ## status:  [correct] ok
 ## info:    0 warnings
-## info:    2 errors
+## info:    3 errors
 ## endResult
