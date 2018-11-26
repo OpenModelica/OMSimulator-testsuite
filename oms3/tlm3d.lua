@@ -175,6 +175,10 @@ oms3_setStopTime("model",0.1);
 
 oms3_instantiate("model");
 oms3_initialize("model");
+
+oms3_setTLMPositionAndOrientation("model.tlm3d.wc1",0,0,0,0,0,-1,0,1,0,1,0,0)
+oms3_setTLMPositionAndOrientation("model.tlm3d.wc2",0.5,0,0,1,0,0,0,1,0,0,0,1)
+
 oms3_simulate("model");
 oms3_terminate("model");
 
