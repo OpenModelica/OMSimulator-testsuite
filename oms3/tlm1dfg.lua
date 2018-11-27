@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -rf tlm1dfg.log tlm1dfg-lua/ tlm1dfg.csv tlm1dfg.run 
+-- teardown_command: rm -rf tlm1dfg.log tlm1dfg-lua/ tlm1dfg.csv tlm1dfg.run tlm1dfg_res.mat
 -- linux: yes
 -- mingw: no
 -- mac: no
@@ -8,6 +8,7 @@ oms3_setLogFile("tlm1dfg.log")
 oms3_setTempDirectory("./tlm1dfg-lua")
 
 oms3_newModel("model");
+oms3_setResultFile("model","tlm1dfg_res.mat")
 
 oms3_addSystem("model.tlm1dfg", oms_system_tlm);
 

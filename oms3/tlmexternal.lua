@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -rf tlmexternal.log tlmexternal-lua/ tlmexternal.csv tlmexternal.run 
+-- teardown_command: rm -rf tlmexternal.log tlmexternal-lua/ tlmexternal.csv tlmexternal.run tlmexternal_res.mat
 -- linux: yes
 -- mingw: no
 -- mac: no
@@ -7,6 +7,7 @@
 oms3_setLogFile("tlmexternal.log")
 oms3_setTempDirectory("./tlmexternal-lua")
 oms3_newModel("model");
+oms3_setResultFile("model","tlmexternal_res.mat")
 oms3_addSystem("model.tlmexternal", oms_system_tlm);
 
 -- adder

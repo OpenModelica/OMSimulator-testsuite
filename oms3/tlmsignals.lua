@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -rf tlmsignals.log tlmsignals-lua/ tlmsignals.run tlmsignals.csv
+-- teardown_command: rm -rf tlmsignals.log tlmsignals-lua/ tlmsignals.run tlmsignals.csv tlmsignals_res.mat
 -- linux: yes
 -- mingw: no
 -- mac: no
@@ -8,6 +8,7 @@ oms3_setLogFile("tlmsignals.log")
 oms3_setTempDirectory("./tlmsignals-lua/")
 
 oms3_newModel("model");
+oms3_setResultFile("model","tlmsignals_res.mat")
 
 oms3_addSystem("model.tlmsignals", oms_system_tlm);
 
