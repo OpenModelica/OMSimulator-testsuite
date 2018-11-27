@@ -1,5 +1,5 @@
 -- status: correct
--- teardown_command: rm -rf tlm3d.log tlm3d-lua/ tlm3d.csv tlm3d.run 
+-- teardown_command: rm -rf tlm3d.log tlm3d-lua/ tlm3d.csv tlm3d.run tlm3d_all.csv
 -- linux: yes
 -- mingw: no
 -- mac: no
@@ -8,6 +8,8 @@ oms3_setLogFile("tlm3d.log")
 oms3_setTempDirectory("./tlm3d-lua")
 
 oms3_newModel("model");
+oms3_setResultFile("model","tlm3d_all.csv")
+oms3_setLoggingInterval("model",0.002)
 
 oms3_addSystem("model.tlm3d", oms_system_tlm);
 
@@ -182,10 +184,9 @@ oms3_setTLMPositionAndOrientation("model.tlm3d.wc2",0.5,0,0,1,0,0,0,1,0,0,0,1)
 oms3_simulate("model");
 oms3_terminate("model");
 
-vars = {"wc1.P.v [m/s]","wc2.P.v [m/s]","wc1.P.F [N]","wc2.P.F [N]"}
-vars = {"wc1.P.R[cG][cG](1) [m]","wc1.P.R[cG][cG](2) [m]","wc1.P.R[cG][cG](3) [m]","wc2.P.R[cG][cG](1) [m]","wc2.P.R[cG][cG](2) [m]","wc2.P.R[cG][cG](3) [m]"}
+vars = {"model.tlm3d.wc1.P.x[1]","model.tlm3d.wc1.P.x[2]","model.tlm3d.wc1.P.x[3]","model.tlm3d.wc2.P.x[1]","model.tlm3d.wc2.P.x[2]","model.tlm3d.wc2.P.x[3]"}
 for _,var in ipairs(vars) do
-  if 1 == oms2_compareSimulationResults("tlm3d.csv", "../ReferenceFiles/tlm3d.csv", var, 1e-2, 1e-4) then
+  if 1 == oms2_compareSimulationResults("tlm3d_all.csv", "../ReferenceFiles/tlm3d_all.csv", var, 1e-2, 1e-4) then
     print(var .. " is equal")
   else
     print(var .. " is not equal")
@@ -197,11 +198,11 @@ end
 -- Starting TLM simulation.
 -- Monitoring thread finished.
 -- Manager thread finished.
--- wc1.P.R[cG][cG](1) [m] is equal
--- wc1.P.R[cG][cG](2) [m] is equal
--- wc1.P.R[cG][cG](3) [m] is equal
--- wc2.P.R[cG][cG](1) [m] is equal
--- wc2.P.R[cG][cG](2) [m] is equal
--- wc2.P.R[cG][cG](3) [m] is equal
+-- model.tlm3d.wc1.P.x[1] is equal
+-- model.tlm3d.wc1.P.x[2] is equal
+-- model.tlm3d.wc1.P.x[3] is equal
+-- model.tlm3d.wc2.P.x[1] is equal
+-- model.tlm3d.wc2.P.x[2] is equal
+-- model.tlm3d.wc2.P.x[3] is equal
 -- info:    Logging information has been saved to "tlm3d.log"
 -- endResult
