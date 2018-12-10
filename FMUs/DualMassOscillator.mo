@@ -2,7 +2,7 @@ package DualMassOscillator
   model System1
     Modelica.Mechanics.Translational.Components.Fixed fixed(s0=0) annotation(Placement(transformation(extent={{-10, -10}, {10, 10}}, rotation=0, origin={-70, 0})));
     Modelica.Mechanics.Translational.Components.Mass mass1(m=1, s(fixed=true, start=1), v(fixed=true, start=0), L=0) annotation(Placement(transformation(extent={{-14, -10}, {6, 10}})));
-    Modelica.Mechanics.Translational.Components.SpringDamper springDamper1(c=1e4, d=2, s_rel0=0) annotation(Placement(transformation(extent={{-50, -10}, {-30, 10}})));
+    Modelica.Mechanics.Translational.Components.SpringDamper springDamper1(c=1e4, d=2, s_rel0=1) annotation(Placement(transformation(extent={{-50, -10}, {-30, 10}})));
     Modelica.Mechanics.Translational.Sensors.PositionSensor positionSensor annotation(Placement(transformation(extent={{20, -40}, {40, -20}})));
     Modelica.Mechanics.Translational.Sensors.SpeedSensor speedSensor annotation(Placement(transformation(extent={{20, -60}, {40, -40}})));
     Modelica.Mechanics.Translational.Sensors.AccSensor accSensor annotation(Placement(transformation(extent={{20, -80}, {40, -60}})));
@@ -26,10 +26,10 @@ package DualMassOscillator
   end System1;
 
   model System2
-    Modelica.Mechanics.Translational.Components.Fixed fixed(s0=0) annotation(Placement(transformation(extent={{80, -10}, {100, 10}})));
+    Modelica.Mechanics.Translational.Components.Fixed fixed(s0=3) annotation(Placement(transformation(extent={{80, -10}, {100, 10}})));
     Modelica.Mechanics.Translational.Components.Mass mass2(m=1, s(fixed=true, start=2), v(fixed=true, start=0), L=0) annotation(Placement(transformation(extent={{20, -10}, {40, 10}})));
-    Modelica.Mechanics.Translational.Components.SpringDamper springDamper2(c=1e5, d=6.3246, s_rel0=0) annotation(Placement(transformation(extent={{50, -10}, {70, 10}})));
-    Modelica.Mechanics.Translational.Components.SpringDamper springDamper_coupling(c=1e6, d=14.1421, s_rel0=0) annotation(Placement(transformation(extent={{-10, -10}, {10, 10}})));
+    Modelica.Mechanics.Translational.Components.SpringDamper springDamper2(c=1e5, d=6.3246, s_rel0=1) annotation(Placement(transformation(extent={{50, -10}, {70, 10}})));
+    Modelica.Mechanics.Translational.Components.SpringDamper springDamper_coupling(c=1e6, d=14.1421, s_rel0=1) annotation(Placement(transformation(extent={{-10, -10}, {10, 10}})));
     Modelica.Blocks.Interfaces.RealOutput F annotation(Placement(transformation(extent={{-100, -10}, {-120, 10}})));
     Modelica.Blocks.Interfaces.RealInput s annotation(Placement(transformation(extent={{-120, -40}, {-100, -20}})));
     Modelica.Blocks.Interfaces.RealInput v annotation(Placement(transformation(extent={{-120, -60}, {-100, -40}})));
@@ -51,7 +51,7 @@ package DualMassOscillator
 
   model CoupledSystem
     System1 system1 annotation(Placement(transformation(extent={{-30, -10}, {-10, 10}})));
-    System2 system2 annotation(Placement(transformation(extent={{10, -10}, {30, 10}})));
+    System2 system2(mass2(s(start=2.5))) annotation(Placement(transformation(extent={{10, -10}, {30, 10}})));
   equation
     connect(system2.F, system1.F) annotation(Line(points={{9, 0}, {-9, 0}}, color={0, 0, 127}));
     connect(system1.s, system2.s) annotation(Line(points={{-9, -3}, {-9, -3}, {9, -3}}, color={0, 0, 127}));
@@ -61,20 +61,20 @@ package DualMassOscillator
   end CoupledSystem;
 
   model ReferenceSystem
-    Modelica.Mechanics.Translational.Components.Fixed fixed(s0=0) annotation(Placement(transformation(extent={{-10, -10}, {10, 10}}, rotation=0, origin={-90, 0})));
-    Modelica.Mechanics.Translational.Components.Mass mass1(m=1, s(fixed=true, start=1), v(fixed=true, start=0), L=0) annotation(Placement(transformation(extent={{-40, -10}, {-20, 10}})));
-    Modelica.Mechanics.Translational.Components.SpringDamper springDamper1(c=1e4, d=2, s_rel0=0) annotation(Placement(transformation(extent={{-70, -10}, {-50, 10}})));
-    Modelica.Mechanics.Translational.Components.Fixed fixed1(s0=0) annotation(Placement(transformation(extent={{80, -10}, {100, 10}})));
-    Modelica.Mechanics.Translational.Components.Mass mass2(m=1, s(fixed=true, start=2), v(fixed=true, start=0), L=0) annotation(Placement(transformation(extent={{20, -10}, {40, 10}})));
-    Modelica.Mechanics.Translational.Components.SpringDamper springDamper2(c=1e5, d=6.3246, s_rel0=0) annotation(Placement(transformation(extent={{50, -10}, {70, 10}})));
-    Modelica.Mechanics.Translational.Components.SpringDamper springDamper_coupling(c=1e6, d=14.1421, s_rel0=0) annotation(Placement(transformation(extent={{-10, -10}, {10, 10}})));
+    Modelica.Mechanics.Translational.Components.Fixed fixed(s0=0) annotation(Placement(transformation(extent={{-10,10},{10,-10}}, rotation=90,origin={-86,0})));
+    Modelica.Mechanics.Translational.Components.Mass mass1(m=1, v(fixed=true, start=0), L=0, s(fixed=true, start=1)) annotation(Placement(transformation(extent={{-40,-10},{-20,10}})));
+    Modelica.Mechanics.Translational.Components.SpringDamper springDamper1(c=1e4, d=2, s_rel0=1) annotation(Placement(transformation(extent={{-70,-10},{-50,10}})));
+    Modelica.Mechanics.Translational.Components.Fixed fixed1(s0=3) annotation(Placement(transformation(extent={{-10,-10},{10,10}},rotation=90,origin={86,0})));
+    Modelica.Mechanics.Translational.Components.Mass mass2(m=1, v(fixed=true, start=0), L=0, s(fixed=true, start=2.5)) annotation(Placement(transformation(extent={{20,-10},{40,10}})));
+    Modelica.Mechanics.Translational.Components.SpringDamper springDamper2(c=1e5, d=6.3246,s_rel0=1) annotation(Placement(transformation(extent={{50,-10},{70,10}})));
+    Modelica.Mechanics.Translational.Components.SpringDamper springDamper_coupling(c=1e6, d=14.1421, s_rel0=1) annotation(Placement(transformation(extent={{-10,-10},{10,10}})));
   equation
-    connect(fixed.flange, springDamper1. flange_a) annotation(Line(points={{-90, 0}, {-80, 0}, {-70, 0}}, color={0, 127, 0}));
-    connect(springDamper1.flange_b, mass1. flange_a) annotation(Line(points={{-50, 0}, {-40, 0}}, color={0, 127, 0}));
-    connect(springDamper_coupling.flange_b, mass2. flange_a) annotation(Line(points={{10, 0}, {15, 0}, {20, 0}}, color={0, 127, 0}));
-    connect(mass2.flange_b, springDamper2. flange_a) annotation(Line(points={{40, 0}, {45, 0}, {50, 0}}, color={0, 127, 0}));
-    connect(springDamper2.flange_b, fixed1.flange) annotation(Line(points={{70, 0}, {80, 0}, {90, 0}}, color={0, 127, 0}));
-    connect(mass1.flange_b, springDamper_coupling.flange_a) annotation(Line(points={{-20, 0}, {-15, 0}, {-10, 0}}, color={0, 127, 0}));
+    connect(fixed.flange, springDamper1. flange_a) annotation(Line(points={{-86,0},{-86,0},{-70,0}}, color={0, 127, 0}));
+    connect(springDamper1.flange_b, mass1. flange_a) annotation(Line(points={{-50,0},{-40,0}}, color={0, 127, 0}));
+    connect(springDamper_coupling.flange_b, mass2. flange_a) annotation(Line(points={{10,0},{10,0},{20,0}}, color={0, 127, 0}));
+    connect(mass2.flange_b, springDamper2. flange_a) annotation(Line(points={{40,0},{40,0},{50,0}}, color={0, 127, 0}));
+    connect(springDamper2.flange_b, fixed1.flange) annotation(Line(points={{70,0},{70,0},{86,0}}, color={0, 127, 0}));
+    connect(mass1.flange_b, springDamper_coupling.flange_a) annotation(Line(points={{-20,0},{-20,0},{-10,0}}, color={0, 127, 0}));
     annotation(Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100, -20}, {100, 20}})), Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-100, -20}, {100, 20}})));
   end ReferenceSystem;
 
@@ -94,64 +94,61 @@ package DualMassOscillator
     parameter Real m2 = 1;
   initial equation
     s1 = 1;
-    s2 = 2;
+    s2 = 2.5;
     v1 = 0;
     v2 = 0;
   equation
     der(s1) = v1;
     der(s2) = v2;
-    m1*der(v1) = -c1*s1 - d1*v1 + F;
-    m2*der(v2) = -c2*s2 - d2*v2 - F;
-    F = -cc*s1 - dc*v1 + cc*s2 + dc*v2;
+    m1*der(v1) = -c1*(s1-1.0) - d1*v1 + F;
+    m2*der(v2) = -c2*(s2-2.0) - d2*v2 - F;
+    F = -cc*(s1-1.0)- dc*v1 + cc*(s2-2.0) + dc*v2;
     annotation(Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(coordinateSystem(preserveAspectRatio=false)));
   end ReferenceSystemEq;
 
   model System1Eq
-    Real s1 = out_s1;
-    Real v1 = out_v1;
+    Real s1(fixed=true, start=1.0) = out_s1;
+    Real v1(fixed=true, start=0.0) = out_v1;
     Real F = in_F;
     parameter Real d1 = 2;
     parameter Real c1 = 1e4;
     parameter Real m1 = 1;
+    constant Real s1_rel0 = 1.0 "Unstretched spring length";
     Modelica.Blocks.Interfaces.RealInput in_F annotation(Placement(transformation(extent={{120, -10}, {100, 10}}), iconTransformation(extent={{120, -10}, {100, 10}})));
     Modelica.Blocks.Interfaces.RealOutput out_s1 annotation(Placement(transformation(extent={{100, -40}, {120, -20}}), iconTransformation(extent={{100, -40}, {120, -20}})));
     Modelica.Blocks.Interfaces.RealOutput out_v1 annotation(Placement(transformation(extent={{100, -60}, {120, -40}}), iconTransformation(extent={{100, -60}, {120, -40}})));
-  initial equation
-    s1 = 1;
-    v1 = 0;
   equation
     der(s1) = v1;
-    m1*der(v1) = -c1*s1 - d1*v1 + F;
+    m1*der(v1) = -c1*(s1-s1_rel0) - d1*v1 + F;
     annotation(Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(coordinateSystem(preserveAspectRatio=false)));
   end System1Eq;
 
   model System2Eq
     Real s1 = in_s1;
     Real v1 = in_v1;
-    Real s2;
-    Real v2;
+    Real s2(fixed=true, start=2.0);
+    Real v2(fixed=true, start=0.0);
     Real F = out_F;
     parameter Real d2 = 6.3246;
     parameter Real dc = 14.1421;
     parameter Real c2 = 1e5;
     parameter Real cc = 1e6;
     parameter Real m2 = 1;
+    constant Real s2_rel0 = 1.0 "Unstretched spring length";
+    constant Real sc_rel0 = 1.0 "Unstretched spring length";
     Modelica.Blocks.Interfaces.RealOutput out_F annotation(Placement(transformation(extent={{-100, -10}, {-120, 10}})));
     Modelica.Blocks.Interfaces.RealInput in_s1 annotation(Placement(transformation(extent={{-120, -40}, {-100, -20}})));
     Modelica.Blocks.Interfaces.RealInput in_v1 annotation(Placement(transformation(extent={{-120, -60}, {-100, -40}})));
-  initial equation
-    s2 = 2;
-    v2 = 0;
   equation
     der(s2) = v2;
-    m2*der(v2) = -c2*s2 - d2*v2 - F;
-    F = -cc*s1 - dc*v1 + cc*s2 + dc*v2;
+    m2*der(v2) = c2*(3.0-s2-s2_rel0) - d2*v2 - F;
+    F = cc*(s2-s1-sc_rel0) + dc*(v2-v1);
     annotation(Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(coordinateSystem(preserveAspectRatio=false)));
   end System2Eq;
 
   model CoupledSystemEq
     System1Eq system1Eq annotation(Placement(transformation(extent={{-30, -10}, {-10, 10}})));
-    System2Eq system2Eq annotation(Placement(transformation(extent={{10, -10}, {30, 10}})));
+    System2Eq system2Eq(s2(start=2.5)) annotation(Placement(transformation(extent={{10, -10}, {30, 10}})));
   equation
     connect(system1Eq.in_F, system2Eq.out_F) annotation(Line(points={{-9, 0}, {9, 0}, {9, 0}}, color={0, 0, 127}));
     connect(system1Eq.out_s1, system2Eq.in_s1) annotation(Line(points={{-9, -3}, {-0.5, -3}, {-0.5, -3}, {9, -3}}, color={0, 0, 127}));
