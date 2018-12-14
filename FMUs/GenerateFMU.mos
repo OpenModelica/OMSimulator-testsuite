@@ -1,0 +1,17 @@
+s := typeNameString(cl);
+system("rm -f "+s+".fmu");
+buildModelFMU(cl, version="2.0", fmuType="me_cs", fileNamePrefix=s, platforms={
+  "i386-apple-darwin15",
+  "x86_64-apple-darwin15",
+  "x86_64-linux-gnu",
+  "i686-linux-gnu",
+  "arm-linux-gnueabihf",
+  "x86_64-w64-mingw32",
+  "i686-w64-mingw32"
+}); getErrorString();
+system("rm -rf ./"+s+"/");
+system("unzip -d "+s+" "+s+".fmu");
+system("x86_64-w64-mingw32-strip ./"+s+"/binaries/*/*.dll");
+system("touch "+s+"/modelDescription.xml");
+system("git add "+s);
+system("git clean -fdx");

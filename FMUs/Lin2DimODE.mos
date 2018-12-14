@@ -14,5 +14,5 @@ equation
 end Lin2DimODE;
 "); getErrorString();
 
-buildModelFMU(Lin2DimODE, version="2.0", fmuType="me", fileNamePrefix="Lin2DimODE_me", platforms={"static"}); getErrorString();
-buildModelFMU(Lin2DimODE, version="2.0", fmuType="cs", fileNamePrefix="Lin2DimODE_cs", platforms={"static"}); getErrorString();
+cl := $TypeName(Lin2DimODE);
+runScript("GenerateFMU.mos");getErrorString();

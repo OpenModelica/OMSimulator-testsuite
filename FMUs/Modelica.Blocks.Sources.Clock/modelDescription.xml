@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fmiModelDescription
+  fmiVersion="2.0"
+  modelName="Modelica.Blocks.Sources.Clock"
+  guid="{97d8e3d0-9283-4691-a17f-4b3c49da0367}"
+  description="Generate actual time signal"
+  generationTool="OpenModelica Compiler OpenModelica 1.13.0~dev-1059-gbe9bdac"
+  generationDateAndTime="2018-06-11T14:29:35Z"
+  variableNamingConvention="structured"
+  numberOfEventIndicators="1">
+  <ModelExchange
+    modelIdentifier="Modelica_Blocks_Sources_Clock">
+  </ModelExchange>
+  <CoSimulation
+    modelIdentifier="Modelica_Blocks_Sources_Clock"
+    needsExecutionTool="false"
+    canHandleVariableCommunicationStepSize="true"
+    canInterpolateInputs="false"
+    maxOutputDerivativeOrder="1"
+    canRunAsynchronuously = "false"
+    canBeInstantiatedOnlyOncePerProcess="false"
+    canNotUseMemoryManagementFunctions="false"
+    canGetAndSetFMUstate="false"
+    canSerializeFMUstate="false"
+     />
+  <LogCategories>
+    <Category name="logEvents" />
+    <Category name="logSingularLinearSystems" />
+    <Category name="logNonlinearSystems" />
+    <Category name="logDynamicStateSelection" />
+    <Category name="logStatusWarning" />
+    <Category name="logStatusDiscard" />
+    <Category name="logStatusError" />
+    <Category name="logStatusFatal" />
+    <Category name="logStatusPending" />
+    <Category name="logAll" />
+    <Category name="logFmi2Call" />
+  </LogCategories>
+  <DefaultExperiment startTime="0.0" stopTime="1.0" tolerance="1e-06"/>
+  <ModelVariables>
+  <!-- Index of variable = "1" -->
+  <ScalarVariable
+    name="y"
+    valueReference="0"
+    description="Connector of Real output signal"
+    variability="continuous"
+    causality="output"
+    initial="exact">
+    <Real start="0.0"/>
+  </ScalarVariable>
+  <!-- Index of variable = "2" -->
+  <ScalarVariable
+    name="offset"
+    valueReference="1"
+    description="Offset of output signal"
+    variability="fixed"
+    causality="parameter"
+    initial="exact">
+    <Real start="0.0" unit="s"/>
+  </ScalarVariable>
+  <!-- Index of variable = "3" -->
+  <ScalarVariable
+    name="startTime"
+    valueReference="2"
+    description="Output = offset for time &lt; startTime"
+    variability="fixed"
+    causality="parameter"
+    initial="exact">
+    <Real start="0.0" unit="s"/>
+  </ScalarVariable>
+  </ModelVariables>
+  <ModelStructure>
+    <Outputs>
+      <Unknown index="1" dependencies="" dependenciesKind="" />
+    </Outputs>
+  </ModelStructure>
+</fmiModelDescription>
