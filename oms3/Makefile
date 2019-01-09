@@ -5,7 +5,7 @@ buses.lua \
 buses.py \
 connections.lua \
 connections.py \
-DualMassOscillatorEq_me.lua \
+DualMassOscillatorEq.lua \
 externalmodels.lua \
 externalmodels.py \
 import_export.lua \

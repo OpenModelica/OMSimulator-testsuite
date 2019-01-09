@@ -107,7 +107,8 @@ package DualMassOscillator
   end ReferenceSystemEq;
 
   model System1Eq
-    Real s1(fixed=true, start=1.0) = out_s1;
+    parameter Real s1_start = 1.0;
+    Real s1(fixed=true, start=s1_start) = out_s1;
     Real v1(fixed=true, start=0.0) = out_v1;
     Real F = in_F;
     parameter Real d1 = 2;
@@ -124,9 +125,10 @@ package DualMassOscillator
   end System1Eq;
 
   model System2Eq
+    parameter Real s2_start = 2.0;
     Real s1 = in_s1;
     Real v1 = in_v1;
-    Real s2(fixed=true, start=2.0);
+    Real s2(fixed=true, start=s2_start);
     Real v2(fixed=true, start=0.0);
     Real F = out_F;
     parameter Real d2 = 6.3246;
