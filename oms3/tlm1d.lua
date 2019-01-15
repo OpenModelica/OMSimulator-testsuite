@@ -18,9 +18,9 @@ oms3_addSubModel("model.tlm1d.wc1.mass", "../FMUs/Mass.fmu");
 oms3_addConnector("model.tlm1d.wc1.x",output,oms_signal_type_real);
 oms3_addConnector("model.tlm1d.wc1.v",output,oms_signal_type_real);
 oms3_addConnector("model.tlm1d.wc1.f",input,oms_signal_type_real);
-oms3_addConnection("model.tlm1d.wc1.x","model.tlm1d.wc1.mass.x"); 
-oms3_addConnection("model.tlm1d.wc1.v","model.tlm1d.wc1.mass.v"); 
-oms3_addConnection("model.tlm1d.wc1.f","model.tlm1d.wc1.mass.f"); 
+oms3_addConnection("model.tlm1d.wc1.x","model.tlm1d.wc1.mass.x");
+oms3_addConnection("model.tlm1d.wc1.v","model.tlm1d.wc1.mass.v");
+oms3_addConnection("model.tlm1d.wc1.f","model.tlm1d.wc1.mass.f");
 oms3_addTLMBus("model.tlm1d.wc1.P",oms_tlm_domain_mechanical,1);
 oms3_addConnectorToTLMBus("model.tlm1d.wc1.P","model.tlm1d.wc1.x", "state");
 oms3_addConnectorToTLMBus("model.tlm1d.wc1.P","model.tlm1d.wc1.v", "flow");
@@ -32,9 +32,9 @@ oms3_addSubModel("model.tlm1d.wc2.mass", "../FMUs/MassSpring.fmu");
 oms3_addConnector("model.tlm1d.wc2.x",output,oms_signal_type_real);
 oms3_addConnector("model.tlm1d.wc2.v",output,oms_signal_type_real);
 oms3_addConnector("model.tlm1d.wc2.f",input,oms_signal_type_real);
-oms3_addConnection("model.tlm1d.wc2.x","model.tlm1d.wc2.mass.x"); 
-oms3_addConnection("model.tlm1d.wc2.v","model.tlm1d.wc2.mass.v"); 
-oms3_addConnection("model.tlm1d.wc2.f","model.tlm1d.wc2.mass.f"); 
+oms3_addConnection("model.tlm1d.wc2.x","model.tlm1d.wc2.mass.x");
+oms3_addConnection("model.tlm1d.wc2.v","model.tlm1d.wc2.mass.v");
+oms3_addConnection("model.tlm1d.wc2.f","model.tlm1d.wc2.mass.f");
 oms3_addTLMBus("model.tlm1d.wc2.P",oms_tlm_domain_mechanical,1);
 oms3_addConnectorToTLMBus("model.tlm1d.wc2.P","model.tlm1d.wc2.x", "state");
 oms3_addConnectorToTLMBus("model.tlm1d.wc2.P","model.tlm1d.wc2.v", "flow");
@@ -54,7 +54,7 @@ oms3_terminate("model");
 
 vars = {"wc1.P.v [m/s]","wc2.P.v [m/s]","wc1.P.F [N]","wc2.P.F [N]"}
 for _,var in ipairs(vars) do
-  if 1 == oms2_compareSimulationResults("tlm1d.csv", "../ReferenceFiles/tlm1d.csv", var, 1e-2, 1e-4) then
+  if 1 == oms3_compareSimulationResults("tlm1d.csv", "../ReferenceFiles/tlm1d.csv", var, 1e-2, 1e-4) then
     print(var .. " is equal")
   else
     print(var .. " is not equal")

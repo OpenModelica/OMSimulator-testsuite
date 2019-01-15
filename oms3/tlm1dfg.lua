@@ -40,7 +40,7 @@ oms3_addConnectorToTLMBus("model.tlm1dfg.wc1.fmu.P","model.tlm1dfg.wc1.fmu.time9
 oms3_addConnectorToTLMBus("model.tlm1dfg.wc1.fmu.P","model.tlm1dfg.wc1.fmu.time10", "time10");
 oms3_addConnectorToTLMBus("model.tlm1dfg.wc1.fmu.P","model.tlm1dfg.wc1.fmu.impedance", "impedance");
 oms3_addTLMBus("model.tlm1dfg.wc1.P",oms_tlm_domain_mechanical,1,finegrained);
-oms3_addConnection("model.tlm1dfg.wc1.fmu.P","model.tlm1dfg.wc1.P"); 
+oms3_addConnection("model.tlm1dfg.wc1.fmu.P","model.tlm1dfg.wc1.P");
 
 oms3_addSystem("model.tlm1dfg.wc2", oms_system_wc);
 oms3_setFixedStepSize("model.tlm1dfg.wc2", 0.001);
@@ -70,7 +70,7 @@ oms3_addConnectorToTLMBus("model.tlm1dfg.wc2.fmu.P","model.tlm1dfg.wc2.fmu.time9
 oms3_addConnectorToTLMBus("model.tlm1dfg.wc2.fmu.P","model.tlm1dfg.wc2.fmu.time10", "time10");
 oms3_addConnectorToTLMBus("model.tlm1dfg.wc2.fmu.P","model.tlm1dfg.wc2.fmu.impedance", "impedance");
 oms3_addTLMBus("model.tlm1dfg.wc2.P",oms_tlm_domain_mechanical,1,finegrained);
-oms3_addConnection("model.tlm1dfg.wc2.fmu.P","model.tlm1dfg.wc2.P"); 
+oms3_addConnection("model.tlm1dfg.wc2.fmu.P","model.tlm1dfg.wc2.P");
 
 oms3_addTLMConnection("model.tlm1dfg.wc1.P","model.tlm1dfg.wc2.P", 0.001, 0.2, 0.1, 0);
 
@@ -101,7 +101,7 @@ oms3_terminate("model");
 
 vars = {"wc1.P.v [m/s]","wc2.P.v [m/s]","wc1.P.F [N]","wc2.P.F [N]"}
 for _,var in ipairs(vars) do
-  if 1 == oms2_compareSimulationResults("tlm1dfg.csv", "../ReferenceFiles/tlm1dfg.csv", var, 1e-2, 1e-4) then
+  if 1 == oms3_compareSimulationResults("tlm1dfg.csv", "../ReferenceFiles/tlm1dfg.csv", var, 1e-2, 1e-4) then
     print(var .. " is equal")
   else
     print(var .. " is not equal")

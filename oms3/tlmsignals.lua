@@ -62,7 +62,7 @@ oms3_terminate("model");
 
 vars = {"wc1.out","wc2.out"}
 for _,var in ipairs(vars) do
-  if 1 == oms2_compareSimulationResults("tlmsignals.csv", "../ReferenceFiles/tlmsignals.csv", var, 1e-2, 1e-4) then
+  if 1 == oms3_compareSimulationResults("tlmsignals.csv", "../ReferenceFiles/tlmsignals.csv", var, 1e-2, 1e-4) then
     print(var .. " is equal")
   else
     print(var .. " is not equal")
