@@ -1,10 +1,6 @@
 TEST = ../rtest -v
 
 TESTFILES = \
-DualMassOscillator_cs.py \
-DualMassOscillator_me.lua \
-DualMassOscillatorEq_cs.lua \
-DualMassOscillatorEq_me.lua \
 PI_Controller.lua \
 PI_Controller.py \
 RealNetwork1.py \
