@@ -10,19 +10,19 @@ status = oms2_newFMIModel("api_test03")
 print("status code: " .. status)
 
 -- add FMUs
-status = oms2_addFMU("api_test03", "../FMUs/DualMassOscillator.System1_me.fmu", "System1")
+status = oms2_addFMU("api_test03", "../FMUs/DualMassOscillator.System1.fmu", "System1")
 print("status code: " .. status)
-status = oms2_addFMU("api_test03", "../FMUs/DualMassOscillator.System2_me.fmu", "System2")
+status = oms2_addFMU("api_test03", "../FMUs/DualMassOscillator.System2.fmu", "System2")
 print("status code: " .. status)
 
 -- add connections
 status = oms2_addConnection("api_test03", "System1:F", "System2:F")
 print("status code: " .. status)
-status = oms2_addConnection("api_test03", "System1:s", "System2:s")
+status = oms2_addConnection("api_test03", "System1:s1", "System2:s1")
 print("status code: " .. status)
-status = oms2_addConnection("api_test03", "System1:v", "System2:v")
+status = oms2_addConnection("api_test03", "System1:v1", "System2:v1")
 print("status code: " .. status)
-status = oms2_addConnection("api_test03", "System1:a", "System2:a")
+status = oms2_addConnection("api_test03", "System1:a1", "System2:a1")
 print("status code: " .. status)
 
 -- delete FMU
@@ -55,15 +55,15 @@ print(source)
 -- <?xml version="1.0" encoding="UTF-8"?>
 -- <ssd:SystemStructureDescription name="api_test03" version="Draft20171219">
 -- 	<ssd:System name="api_test03">
--- 		<ssd:Component name="System2" type="application/x-fmu-sharedlibrary" source="../FMUs/DualMassOscillator.System2_me.fmu">
+-- 		<ssd:Component name="System2" type="application/x-fmu-sharedlibrary" source="../FMUs/DualMassOscillator.System2.fmu">
 -- 			<ssd:Connectors>
--- 				<ssd:Connector name="a" kind="input" type="Real">
+-- 				<ssd:Connector name="a1" kind="input" type="Real">
 -- 					<ssd:ConnectorGeometry x="0.000000" y="0.250000" />
 -- 				</ssd:Connector>
--- 				<ssd:Connector name="s" kind="input" type="Real">
+-- 				<ssd:Connector name="s1" kind="input" type="Real">
 -- 					<ssd:ConnectorGeometry x="0.000000" y="0.500000" />
 -- 				</ssd:Connector>
--- 				<ssd:Connector name="v" kind="input" type="Real">
+-- 				<ssd:Connector name="v1" kind="input" type="Real">
 -- 					<ssd:ConnectorGeometry x="0.000000" y="0.750000" />
 -- 				</ssd:Connector>
 -- 				<ssd:Connector name="F" kind="output" type="Real">

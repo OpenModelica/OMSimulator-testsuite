@@ -1,16 +1,16 @@
 -- status: correct
--- teardown_command: rm -rf DualMassOscillatorEq_cs_oms2.log DualMassOscillatorEq_cs_oms2_tmp/ DualMassOscillatorEq_cs_oms2.mat DualMassInit.dot DualMassSim.dot
+-- teardown_command: rm -rf DualMassOscillator_oms2.log DualMassOscillator_oms2_tmp/ DualMassOscillator_oms2.mat DualMassInit.dot DualMassSim.dot
 -- linux: yes
 
-oms2_setLogFile("DualMassOscillatorEq_cs_oms2.log")
+oms2_setLogFile("DualMassOscillator_oms2.log")
 
-status = oms2_setTempDirectory("./DualMassOscillatorEq_cs_oms2_tmp")
+status = oms2_setTempDirectory("./DualMassOscillator_oms2_tmp")
 
 status = oms2_newFMIModel("DualMass")
 
 -- add FMUs
-status = oms2_addFMU("DualMass", "../FMUs/DualMassOscillator.System1Eq_cs.fmu", "System1")
-status = oms2_addFMU("DualMass", "../FMUs/DualMassOscillator.System2Eq_cs.fmu", "System2")
+status = oms2_addFMU("DualMass", "../FMUs/DualMassOscillator.System1.fmu", "System1")
+status = oms2_addFMU("DualMass", "../FMUs/DualMassOscillator.System2.fmu", "System2")
 
 -- add solver
 oms2_addSolver("DualMass", "solver1", "internal")
@@ -22,15 +22,17 @@ oms2_addConnection("DualMass", "System1", "solver1")
 oms2_addConnection("DualMass", "System2", "solver1")
 
 -- add connections
-status = oms2_addConnection("DualMass", "System1:in_F", "System2:out_F")
-status = oms2_addConnection("DualMass", "System1:out_s1", "System2:in_s1")
-status = oms2_addConnection("DualMass", "System1:out_v1", "System2:in_v1")
+status = oms2_addConnection("DualMass", "System1:F", "System2:F")
+status = oms2_addConnection("DualMass", "System1:s1", "System2:s1")
+status = oms2_addConnection("DualMass", "System1:v1", "System2:v1")
+status = oms2_addConnection("DualMass", "System1:a1", "System2:a1")
 
-status = oms2_setResultFile("DualMass", "DualMassOscillatorEq_cs_oms2.mat")
+status = oms2_setResultFile("DualMass", "DualMassOscillator_oms2.mat")
 
 stopTime = 0.1
 status = oms2_setStopTime("DualMass", stopTime)
 status = oms2_setCommunicationInterval("DualMass", 1e-5)
+oms2_setRealParameter("DualMass.System2:s2_start", 2.5)
 
 -- Master algorithm variants:
 -- standard : The single-task standard
@@ -57,7 +59,7 @@ end
 oms2_unloadModel("DualMass")
 
 -- Result:
--- DualMass.System1:s1 at 0.1: -0.45012153166449
--- DualMass.System2:s2 at 0.1: -0.30237070431675
--- info:    Logging information has been saved to "DualMassOscillatorEq_cs_oms2.log"
+-- DualMass.System1:s1 at 0.1: 0.87154409411158
+-- DualMass.System2:s2 at 0.1: 1.9937955391923
+-- info:    Logging information has been saved to "DualMassOscillator_oms2.log"
 -- endResult
