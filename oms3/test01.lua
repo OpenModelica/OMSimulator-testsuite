@@ -6,6 +6,7 @@
 -- mac: yes
 
 oms3_setCommandLineOption("--suppressPath=true")
+oms3_setTempDirectory("./test01-lua/")
 
 function printStatus(status, expected)
   cmp = ""
@@ -24,9 +25,6 @@ function printStatus(status, expected)
   end
   print("status:  [" .. cmp .. "] " .. status)
 end
-
-status = oms3_setTempDirectory("./test01-lua/")
-printStatus(status, 0)
 
 status = oms3_newModel("test")
 printStatus(status, 0)
@@ -80,7 +78,6 @@ status = oms3_delete("foo")
 printStatus(status, 3)
 
 -- Result:
--- status:  [correct] ok
 -- status:  [correct] ok
 -- error:   [addSystem] Model "test" does not contain any system
 -- status:  [correct] error

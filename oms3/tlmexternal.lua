@@ -47,7 +47,7 @@ oms3_terminate("model");
 
  vars = {"adder.y","source1.y","source2.y"}
  for _,var in ipairs(vars) do
-   if 1 == oms2_compareSimulationResults("tlmexternal.csv", "../ReferenceFiles/tlmexternal.csv", var, 1e-2, 1e-4) then
+   if 1 == oms3_compareSimulationResults("tlmexternal.csv", "../ReferenceFiles/tlmexternal.csv", var, 1e-2, 1e-4) then
      print(var .. " is equal")
    else
      print(var .. " is not equal")

@@ -9,6 +9,7 @@ from OMSimulator import OMSimulator
 session=OMSimulator()
 
 session.oms3_setCommandLineOption("--suppressPath=true")
+session.oms3_setTempDirectory("./test01-py/")
 
 def printStatus(status, expected):
   cmp = ""
@@ -24,9 +25,6 @@ def printStatus(status, expected):
   elif 3 == status:
     status = "error"
   print "status:  [%s] %s" % (cmp, status)
-
-status = session.oms3_setTempDirectory("./test01-py/")
-printStatus(status, 0)
 
 status = session.oms3_newModel("test")
 printStatus(status, 0)
@@ -80,7 +78,6 @@ status = session.oms3_delete("foo")
 printStatus(status, 3)
 
 ## Result:
-## status:  [correct] ok
 ## status:  [correct] ok
 ## error:   [addSystem] Model "test" does not contain any system
 ## status:  [correct] error

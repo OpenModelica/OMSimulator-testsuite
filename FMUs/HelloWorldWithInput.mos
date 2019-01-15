@@ -9,5 +9,5 @@ equation
 end HelloWorldWithInput;
 "); getErrorString();
 
-buildModelFMU(HelloWorldWithInput, version="2.0", fmuType="me", fileNamePrefix="HelloWorldWithInput_me", platforms={"static"}); getErrorString();
-buildModelFMU(HelloWorldWithInput, version="2.0", fmuType="cs", fileNamePrefix="HelloWorldWithInput_cs", platforms={"static"}); getErrorString();
+buildModelFMU(HelloWorldWithInput, version="2.0", fmuType="me_cs", platforms={"x86_64-linux-gnu"}); getErrorString();
+system("zip -qd HelloWorldWithInput.fmu sources/*")
