@@ -5,8 +5,8 @@
 -- win: yes
 -- mac: yes
 
-oms3_setCommandLineOption("--suppressPath=true")
-oms3_setTempDirectory("./test02-lua/")
+oms_setCommandLineOption("--suppressPath=true")
+oms_setTempDirectory("./test02-lua/")
 
 function printStatus(status, expected)
   cmp = ""
@@ -38,35 +38,35 @@ function printType(t)
   end
 end
 
-status = oms3_newModel("test")
+status = oms_newModel("test")
 printStatus(status, 0)
 
-status = oms3_addSystem("test.eoo", oms_system_tlm)
+status = oms_addSystem("test.eoo", oms_system_tlm)
 printStatus(status, 0)
 
-status = oms3_addSystem("test.eoo.foo", oms_system_wc)
+status = oms_addSystem("test.eoo.foo", oms_system_wc)
 printStatus(status, 0)
 
-status = oms3_addSystem("test.eoo.foo.goo", oms_system_sc)
+status = oms_addSystem("test.eoo.foo.goo", oms_system_sc)
 printStatus(status, 0)
 
-type, status = oms3_getSystemType("test")
+type, status = oms_getSystemType("test")
 printType(type)
 printStatus(status, 3)
 
-type, status = oms3_getSystemType("test.eoo")
+type, status = oms_getSystemType("test.eoo")
 printType(type)
 printStatus(status, 0)
 
-type, status = oms3_getSystemType("test.eoo.foo")
+type, status = oms_getSystemType("test.eoo.foo")
 printType(type)
 printStatus(status, 0)
 
-type, status = oms3_getSystemType("test.eoo.foo.goo")
+type, status = oms_getSystemType("test.eoo.foo.goo")
 printType(type)
 printStatus(status, 0)
 
-status = oms3_delete("test")
+status = oms_delete("test")
 printStatus(status, 0)
 
 -- Result:
@@ -74,7 +74,7 @@ printStatus(status, 0)
 -- status:  [correct] ok
 -- status:  [correct] ok
 -- status:  [correct] ok
--- error:   [oms3_getSystemType] Model "test" does not contain system ""
+-- error:   [oms_getSystemType] Model "test" does not contain system ""
 -- Unknown type
 -- status:  [correct] error
 -- type: oms_system_tlm

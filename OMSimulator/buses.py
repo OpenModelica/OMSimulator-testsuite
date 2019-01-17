@@ -8,7 +8,7 @@
 from OMSimulator import OMSimulator
 session=OMSimulator()
 
-session.oms3_setCommandLineOption("--suppressPath=true")
+session.oms_setCommandLineOption("--suppressPath=true")
 
 def printStatus(status, expected):
   cmp = ""
@@ -25,65 +25,65 @@ def printStatus(status, expected):
     status = "error"
   print "status:  [%s] %s" % (cmp, status)
 
-status = session.oms3_setTempDirectory("./buses-py/")
+status = session.oms_setTempDirectory("./buses-py/")
 printStatus(status, 0)
 
-status = session.oms3_newModel("model")
-status = session.oms3_addSystem("model.tlm", session.oms_system_tlm)
-status = session.oms3_addSystem("model.tlm.wc1", session.oms_system_wc)
-status = session.oms3_addSystem("model.tlm.wc2", session.oms_system_wc)
-status = session.oms3_addConnector("model.tlm.wc1.u1", session.input, session.oms_signal_type_real)
-status = session.oms3_addConnector("model.tlm.wc1.u2", session.input, session.oms_signal_type_real)
-status = session.oms3_addConnector("model.tlm.wc1.y", session.output, session.oms_signal_type_real)
-status = session.oms3_addConnector("model.tlm.wc2.y1", session.output, session.oms_signal_type_real)
-status = session.oms3_addConnector("model.tlm.wc2.y2", session.output, session.oms_signal_type_real)
-status = session.oms3_addConnector("model.tlm.wc2.y3", session.output, session.oms_signal_type_real)
-status = session.oms3_addBus("model.tlm.wc1.bus1")
+status = session.oms_newModel("model")
+status = session.oms_addSystem("model.tlm", session.oms_system_tlm)
+status = session.oms_addSystem("model.tlm.wc1", session.oms_system_wc)
+status = session.oms_addSystem("model.tlm.wc2", session.oms_system_wc)
+status = session.oms_addConnector("model.tlm.wc1.u1", session.input, session.oms_signal_type_real)
+status = session.oms_addConnector("model.tlm.wc1.u2", session.input, session.oms_signal_type_real)
+status = session.oms_addConnector("model.tlm.wc1.y", session.output, session.oms_signal_type_real)
+status = session.oms_addConnector("model.tlm.wc2.y1", session.output, session.oms_signal_type_real)
+status = session.oms_addConnector("model.tlm.wc2.y2", session.output, session.oms_signal_type_real)
+status = session.oms_addConnector("model.tlm.wc2.y3", session.output, session.oms_signal_type_real)
+status = session.oms_addBus("model.tlm.wc1.bus1")
 printStatus(status, 0)
 
-status = session.oms3_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc1.u1")
+status = session.oms_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc1.u1")
 printStatus(status, 0)
 
-status = session.oms3_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc1.u2")
+status = session.oms_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc1.u2")
 printStatus(status, 0)
 
-status = session.oms3_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc2.y1")
+status = session.oms_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc2.y1")
 printStatus(status, 3)
 
-status = session.oms3_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc1.y")
+status = session.oms_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc1.y")
 printStatus(status, 0)
 
-status = session.oms3_addBus("model.tlm.wc2.bus2")
+status = session.oms_addBus("model.tlm.wc2.bus2")
 printStatus(status, 0)
 
-status = session.oms3_addConnectorToBus("model.tlm.wc2.bus2","model.tlm.wc2.y1")
+status = session.oms_addConnectorToBus("model.tlm.wc2.bus2","model.tlm.wc2.y1")
 printStatus(status, 0)
 
-status = session.oms3_addConnectorToBus("model.tlm.wc2.bus2","model.tlm.wc2.y2")
+status = session.oms_addConnectorToBus("model.tlm.wc2.bus2","model.tlm.wc2.y2")
 printStatus(status, 0)
 
-status = session.oms3_addConnection("model.tlm.wc1.u1","model.tlm.wc2.y1")
+status = session.oms_addConnection("model.tlm.wc1.u1","model.tlm.wc2.y1")
 printStatus(status, 0)
 
-status = session.oms3_addConnection("model.tlm.wc1.bus1","model.tlm.wc2.bus2")
+status = session.oms_addConnection("model.tlm.wc1.bus1","model.tlm.wc2.bus2")
 printStatus(status, 0)
 
-status = session.oms3_addConnection("model.tlm.wc1.u2","model.tlm.wc2.y2")
+status = session.oms_addConnection("model.tlm.wc1.u2","model.tlm.wc2.y2")
 printStatus(status, 0)
 
-status = session.oms3_addConnection("model.tlm.wc2.bus2","model.tlm.wc1.bus1")
+status = session.oms_addConnection("model.tlm.wc2.bus2","model.tlm.wc1.bus1")
 printStatus(status, 3)
 
-status, src = session.oms3_list("model.tlm")
+status, src = session.oms_list("model.tlm")
 print(src)
 
-status = session.oms3_deleteConnectorFromBus("model.tlm.wc1.bus1","model.tlm.wc1.y")
+status = session.oms_deleteConnectorFromBus("model.tlm.wc1.bus1","model.tlm.wc1.y")
 printStatus(status, 0)
 
-status, src = session.oms3_list("model.tlm")
+status, src = session.oms_list("model.tlm")
 print(src)
 
-status = session.oms3_delete("model")
+status = session.oms_delete("model")
 printStatus(status, 0)
 
 ## Result:

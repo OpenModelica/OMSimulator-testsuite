@@ -6,8 +6,6 @@ buses.py \
 connections.lua \
 connections.py \
 DualMassOscillator.lua \
-externalmodels.lua \
-externalmodels.py \
 import_export.lua \
 import_export.py \
 PI_Controller.lua \
@@ -17,13 +15,6 @@ test01.lua \
 test01.py \
 test02.lua \
 test02.py \
-tlmbuses.lua \
-tlmbuses.py \
-tlmsignals.lua \
-tlm1d.lua \
-tlm1dfg.lua \
-tlm3d.lua \
-tlmexternal.lua
 
 # Run make failingtest
 FAILINGTESTFILES = \

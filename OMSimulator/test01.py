@@ -8,8 +8,8 @@
 from OMSimulator import OMSimulator
 session=OMSimulator()
 
-session.oms3_setCommandLineOption("--suppressPath=true")
-session.oms3_setTempDirectory("./test01-py/")
+session.oms_setCommandLineOption("--suppressPath=true")
+session.oms_setTempDirectory("./test01-py/")
 
 def printStatus(status, expected):
   cmp = ""
@@ -26,55 +26,55 @@ def printStatus(status, expected):
     status = "error"
   print "status:  [%s] %s" % (cmp, status)
 
-status = session.oms3_newModel("test")
+status = session.oms_newModel("test")
 printStatus(status, 0)
 
-status = session.oms3_addSystem("test", session.oms_system_tlm)
+status = session.oms_addSystem("test", session.oms_system_tlm)
 printStatus(status, 3)
 
-status = session.oms3_addSystem("test.foo", session.oms_system_wc)
+status = session.oms_addSystem("test.foo", session.oms_system_wc)
 printStatus(status, 0)
 
-status = session.oms3_addSystem("test.foo.goo", session.oms_system_sc)
+status = session.oms_addSystem("test.foo.goo", session.oms_system_sc)
 printStatus(status, 0)
 
-status = session.oms3_addSystem("test.foo.hoo", session.oms_system_wc)
+status = session.oms_addSystem("test.foo.hoo", session.oms_system_wc)
 printStatus(status, 3)
 
-status, src = session.oms3_list("test")
+status, src = session.oms_list("test")
 print(src)
 
-status, src = session.oms3_list("test.foo")
+status, src = session.oms_list("test.foo")
 print(src)
 
-status, src = session.oms3_list("test.foo.goo")
+status, src = session.oms_list("test.foo.goo")
 print(src)
 
-status = session.oms3_newModel("test")
+status = session.oms_newModel("test")
 printStatus(status, 3)
 
-status = session.oms3_rename("test", "foo")
+status = session.oms_rename("test", "foo")
 printStatus(status, 0)
 
-status = session.oms3_newModel("test")
+status = session.oms_newModel("test")
 printStatus(status, 0)
 
-status = session.oms3_delete("test")
+status = session.oms_delete("test")
 printStatus(status, 0)
 
-status = session.oms3_delete("foo")
+status = session.oms_delete("foo")
 printStatus(status, 0)
 
-status = session.oms3_newModel("test")
+status = session.oms_newModel("test")
 printStatus(status, 0)
 
-status, src = session.oms3_list("test")
+status, src = session.oms_list("test")
 print(src)
 
-status = session.oms3_delete("test")
+status = session.oms_delete("test")
 printStatus(status, 0)
 
-status = session.oms3_delete("foo")
+status = session.oms_delete("foo")
 printStatus(status, 3)
 
 ## Result:
@@ -149,7 +149,7 @@ printStatus(status, 3)
 ## </ssd:SystemStructureDescription>
 ##
 ## status:  [correct] ok
-## error:   [oms3_delete] Model "foo" does not exist in the scope
+## error:   [oms_delete] Model "foo" does not exist in the scope
 ## status:  [correct] error
 ## info:    0 warnings
 ## info:    4 errors

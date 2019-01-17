@@ -5,8 +5,8 @@
 -- win: yes
 -- mac: yes
 
-oms3_setCommandLineOption("--suppressPath=true")
-oms3_setTempDirectory("./import_export-lua/")
+oms_setCommandLineOption("--suppressPath=true")
+oms_setTempDirectory("./import_export-lua/")
 
 function printStatus(status, expected)
   cmp = ""
@@ -26,133 +26,133 @@ function printStatus(status, expected)
   print("status:  [" .. cmp .. "] " .. status)
 end
 
-status = oms3_newModel("test")
+status = oms_newModel("test")
 printStatus(status, 0)
 
-status = oms3_addSystem("test.eoo", oms_system_tlm)
+status = oms_addSystem("test.eoo", oms_system_tlm)
 printStatus(status, 0)
 
-status = oms3_setTLMSocketData("test.eoo", "127.0.1.1", 11111, 11121)
+status = oms_setTLMSocketData("test.eoo", "127.0.1.1", 11111, 11121)
 
-status = oms3_addSystem("test.eoo.foo", oms_system_wc)
+status = oms_addSystem("test.eoo.foo", oms_system_wc)
 printStatus(status, 0)
 
 -- CS FMU
-status = oms3_addSubModel("test.eoo.foo.A", "../FMUs/source.fmu")
+status = oms_addSubModel("test.eoo.foo.A", "../FMUs/source.fmu")
 printStatus(status, 0)
 
 -- table
-status = oms3_addSubModel("test.eoo.foo.T", "setpoint.csv")
+status = oms_addSubModel("test.eoo.foo.T", "setpoint.csv")
 printStatus(status, 0)
 
-status = oms3_addSystem("test.eoo.foo.goo", oms_system_sc)
+status = oms_addSystem("test.eoo.foo.goo", oms_system_sc)
 printStatus(status, 0)
 
-status = oms3_addSystem("test.eoo.foo2", oms_system_wc)
+status = oms_addSystem("test.eoo.foo2", oms_system_wc)
 printStatus(status, 0)
 
-status = oms3_addConnector("test.eoo.foo.f", input, oms_signal_type_real)
+status = oms_addConnector("test.eoo.foo.f", input, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addConnector("test.eoo.foo.x", output, oms_signal_type_real)
+status = oms_addConnector("test.eoo.foo.x", output, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addConnector("test.eoo.foo.v", output, oms_signal_type_real)
+status = oms_addConnector("test.eoo.foo.v", output, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addConnector("test.eoo.foo.y1", output, oms_signal_type_real)
+status = oms_addConnector("test.eoo.foo.y1", output, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addConnector("test.eoo.foo.y2", output, oms_signal_type_real)
+status = oms_addConnector("test.eoo.foo.y2", output, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addTLMBus("test.eoo.foo.tlm", oms_tlm_domain_mechanical, 1, default)
+status = oms_addTLMBus("test.eoo.foo.tlm", oms_tlm_domain_mechanical, 1, default)
 printStatus(status, 0)
 
-status = oms3_addConnectorToTLMBus("test.eoo.foo.tlm", "test.eoo.foo.f", "effort")
+status = oms_addConnectorToTLMBus("test.eoo.foo.tlm", "test.eoo.foo.f", "effort")
 printStatus(status, 0)
 
-status = oms3_addConnectorToTLMBus("test.eoo.foo.tlm", "test.eoo.foo.x", "state")
+status = oms_addConnectorToTLMBus("test.eoo.foo.tlm", "test.eoo.foo.x", "state")
 printStatus(status, 0)
 
-status = oms3_addConnectorToTLMBus("test.eoo.foo.tlm", "test.eoo.foo.v", "flow")
+status = oms_addConnectorToTLMBus("test.eoo.foo.tlm", "test.eoo.foo.v", "flow")
 printStatus(status, 0)
 
-status = oms3_addBus("test.eoo.foo.bus")
+status = oms_addBus("test.eoo.foo.bus")
 printStatus(status, 0)
 
-status = oms3_addConnectorToBus("test.eoo.foo.bus", "test.eoo.foo.y1")
+status = oms_addConnectorToBus("test.eoo.foo.bus", "test.eoo.foo.y1")
 printStatus(status, 0)
 
-status = oms3_addConnectorToBus("test.eoo.foo.bus", "test.eoo.foo.y2")
+status = oms_addConnectorToBus("test.eoo.foo.bus", "test.eoo.foo.y2")
 printStatus(status, 0)
 
-status = oms3_addConnector("test.eoo.foo2.f", input, oms_signal_type_real)
+status = oms_addConnector("test.eoo.foo2.f", input, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addConnector("test.eoo.foo2.x", output, oms_signal_type_real)
+status = oms_addConnector("test.eoo.foo2.x", output, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addConnector("test.eoo.foo2.v", output, oms_signal_type_real)
+status = oms_addConnector("test.eoo.foo2.v", output, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addConnector("test.eoo.foo2.u1", input, oms_signal_type_real)
+status = oms_addConnector("test.eoo.foo2.u1", input, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addConnector("test.eoo.foo2.u2", input, oms_signal_type_real)
+status = oms_addConnector("test.eoo.foo2.u2", input, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addTLMBus("test.eoo.foo2.tlm", oms_tlm_domain_mechanical, 1, default)
+status = oms_addTLMBus("test.eoo.foo2.tlm", oms_tlm_domain_mechanical, 1, default)
 printStatus(status, 0)
 
-status = oms3_addConnectorToTLMBus("test.eoo.foo2.tlm", "test.eoo.foo2.f", "effort")
+status = oms_addConnectorToTLMBus("test.eoo.foo2.tlm", "test.eoo.foo2.f", "effort")
 printStatus(status, 0)
 
-status = oms3_addConnectorToTLMBus("test.eoo.foo2.tlm", "test.eoo.foo2.x", "state")
+status = oms_addConnectorToTLMBus("test.eoo.foo2.tlm", "test.eoo.foo2.x", "state")
 printStatus(status, 0)
 
-status = oms3_addConnectorToTLMBus("test.eoo.foo2.tlm", "test.eoo.foo2.v", "flow")
+status = oms_addConnectorToTLMBus("test.eoo.foo2.tlm", "test.eoo.foo2.v", "flow")
 printStatus(status, 0)
 
-status = oms3_addBus("test.eoo.foo2.bus")
+status = oms_addBus("test.eoo.foo2.bus")
 printStatus(status, 0)
 
-status = oms3_addConnectorToBus("test.eoo.foo2.bus", "test.eoo.foo2.u1")
+status = oms_addConnectorToBus("test.eoo.foo2.bus", "test.eoo.foo2.u1")
 printStatus(status, 0)
 
-status = oms3_addConnectorToBus("test.eoo.foo2.bus", "test.eoo.foo2.u2")
+status = oms_addConnectorToBus("test.eoo.foo2.bus", "test.eoo.foo2.u2")
 printStatus(status, 0)
 
-status = oms3_addTLMConnection("test.eoo.foo.tlm", "test.eoo.foo2.tlm", 0.001, 0.3, 100, 0)
+status = oms_addTLMConnection("test.eoo.foo.tlm", "test.eoo.foo2.tlm", 0.001, 0.3, 100, 0)
 printStatus(status, 0)
 
-status = oms3_addConnection("test.eoo.foo.y1", "test.eoo.foo2.u1")
+status = oms_addConnection("test.eoo.foo.y1", "test.eoo.foo2.u1")
 printStatus(status, 0)
 
-status = oms3_addConnection("test.eoo.foo.y2", "test.eoo.foo2.u2")
+status = oms_addConnection("test.eoo.foo.y2", "test.eoo.foo2.u2")
 printStatus(status, 0)
 
-status = oms3_addConnection("test.eoo.foo.bus", "test.eoo.foo2.bus")
+status = oms_addConnection("test.eoo.foo.bus", "test.eoo.foo2.bus")
 printStatus(status, 0)
 
-src, status = oms3_list("test")
-printStatus(status, 0)
-print(src)
-
-status = oms3_export("test", "test.ssp");
-printStatus(status, 0)
-
-status = oms3_delete("test")
-printStatus(status, 0)
-
-model, status = oms3_import("test.ssp");
-printStatus(status, 0)
-
-src, status = oms3_list(model)
+src, status = oms_list("test")
 printStatus(status, 0)
 print(src)
 
-status = oms3_delete(model)
+status = oms_export("test", "test.ssp");
+printStatus(status, 0)
+
+status = oms_delete("test")
+printStatus(status, 0)
+
+model, status = oms_import("test.ssp");
+printStatus(status, 0)
+
+src, status = oms_list(model)
+printStatus(status, 0)
+print(src)
+
+status = oms_delete(model)
 printStatus(status, 0)
 
 

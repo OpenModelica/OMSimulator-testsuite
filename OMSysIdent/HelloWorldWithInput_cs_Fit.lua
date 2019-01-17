@@ -1,17 +1,17 @@
 -- status: correct
 -- teardown_command: rm -f HelloWorldWithInput_cs_Fit.log HelloWorldWithInput_cs_Fit_res.csv
 
-oms3_setLogFile("HelloWorldWithInput_cs_Fit.log")
-status = oms3_setTempDirectory("./HelloWorldWithInput_cs_Fit/")
-status = oms3_newModel("HelloWorldWithInput_cs_Fit")
-status = oms3_addSystem("HelloWorldWithInput_cs_Fit.root", oms_system_wc)
+oms_setLogFile("HelloWorldWithInput_cs_Fit.log")
+status = oms_setTempDirectory("./HelloWorldWithInput_cs_Fit/")
+status = oms_newModel("HelloWorldWithInput_cs_Fit")
+status = oms_addSystem("HelloWorldWithInput_cs_Fit.root", oms_system_wc)
 
-oms3_setFixedStepSize("HelloWorldWithInput_cs_Fit.root", 1e-1)
-oms3_setTolerance("HelloWorldWithInput_cs_Fit.root", 1e-5);
-oms3_setResultFile("HelloWorldWithInput_cs_Fit", "");
+oms_setFixedStepSize("HelloWorldWithInput_cs_Fit.root", 1e-1)
+oms_setTolerance("HelloWorldWithInput_cs_Fit.root", 1e-5);
+oms_setResultFile("HelloWorldWithInput_cs_Fit", "");
 
 -- add FMU
-status = oms3_addSubModel("HelloWorldWithInput_cs_Fit.root.HelloWorldWithInput", "../FMUs/HelloWorldWithInput.fmu")
+status = oms_addSubModel("HelloWorldWithInput_cs_Fit.root.HelloWorldWithInput", "../FMUs/HelloWorldWithInput.fmu")
 
 -- create system identification model for model
 simodel = omsi_newSysIdentModel("HelloWorldWithInput_cs_Fit");
@@ -52,8 +52,8 @@ print("HelloWorldWithInput.x_start estimation is OK: " .. tostring(is_OK2))
 
 omsi_freeSysIdentModel(simodel)
 
-oms3_terminate("HelloWorldWithInput_cs_Fit")
-oms3_delete("HelloWorldWithInput_cs_Fit")
+oms_terminate("HelloWorldWithInput_cs_Fit")
+oms_delete("HelloWorldWithInput_cs_Fit")
 
 -- Result:
 -- HelloWorldWithInput.a estimation is OK: true

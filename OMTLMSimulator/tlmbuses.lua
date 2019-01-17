@@ -5,8 +5,8 @@
 -- win: yes
 -- mac: yes
 
-oms3_setCommandLineOption("--suppressPath=true")
-oms3_setTempDirectory("./tlmbuses-lua/")
+oms_setCommandLineOption("--suppressPath=true")
+oms_setTempDirectory("./tlmbuses-lua/")
 
 function printStatus(status, expected)
   cmp = ""
@@ -26,70 +26,70 @@ function printStatus(status, expected)
   print("status:  [" .. cmp .. "] " .. status)
 end
 
-oms3_newModel("model")
-oms3_addSystem("model.tlm", oms_system_tlm)
-oms3_setTLMSocketData("model.tlm", "127.0.1.1", 11111, 11121)
-oms3_addSystem("model.tlm.wc1", oms_system_wc)
-oms3_addConnector("model.tlm.wc1.y", output, oms_signal_type_real)
-oms3_addConnector("model.tlm.wc1.x", output, oms_signal_type_real)
-oms3_addConnector("model.tlm.wc1.v", output, oms_signal_type_real)
-oms3_addConnector("model.tlm.wc1.f", input, oms_signal_type_real)
+oms_newModel("model")
+oms_addSystem("model.tlm", oms_system_tlm)
+oms_setTLMSocketData("model.tlm", "127.0.1.1", 11111, 11121)
+oms_addSystem("model.tlm.wc1", oms_system_wc)
+oms_addConnector("model.tlm.wc1.y", output, oms_signal_type_real)
+oms_addConnector("model.tlm.wc1.x", output, oms_signal_type_real)
+oms_addConnector("model.tlm.wc1.v", output, oms_signal_type_real)
+oms_addConnector("model.tlm.wc1.f", input, oms_signal_type_real)
 
-oms3_addSystem("model.tlm.wc2", oms_system_wc)
-oms3_addConnector("model.tlm.wc2.y", input, oms_signal_type_real)
-oms3_addConnector("model.tlm.wc2.x", output, oms_signal_type_real)
-oms3_addConnector("model.tlm.wc2.v", output, oms_signal_type_real)
-oms3_addConnector("model.tlm.wc2.f", input, oms_signal_type_real)
+oms_addSystem("model.tlm.wc2", oms_system_wc)
+oms_addConnector("model.tlm.wc2.y", input, oms_signal_type_real)
+oms_addConnector("model.tlm.wc2.x", output, oms_signal_type_real)
+oms_addConnector("model.tlm.wc2.v", output, oms_signal_type_real)
+oms_addConnector("model.tlm.wc2.f", input, oms_signal_type_real)
 
-status = oms3_addTLMBus("model.tlm.wc1.bus1", oms_tlm_domain_input, 1, default)
+status = oms_addTLMBus("model.tlm.wc1.bus1", oms_tlm_domain_input, 1, default)
 printStatus(status, 0)
 
-status = oms3_addConnectorToTLMBus("model.tlm.wc1.bus1","model.tlm.wc1.y", "value")
+status = oms_addConnectorToTLMBus("model.tlm.wc1.bus1","model.tlm.wc1.y", "value")
 printStatus(status, 0)
 
 -- Test adding non-existing connector
-status = oms3_addConnectorToTLMBus("model.tlm.wc1.bus1","model.tlm.wc1.z", "value")
+status = oms_addConnectorToTLMBus("model.tlm.wc1.bus1","model.tlm.wc1.z", "value")
 printStatus(status, 3)
 
 -- Test adding connector with illegal type
-status = oms3_addConnectorToTLMBus("model.tlm.wc1.bus1","model.tlm.wc1.y", "effort")
+status = oms_addConnectorToTLMBus("model.tlm.wc1.bus1","model.tlm.wc1.y", "effort")
 printStatus(status, 3)
 
-status = oms3_addTLMBus("model.tlm.wc1.bus2", oms_tlm_domain_mechanical, 1, default)
+status = oms_addTLMBus("model.tlm.wc1.bus2", oms_tlm_domain_mechanical, 1, default)
 printStatus(status, 0)
 
-status = oms3_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.x", "state")
+status = oms_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.x", "state")
 printStatus(status, 0)
 
-status = oms3_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.v", "flow")
+status = oms_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.v", "flow")
 printStatus(status, 0)
 
 -- Test adding already existing variable type to bus
-status = oms3_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.f", "flow")
+status = oms_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.f", "flow")
 printStatus(status, 3)
 
-status = oms3_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.f", "effort")
+status = oms_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.f", "effort")
 printStatus(status, 0)
 
-status = oms3_addTLMBus("model.tlm.wc2.bus2", oms_tlm_domain_output, 1, default)
+status = oms_addTLMBus("model.tlm.wc2.bus2", oms_tlm_domain_output, 1, default)
 printStatus(status, 0)
 
-status = oms3_addConnectorToTLMBus("model.tlm.wc2.bus2","model.tlm.wc2.y", "value")
+status = oms_addConnectorToTLMBus("model.tlm.wc2.bus2","model.tlm.wc2.y", "value")
 printStatus(status, 0)
 
-status = oms3_addTLMConnection("model.tlm.wc1.bus1","model.tlm.wc2.bus2", 0.001,0.3,100,0)
+status = oms_addTLMConnection("model.tlm.wc1.bus1","model.tlm.wc2.bus2", 0.001,0.3,100,0)
 printStatus(status, 0)
 
-src, status = oms3_list("model.tlm")
+src, status = oms_list("model.tlm")
 print(src)
 
-status = oms3_deleteConnectorFromTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.x")
+status = oms_deleteConnectorFromTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.x")
 printStatus(status, 0)
 
-src, status = oms3_list("model.tlm")
+src, status = oms_list("model.tlm")
 print(src)
 
-status = oms3_delete("model")
+status = oms_delete("model")
 printStatus(status, 0)
 
 -- Result:

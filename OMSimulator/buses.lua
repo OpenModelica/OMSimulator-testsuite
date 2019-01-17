@@ -5,7 +5,7 @@
 -- win: yes
 -- mac: yes
 
-oms3_setCommandLineOption("--suppressPath=true")
+oms_setCommandLineOption("--suppressPath=true")
 
 function printStatus(status, expected)
   cmp = ""
@@ -25,65 +25,65 @@ function printStatus(status, expected)
   print("status:  [" .. cmp .. "] " .. status)
 end
 
-status = oms3_setTempDirectory("./buses-lua/")
+status = oms_setTempDirectory("./buses-lua/")
 printStatus(status, 0)
 
-status = oms3_newModel("model")
-status = oms3_addSystem("model.tlm", oms_system_tlm)
-status = oms3_addSystem("model.tlm.wc1", oms_system_wc)
-status = oms3_addSystem("model.tlm.wc2", oms_system_wc)
-status = oms3_addConnector("model.tlm.wc1.u1", input, oms_signal_type_real)
-status = oms3_addConnector("model.tlm.wc1.u2", input, oms_signal_type_real)
-status = oms3_addConnector("model.tlm.wc1.y", output, oms_signal_type_real)
-status = oms3_addConnector("model.tlm.wc2.y1", output, oms_signal_type_real)
-status = oms3_addConnector("model.tlm.wc2.y2", output, oms_signal_type_real)
-status = oms3_addConnector("model.tlm.wc2.y3", output, oms_signal_type_real)
-status = oms3_addBus("model.tlm.wc1.bus1")
+status = oms_newModel("model")
+status = oms_addSystem("model.tlm", oms_system_tlm)
+status = oms_addSystem("model.tlm.wc1", oms_system_wc)
+status = oms_addSystem("model.tlm.wc2", oms_system_wc)
+status = oms_addConnector("model.tlm.wc1.u1", input, oms_signal_type_real)
+status = oms_addConnector("model.tlm.wc1.u2", input, oms_signal_type_real)
+status = oms_addConnector("model.tlm.wc1.y", output, oms_signal_type_real)
+status = oms_addConnector("model.tlm.wc2.y1", output, oms_signal_type_real)
+status = oms_addConnector("model.tlm.wc2.y2", output, oms_signal_type_real)
+status = oms_addConnector("model.tlm.wc2.y3", output, oms_signal_type_real)
+status = oms_addBus("model.tlm.wc1.bus1")
 printStatus(status, 0)
 
-status = oms3_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc1.u1")
+status = oms_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc1.u1")
 printStatus(status, 0)
 
-status = oms3_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc1.u2")
+status = oms_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc1.u2")
 printStatus(status, 0)
 
-status = oms3_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc2.y1")
+status = oms_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc2.y1")
 printStatus(status, 3)
 
-status = oms3_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc1.y")
+status = oms_addConnectorToBus("model.tlm.wc1.bus1","model.tlm.wc1.y")
 printStatus(status, 0)
 
-status = oms3_addBus("model.tlm.wc2.bus2")
+status = oms_addBus("model.tlm.wc2.bus2")
 printStatus(status, 0)
 
-status = oms3_addConnectorToBus("model.tlm.wc2.bus2","model.tlm.wc2.y1")
+status = oms_addConnectorToBus("model.tlm.wc2.bus2","model.tlm.wc2.y1")
 printStatus(status, 0)
 
-status = oms3_addConnectorToBus("model.tlm.wc2.bus2","model.tlm.wc2.y2")
+status = oms_addConnectorToBus("model.tlm.wc2.bus2","model.tlm.wc2.y2")
 printStatus(status, 0)
 
-status = oms3_addConnection("model.tlm.wc1.u1","model.tlm.wc2.y1")
+status = oms_addConnection("model.tlm.wc1.u1","model.tlm.wc2.y1")
 printStatus(status, 0)
 
-status = oms3_addConnection("model.tlm.wc1.bus1","model.tlm.wc2.bus2")
+status = oms_addConnection("model.tlm.wc1.bus1","model.tlm.wc2.bus2")
 printStatus(status, 0)
 
-status = oms3_addConnection("model.tlm.wc1.u2","model.tlm.wc2.y2")
+status = oms_addConnection("model.tlm.wc1.u2","model.tlm.wc2.y2")
 printStatus(status, 0)
 
-status = oms3_addConnection("model.tlm.wc2.bus2","model.tlm.wc1.bus1")
+status = oms_addConnection("model.tlm.wc2.bus2","model.tlm.wc1.bus1")
 printStatus(status, 3)
 
-src, status = oms3_list("model.tlm")
+src, status = oms_list("model.tlm")
 print(src)
 
-status = oms3_deleteConnectorFromBus("model.tlm.wc1.bus1","model.tlm.wc1.y")
+status = oms_deleteConnectorFromBus("model.tlm.wc1.bus1","model.tlm.wc1.y")
 printStatus(status, 0)
 
-src, status = oms3_list("model.tlm")
+src, status = oms_list("model.tlm")
 print(src)
 
-status = oms3_delete("model")
+status = oms_delete("model")
 printStatus(status, 0)
 
 -- Result:

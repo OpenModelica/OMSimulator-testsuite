@@ -6,16 +6,16 @@
 -- OMSimulatorLua = package.loadlib("../../install/linux/lib/libOMSimulatorLua.so", "luaopen_OMSimulatorLua")
 -- OMSimulatorLua()
 
-oms3_setLogFile("HelloWorld_cs_Fit.log")
-status = oms3_setTempDirectory("./HelloWorld_cs_Fit/")
-status = oms3_newModel("HelloWorld_cs_Fit")
-status = oms3_addSystem("HelloWorld_cs_Fit.root", oms_system_wc)
---status = oms3_setFixedStepSize("HelloWorld_cs_Fit.root", 1e-1)
---oms3_setTolerance("HelloWorld_cs_Fit.root", 1e-5);
---oms3_setResultFile("HelloWorld_cs_Fit", "");
+oms_setLogFile("HelloWorld_cs_Fit.log")
+status = oms_setTempDirectory("./HelloWorld_cs_Fit/")
+status = oms_newModel("HelloWorld_cs_Fit")
+status = oms_addSystem("HelloWorld_cs_Fit.root", oms_system_wc)
+--status = oms_setFixedStepSize("HelloWorld_cs_Fit.root", 1e-1)
+--oms_setTolerance("HelloWorld_cs_Fit.root", 1e-5);
+--oms_setResultFile("HelloWorld_cs_Fit", "");
 
 -- add FMU
-status = oms3_addSubModel("HelloWorld_cs_Fit.root.HelloWorld", "../FMUs/HelloWorld.fmu")
+status = oms_addSubModel("HelloWorld_cs_Fit.root.HelloWorld", "../FMUs/HelloWorld.fmu")
 
 -- create system identification model for model
 simodel = omsi_newSysIdentModel("HelloWorld_cs_Fit");
@@ -54,8 +54,8 @@ print("HelloWorld.x_start estimation is OK: " .. tostring(is_OK2))
 
 omsi_freeSysIdentModel(simodel)
 
-oms3_terminate("HelloWorld_cs_Fit")
-oms3_delete("HelloWorld_cs_Fit")
+oms_terminate("HelloWorld_cs_Fit")
+oms_delete("HelloWorld_cs_Fit")
 
 -- Result:
 -- HelloWorld.a estimation is OK: true

@@ -8,8 +8,8 @@
 from OMSimulator import OMSimulator
 session=OMSimulator()
 
-session.oms3_setCommandLineOption("--suppressPath=true")
-session.oms3_setTempDirectory("./test02-py/")
+session.oms_setCommandLineOption("--suppressPath=true")
+session.oms_setTempDirectory("./test02-py/")
 
 def printStatus(status, expected):
   cmp = ""
@@ -36,35 +36,35 @@ def printType(t):
   else:
     print "Unknown type"
 
-status = session.oms3_newModel("test")
+status = session.oms_newModel("test")
 printStatus(status, 0)
 
-status = session.oms3_addSystem("test.eoo", session.oms_system_tlm)
+status = session.oms_addSystem("test.eoo", session.oms_system_tlm)
 printStatus(status, 0)
 
-status = session.oms3_addSystem("test.eoo.foo", session.oms_system_wc)
+status = session.oms_addSystem("test.eoo.foo", session.oms_system_wc)
 printStatus(status, 0)
 
-status = session.oms3_addSystem("test.eoo.foo.goo", session.oms_system_sc)
+status = session.oms_addSystem("test.eoo.foo.goo", session.oms_system_sc)
 printStatus(status, 0)
 
-status, type = session.oms3_getSystemType("test")
+status, type = session.oms_getSystemType("test")
 printType(type)
 printStatus(status, 3)
 
-status, type = session.oms3_getSystemType("test.eoo")
+status, type = session.oms_getSystemType("test.eoo")
 printType(type)
 printStatus(status, 0)
 
-status, type = session.oms3_getSystemType("test.eoo.foo")
+status, type = session.oms_getSystemType("test.eoo.foo")
 printType(type)
 printStatus(status, 0)
 
-status, type = session.oms3_getSystemType("test.eoo.foo.goo")
+status, type = session.oms_getSystemType("test.eoo.foo.goo")
 printType(type)
 printStatus(status, 0)
 
-status = session.oms3_delete("test")
+status = session.oms_delete("test")
 printStatus(status, 0)
 
 ## Result:
@@ -72,7 +72,7 @@ printStatus(status, 0)
 ## status:  [correct] ok
 ## status:  [correct] ok
 ## status:  [correct] ok
-## error:   [oms3_getSystemType] Model "test" does not contain system ""
+## error:   [oms_getSystemType] Model "test" does not contain system ""
 ## Unknown type
 ## status:  [correct] error
 ## type: oms_system_tlm

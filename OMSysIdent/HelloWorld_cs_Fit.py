@@ -7,14 +7,14 @@ import numpy as np
 
 session = OMSimulator()
 
-session.oms3_setLogFile("HelloWorld_cs_Fit_py.log")
-session.oms3_setTempDirectory("./HelloWorld_cs_Fit_py/")
-session.oms3_newModel("HelloWorld_cs_Fit")
-session.oms3_addSystem("HelloWorld_cs_Fit.root", session.oms_system_wc)
-# session.setTolerance(model, 1e-5) # 2018-04-25 Not yet supported in oms3 API
+session.oms_setLogFile("HelloWorld_cs_Fit_py.log")
+session.oms_setTempDirectory("./HelloWorld_cs_Fit_py/")
+session.oms_newModel("HelloWorld_cs_Fit")
+session.oms_addSystem("HelloWorld_cs_Fit.root", session.oms_system_wc)
+# session.oms_setTolerance("HelloWorld_cs_Fit.root", 1e-5)
 
 # add FMU
-session.oms3_addSubModel("HelloWorld_cs_Fit.root.HelloWorld", "../FMUs/HelloWorld.fmu")
+session.oms_addSubModel("HelloWorld_cs_Fit.root.HelloWorld", "../FMUs/HelloWorld.fmu")
 
 # create simodel for model
 simodel = OMSysIdent("HelloWorld_cs_Fit")
@@ -52,8 +52,8 @@ print('HelloWorld.a estimation is OK: {0}'.format(is_OK1))
 print('HelloWorld.x_start estimation is OK: {0}'.format(is_OK2))
 
 # del simodel
-session.oms3_terminate("HelloWorld_cs_Fit")
-session.oms3_delete("HelloWorld_cs_Fit")
+session.oms_terminate("HelloWorld_cs_Fit")
+session.oms_delete("HelloWorld_cs_Fit")
 
 ## Result:
 ## HelloWorld.a estimation is OK: True

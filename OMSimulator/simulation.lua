@@ -5,8 +5,8 @@
 -- win: no
 -- mac: no
 
-oms3_setCommandLineOption("--suppressPath=true")
-oms3_setTempDirectory("./simulation-lua/")
+oms_setCommandLineOption("--suppressPath=true")
+oms_setTempDirectory("./simulation-lua/")
 
 function printStatus(status, expected)
   cmp = ""
@@ -26,52 +26,52 @@ function printStatus(status, expected)
   print("status:  [" .. cmp .. "] " .. status)
 end
 
-status = oms3_newModel("test")
+status = oms_newModel("test")
 printStatus(status, 0)
 
-status = oms3_addSystem("test.co_sim", oms_system_wc)
+status = oms_addSystem("test.co_sim", oms_system_wc)
 printStatus(status, 0)
 
-status = oms3_addSubModel("test.co_sim.A", "../FMUs/source.fmu")
+status = oms_addSubModel("test.co_sim.A", "../FMUs/source.fmu")
 printStatus(status, 0)
 
-status = oms3_addSubModel("test.co_sim.B", "../FMUs/source.fmu")
+status = oms_addSubModel("test.co_sim.B", "../FMUs/source.fmu")
 printStatus(status, 0)
 
-oms3_exportDependencyGraphs("test.co_sim", "test_init.dot", "test_sim.dot")
+oms_exportDependencyGraphs("test.co_sim", "test_init.dot", "test_sim.dot")
 
-status = oms3_instantiate("test")
+status = oms_instantiate("test")
 printStatus(status, 0)
 
-v, status = oms3_getReal("test.co_sim.A.A")
-printStatus(status, 0)
-print("test.co_sim.A.A: " .. v)
-
-status = oms3_setReal("test.co_sim.A.A", v + 1.0)
-printStatus(status, 0)
-
-v, status = oms3_getReal("test.co_sim.A.A")
+v, status = oms_getReal("test.co_sim.A.A")
 printStatus(status, 0)
 print("test.co_sim.A.A: " .. v)
 
-status = oms3_initialize("test")
+status = oms_setReal("test.co_sim.A.A", v + 1.0)
 printStatus(status, 0)
 
-v, status = oms3_getReal("test.co_sim.A.y")
+v, status = oms_getReal("test.co_sim.A.A")
+printStatus(status, 0)
+print("test.co_sim.A.A: " .. v)
+
+status = oms_initialize("test")
+printStatus(status, 0)
+
+v, status = oms_getReal("test.co_sim.A.y")
 printStatus(status, 0)
 print("test.co_sim.A.y: " .. v)
 
-status = oms3_simulate("test")
+status = oms_simulate("test")
 printStatus(status, 0)
 
-v, status = oms3_getReal("test.co_sim.A.y")
+v, status = oms_getReal("test.co_sim.A.y")
 printStatus(status, 0)
 print("test.co_sim.A.y: " .. v)
 
-status = oms3_terminate("test")
+status = oms_terminate("test")
 printStatus(status, 0)
 
-status = oms3_delete("test")
+status = oms_delete("test")
 printStatus(status, 0)
 
 -- Result:
