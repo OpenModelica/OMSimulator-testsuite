@@ -6,10 +6,10 @@
 ## mac: no
 
 from OMSimulator import OMSimulator
-session=OMSimulator()
+oms = OMSimulator()
 
-session.oms_setCommandLineOption("--suppressPath=true")
-session.oms_setTempDirectory("./tlmbuses-py/")
+oms.setCommandLineOption("--suppressPath=true")
+oms.setTempDirectory("./tlmbuses-py/")
 
 def printStatus(status, expected):
   cmp = ""
@@ -26,70 +26,70 @@ def printStatus(status, expected):
     status = "error"
   print "status:  [%s] %s" % (cmp, status)
 
-session.oms_newModel("model")
-session.oms_addSystem("model.tlm", session.oms_system_tlm)
-session.oms_setTLMSocketData("model.tlm", "127.0.1.1", 11111, 11121)
-session.oms_addSystem("model.tlm.wc1", session.oms_system_wc)
-session.oms_addConnector("model.tlm.wc1.y", session.output, session.oms_signal_type_real)
-session.oms_addConnector("model.tlm.wc1.x", session.output, session.oms_signal_type_real)
-session.oms_addConnector("model.tlm.wc1.v", session.output, session.oms_signal_type_real)
-session.oms_addConnector("model.tlm.wc1.f", session.input, session.oms_signal_type_real)
+oms.newModel("model")
+oms.addSystem("model.tlm", oms.system_tlm)
+oms.setTLMSocketData("model.tlm", "127.0.1.1", 11111, 11121)
+oms.addSystem("model.tlm.wc1", oms.system_wc)
+oms.addConnector("model.tlm.wc1.y", oms.output, oms.signal_type_real)
+oms.addConnector("model.tlm.wc1.x", oms.output, oms.signal_type_real)
+oms.addConnector("model.tlm.wc1.v", oms.output, oms.signal_type_real)
+oms.addConnector("model.tlm.wc1.f", oms.input, oms.signal_type_real)
 
-session.oms_addSystem("model.tlm.wc2", session.oms_system_wc)
-session.oms_addConnector("model.tlm.wc2.y", session.input, session.oms_signal_type_real)
-session.oms_addConnector("model.tlm.wc2.x", session.output, session.oms_signal_type_real)
-session.oms_addConnector("model.tlm.wc2.v", session.output, session.oms_signal_type_real)
-session.oms_addConnector("model.tlm.wc2.f", session.input, session.oms_signal_type_real)
+oms.addSystem("model.tlm.wc2", oms.system_wc)
+oms.addConnector("model.tlm.wc2.y", oms.input, oms.signal_type_real)
+oms.addConnector("model.tlm.wc2.x", oms.output, oms.signal_type_real)
+oms.addConnector("model.tlm.wc2.v", oms.output, oms.signal_type_real)
+oms.addConnector("model.tlm.wc2.f", oms.input, oms.signal_type_real)
 
-status = session.oms_addTLMBus("model.tlm.wc1.bus1", session.oms_tlm_domain_input, 1, session.default)
+status = oms.addTLMBus("model.tlm.wc1.bus1", oms.tlm_domain_input, 1, oms.default)
 printStatus(status, 0)
 
-status = session.oms_addConnectorToTLMBus("model.tlm.wc1.bus1","model.tlm.wc1.y", "value")
+status = oms.addConnectorToTLMBus("model.tlm.wc1.bus1","model.tlm.wc1.y", "value")
 printStatus(status, 0)
 
 ## Test adding non-existing connector
-status = session.oms_addConnectorToTLMBus("model.tlm.wc1.bus1","model.tlm.wc1.z", "value")
+status = oms.addConnectorToTLMBus("model.tlm.wc1.bus1","model.tlm.wc1.z", "value")
 printStatus(status, 3)
 
 ## Test adding connector with illegal type
-status = session.oms_addConnectorToTLMBus("model.tlm.wc1.bus1","model.tlm.wc1.y", "effort")
+status = oms.addConnectorToTLMBus("model.tlm.wc1.bus1","model.tlm.wc1.y", "effort")
 printStatus(status, 3)
 
-status = session.oms_addTLMBus("model.tlm.wc1.bus2", session.oms_tlm_domain_mechanical, 1, session.default)
+status = oms.addTLMBus("model.tlm.wc1.bus2", oms.tlm_domain_mechanical, 1, oms.default)
 printStatus(status, 0)
 
-status = session.oms_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.x", "state")
+status = oms.addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.x", "state")
 printStatus(status, 0)
 
-status = session.oms_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.v", "flow")
+status = oms.addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.v", "flow")
 printStatus(status, 0)
 
 ## Test adding already existing variable type to TLm bus
-status = session.oms_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.f", "flow")
+status = oms.addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.f", "flow")
 printStatus(status, 3)
 
-status = session.oms_addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.f", "effort")
+status = oms.addConnectorToTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.f", "effort")
 printStatus(status, 0)
 
-status = session.oms_addTLMBus("model.tlm.wc2.bus2", session.oms_tlm_domain_output, 1, session.default)
+status = oms.addTLMBus("model.tlm.wc2.bus2", oms.tlm_domain_output, 1, oms.default)
 printStatus(status, 0)
 
-status = session.oms_addConnectorToTLMBus("model.tlm.wc2.bus2","model.tlm.wc2.y", "value")
+status = oms.addConnectorToTLMBus("model.tlm.wc2.bus2","model.tlm.wc2.y", "value")
 printStatus(status, 0)
 
-status = session.oms_addTLMConnection("model.tlm.wc1.bus1","model.tlm.wc2.bus2", 0.001,0.3,100,0)
+status = oms.addTLMConnection("model.tlm.wc1.bus1","model.tlm.wc2.bus2", 0.001,0.3,100,0)
 printStatus(status, 0)
 
-src, status = session.oms_list("model.tlm")
+src, status = oms.list("model.tlm")
 print src
 
-status = session.oms_deleteConnectorFromTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.x")
+status = oms.deleteConnectorFromTLMBus("model.tlm.wc1.bus2","model.tlm.wc1.x")
 printStatus(status, 0)
 
-status, src = session.oms_list("model.tlm")
+status, src = oms.list("model.tlm")
 print src
 
-status = session.oms_delete("model")
+status = oms.delete("model")
 printStatus(status, 0)
 
 ## Result:

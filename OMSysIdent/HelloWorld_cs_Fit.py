@@ -5,16 +5,16 @@ from OMSimulator import OMSimulator
 from OMSysIdent import OMSysIdent
 import numpy as np
 
-session = OMSimulator()
+oms = OMSimulator()
 
-session.oms_setLogFile("HelloWorld_cs_Fit_py.log")
-session.oms_setTempDirectory("./HelloWorld_cs_Fit_py/")
-session.oms_newModel("HelloWorld_cs_Fit")
-session.oms_addSystem("HelloWorld_cs_Fit.root", session.oms_system_wc)
-# session.oms_setTolerance("HelloWorld_cs_Fit.root", 1e-5)
+oms.setLogFile("HelloWorld_cs_Fit_py.log")
+oms.setTempDirectory("./HelloWorld_cs_Fit_py/")
+oms.newModel("HelloWorld_cs_Fit")
+oms.addSystem("HelloWorld_cs_Fit.root", oms.system_wc)
+# oms.setTolerance("HelloWorld_cs_Fit.root", 1e-5)
 
 # add FMU
-session.oms_addSubModel("HelloWorld_cs_Fit.root.HelloWorld", "../FMUs/HelloWorld.fmu")
+oms.addSubModel("HelloWorld_cs_Fit.root.HelloWorld", "../FMUs/HelloWorld.fmu")
 
 # create simodel for model
 simodel = OMSysIdent("HelloWorld_cs_Fit")
@@ -40,7 +40,7 @@ simodel.setOptions_max_num_iterations(25)
 simodel.solve("")
 
 status, state = simodel.getState()
-# print('status: {0}; state: {1}').format(OMSysIdent.oms_status_str(status), OMSysIdent.omsi_simodelstate_str(state))
+# print('status: {0}; state: {1}').format(OMSysIdent.status_str(status), OMSysIdent.omsi_simodelstate_str(state))
 
 status, startvalue1, estimatedvalue1 = simodel.getParameter("root.HelloWorld.a")
 status, startvalue2, estimatedvalue2 = simodel.getParameter("root.HelloWorld.x_start")
@@ -52,8 +52,8 @@ print('HelloWorld.a estimation is OK: {0}'.format(is_OK1))
 print('HelloWorld.x_start estimation is OK: {0}'.format(is_OK2))
 
 # del simodel
-session.oms_terminate("HelloWorld_cs_Fit")
-session.oms_delete("HelloWorld_cs_Fit")
+oms.terminate("HelloWorld_cs_Fit")
+oms.delete("HelloWorld_cs_Fit")
 
 ## Result:
 ## HelloWorld.a estimation is OK: True

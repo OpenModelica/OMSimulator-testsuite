@@ -6,10 +6,10 @@
 ## mac: no
 
 from OMSimulator import OMSimulator
-session=OMSimulator()
+oms = OMSimulator()
 
-session.oms_setCommandLineOption("--suppressPath=true")
-session.oms_setTempDirectory("./test01-py/")
+oms.setCommandLineOption("--suppressPath=true")
+oms.setTempDirectory("./test01-py/")
 
 def printStatus(status, expected):
   cmp = ""
@@ -26,55 +26,55 @@ def printStatus(status, expected):
     status = "error"
   print "status:  [%s] %s" % (cmp, status)
 
-status = session.oms_newModel("test")
+status = oms.newModel("test")
 printStatus(status, 0)
 
-status = session.oms_addSystem("test", session.oms_system_tlm)
+status = oms.addSystem("test", oms.system_tlm)
 printStatus(status, 3)
 
-status = session.oms_addSystem("test.foo", session.oms_system_wc)
+status = oms.addSystem("test.foo", oms.system_wc)
 printStatus(status, 0)
 
-status = session.oms_addSystem("test.foo.goo", session.oms_system_sc)
+status = oms.addSystem("test.foo.goo", oms.system_sc)
 printStatus(status, 0)
 
-status = session.oms_addSystem("test.foo.hoo", session.oms_system_wc)
+status = oms.addSystem("test.foo.hoo", oms.system_wc)
 printStatus(status, 3)
 
-status, src = session.oms_list("test")
+status, src = oms.list("test")
 print(src)
 
-status, src = session.oms_list("test.foo")
+status, src = oms.list("test.foo")
 print(src)
 
-status, src = session.oms_list("test.foo.goo")
+status, src = oms.list("test.foo.goo")
 print(src)
 
-status = session.oms_newModel("test")
+status = oms.newModel("test")
 printStatus(status, 3)
 
-status = session.oms_rename("test", "foo")
+status = oms.rename("test", "foo")
 printStatus(status, 0)
 
-status = session.oms_newModel("test")
+status = oms.newModel("test")
 printStatus(status, 0)
 
-status = session.oms_delete("test")
+status = oms.delete("test")
 printStatus(status, 0)
 
-status = session.oms_delete("foo")
+status = oms.delete("foo")
 printStatus(status, 0)
 
-status = session.oms_newModel("test")
+status = oms.newModel("test")
 printStatus(status, 0)
 
-status, src = session.oms_list("test")
+status, src = oms.list("test")
 print(src)
 
-status = session.oms_delete("test")
+status = oms.delete("test")
 printStatus(status, 0)
 
-status = session.oms_delete("foo")
+status = oms.delete("foo")
 printStatus(status, 3)
 
 ## Result:

@@ -145,7 +145,7 @@ printStatus(status, 0)
 status = oms_delete("test")
 printStatus(status, 0)
 
-model, status = oms_import("test.ssp");
+model, status = oms_importFile("test.ssp");
 printStatus(status, 0)
 
 src, status = oms_list(model)

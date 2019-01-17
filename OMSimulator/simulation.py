@@ -6,10 +6,10 @@
 ## mac: no
 
 from OMSimulator import OMSimulator
-session=OMSimulator()
+oms = OMSimulator()
 
-session.oms_setCommandLineOption("--suppressPath=true")
-session.oms_setTempDirectory("./simulation-py/")
+oms.setCommandLineOption("--suppressPath=true")
+oms.setTempDirectory("./simulation-py/")
 
 def printStatus(status, expected):
   cmp = ""
@@ -26,52 +26,52 @@ def printStatus(status, expected):
     status = "error"
   print "status:  [%s] %s" % (cmp, status)
 
-status = session.oms_newModel("test")
+status = oms.newModel("test")
 printStatus(status, 0)
 
-status = session.oms_addSystem("test.co_sim", session.oms_system_wc)
+status = oms.addSystem("test.co_sim", oms.system_wc)
 printStatus(status, 0)
 
-status = session.oms_addSubModel("test.co_sim.A", "../FMUs/source.fmu")
+status = oms.addSubModel("test.co_sim.A", "../FMUs/source.fmu")
 printStatus(status, 0)
 
-status = session.oms_addSubModel("test.co_sim.B", "../FMUs/source.fmu")
+status = oms.addSubModel("test.co_sim.B", "../FMUs/source.fmu")
 printStatus(status, 0)
 
-session.oms_exportDependencyGraphs("test.co_sim", "test_init.dot", "test_sim.dot")
+oms.exportDependencyGraphs("test.co_sim", "test_init.dot", "test_sim.dot")
 
-status = session.oms_instantiate("test")
+status = oms.instantiate("test")
 printStatus(status, 0)
 
-v, status = session.oms_getReal("test.co_sim.A.A")
-printStatus(status, 0)
-print "test.co_sim.A.A: %g" % v
-
-status = session.oms_setReal("test.co_sim.A.A", v + 1.0)
-printStatus(status, 0)
-
-v, status = session.oms_getReal("test.co_sim.A.A")
+v, status = oms.getReal("test.co_sim.A.A")
 printStatus(status, 0)
 print "test.co_sim.A.A: %g" % v
 
-status = session.oms_initialize("test")
+status = oms.setReal("test.co_sim.A.A", v + 1.0)
 printStatus(status, 0)
 
-v, status = session.oms_getReal("test.co_sim.A.y")
+v, status = oms.getReal("test.co_sim.A.A")
+printStatus(status, 0)
+print "test.co_sim.A.A: %g" % v
+
+status = oms.initialize("test")
+printStatus(status, 0)
+
+v, status = oms.getReal("test.co_sim.A.y")
 printStatus(status, 0)
 print "test.co_sim.A.y: %g" % v
 
-status = session.oms_simulate("test")
+status = oms.simulate("test")
 printStatus(status, 0)
 
-v, status = session.oms_getReal("test.co_sim.A.y")
+v, status = oms.getReal("test.co_sim.A.y")
 printStatus(status, 0)
 print "test.co_sim.A.y: %g" % v
 
-status = session.oms_terminate("test")
+status = oms.terminate("test")
 printStatus(status, 0)
 
-status = session.oms_delete("test")
+status = oms.delete("test")
 printStatus(status, 0)
 
 ## Result:
