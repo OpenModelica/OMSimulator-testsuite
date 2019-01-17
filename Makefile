@@ -2,7 +2,7 @@
 
 all: difftool test
 
-test: AircraftVehicleDemonstrator.log OMSysIdent.log oms3.log
+test: AircraftVehicleDemonstrator.log OMSysIdent.log OMSimulator.log OMTLMSimulator.log
 
 partest: difftool
 	cd partest && time ./runtests.pl -nocolour -with-xml
@@ -15,9 +15,13 @@ AircraftVehicleDemonstrator.log: difftool
 	@$(MAKE) -C AircraftVehicleDemonstrator -f Makefile test > $@
 	@grep == AircraftVehicleDemonstrator.log
 
-oms3.log: difftool
-	@$(MAKE) -C oms3 -f Makefile test > $@
-	@grep == oms3.log
+OMSimulator.log: difftool
+	@$(MAKE) -C OMSimulator -f Makefile test > $@
+	@grep == OMSimulator.log
+
+OMTLMSimulator.log: difftool
+	@$(MAKE) -C OMTLMSimulator -f Makefile test > $@
+	@grep == OMTLMSimulator.log
 
 difftool:
 	@$(MAKE) -C difftool

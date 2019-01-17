@@ -5,7 +5,7 @@
 -- win: yes
 -- mac: yes
 
-oms3_setCommandLineOption("--suppressPath=true")
+oms_setCommandLineOption("--suppressPath=true")
 
 function printStatus(status, expected)
   cmp = ""
@@ -25,56 +25,56 @@ function printStatus(status, expected)
   print("status:  [" .. cmp .. "] " .. status)
 end
 
-status = oms3_setTempDirectory("./connections-lua/")
+status = oms_setTempDirectory("./connections-lua/")
 printStatus(status, 0)
 
-status = oms3_newModel("model")
+status = oms_newModel("model")
 printStatus(status, 0)
 
-status = oms3_addSystem("model.wc", oms_system_wc)
+status = oms_addSystem("model.wc", oms_system_wc)
 printStatus(status, 0)
 
-status = oms3_addSystem("model.wc.sc1", oms_system_sc)
+status = oms_addSystem("model.wc.sc1", oms_system_sc)
 printStatus(status, 0)
 
-status = oms3_addSystem("model.wc.sc2", oms_system_sc)
+status = oms_addSystem("model.wc.sc2", oms_system_sc)
 printStatus(status, 0)
 
-status = oms3_addConnector("model.wc.sc1.u1", input, oms_signal_type_real)
-status = oms3_addConnector("model.wc.sc1.u2", input, oms_signal_type_real)
-status = oms3_addConnector("model.wc.sc1.y", output, oms_signal_type_real)
+status = oms_addConnector("model.wc.sc1.u1", input, oms_signal_type_real)
+status = oms_addConnector("model.wc.sc1.u2", input, oms_signal_type_real)
+status = oms_addConnector("model.wc.sc1.y", output, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addConnector("model.wc.sc2.y1", output, oms_signal_type_real)
-status = oms3_addConnector("model.wc.sc2.y2", output, oms_signal_type_integer)
-status = oms3_addConnector("model.wc.sc2.y3", output, oms_signal_type_real)
+status = oms_addConnector("model.wc.sc2.y1", output, oms_signal_type_real)
+status = oms_addConnector("model.wc.sc2.y2", output, oms_signal_type_integer)
+status = oms_addConnector("model.wc.sc2.y3", output, oms_signal_type_real)
 printStatus(status, 0)
 
-status = oms3_addConnection("model.wc.sc1.u1", "model.wc.sc2.y1")
+status = oms_addConnection("model.wc.sc1.u1", "model.wc.sc2.y1")
 printStatus(status, 0)
 
 --Connecting input to input (illegal)
-status = oms3_addConnection("model.wc.sc1.y", "model.wc.sc2.y3")
+status = oms_addConnection("model.wc.sc1.y", "model.wc.sc2.y3")
 printStatus(status, 3)
 
 --Connecting Real to Integer (illegal)
-status = oms3_addConnection("model.wc.sc1.u2", "model.wc.sc2.y2")
+status = oms_addConnection("model.wc.sc1.u2", "model.wc.sc2.y2")
 printStatus(status, 3)
 
 --Connecting to already connected connector (illegal)
-status = oms3_addConnection("model.wc.sc1.u1", "model.wc.sc2.y3")
+status = oms_addConnection("model.wc.sc1.u1", "model.wc.sc2.y3")
 printStatus(status, 3)
 
-src, status = oms3_list("model.wc")
+src, status = oms_list("model.wc")
 print(src)
 
-status = oms3_deleteConnection("model.wc.sc1.u1", "model.wc.sc2.y1")
+status = oms_deleteConnection("model.wc.sc1.u1", "model.wc.sc2.y1")
 printStatus(status, 0)
 
-src, status = oms3_list("model.wc")
+src, status = oms_list("model.wc")
 print(src)
 
-status = oms3_delete("model")
+status = oms_delete("model")
 printStatus(status, 0)
 
 -- Result:

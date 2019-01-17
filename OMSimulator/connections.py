@@ -8,7 +8,7 @@
 from OMSimulator import OMSimulator
 session=OMSimulator()
 
-session.oms3_setCommandLineOption("--suppressPath=true")
+session.oms_setCommandLineOption("--suppressPath=true")
 
 def printStatus(status, expected):
   cmp = ""
@@ -25,56 +25,56 @@ def printStatus(status, expected):
     status = "error"
   print "status:  [%s] %s" % (cmp, status)
 
-status = session.oms3_setTempDirectory("./connections-py/")
+status = session.oms_setTempDirectory("./connections-py/")
 printStatus(status, 0)
 
-status = session.oms3_newModel("model")
+status = session.oms_newModel("model")
 printStatus(status, 0)
 
-status = session.oms3_addSystem("model.wc", session.oms_system_wc)
+status = session.oms_addSystem("model.wc", session.oms_system_wc)
 printStatus(status, 0)
 
-status = session.oms3_addSystem("model.wc.sc1", session.oms_system_sc)
+status = session.oms_addSystem("model.wc.sc1", session.oms_system_sc)
 printStatus(status, 0)
 
-status = session.oms3_addSystem("model.wc.sc2", session.oms_system_sc)
+status = session.oms_addSystem("model.wc.sc2", session.oms_system_sc)
 printStatus(status, 0)
 
-status = session.oms3_addConnector("model.wc.sc1.u1", session.input, session.oms_signal_type_real)
-status = session.oms3_addConnector("model.wc.sc1.u2", session.input, session.oms_signal_type_real)
-status = session.oms3_addConnector("model.wc.sc1.y", session.output, session.oms_signal_type_real)
+status = session.oms_addConnector("model.wc.sc1.u1", session.input, session.oms_signal_type_real)
+status = session.oms_addConnector("model.wc.sc1.u2", session.input, session.oms_signal_type_real)
+status = session.oms_addConnector("model.wc.sc1.y", session.output, session.oms_signal_type_real)
 printStatus(status, 0)
 
-status = session.oms3_addConnector("model.wc.sc2.y1", session.output, session.oms_signal_type_real)
-status = session.oms3_addConnector("model.wc.sc2.y2", session.output, session.oms_signal_type_integer)
-status = session.oms3_addConnector("model.wc.sc2.y3", session.output, session.oms_signal_type_real)
+status = session.oms_addConnector("model.wc.sc2.y1", session.output, session.oms_signal_type_real)
+status = session.oms_addConnector("model.wc.sc2.y2", session.output, session.oms_signal_type_integer)
+status = session.oms_addConnector("model.wc.sc2.y3", session.output, session.oms_signal_type_real)
 printStatus(status, 0)
 
-status = session.oms3_addConnection("model.wc.sc1.u1", "model.wc.sc2.y1")
+status = session.oms_addConnection("model.wc.sc1.u1", "model.wc.sc2.y1")
 printStatus(status, 0)
 
 ## Connecting input to input (illegal)
-status = session.oms3_addConnection("model.wc.sc1.y", "model.wc.sc2.y3")
+status = session.oms_addConnection("model.wc.sc1.y", "model.wc.sc2.y3")
 printStatus(status, 3)
 
 ## Connecting Real to Integer (illegal)
-status = session.oms3_addConnection("model.wc.sc1.u2", "model.wc.sc2.y2")
+status = session.oms_addConnection("model.wc.sc1.u2", "model.wc.sc2.y2")
 printStatus(status, 3)
 
 ## Connecting to already connected connector (illegal)
-status = session.oms3_addConnection("model.wc.sc1.u1", "model.wc.sc2.y3")
+status = session.oms_addConnection("model.wc.sc1.u1", "model.wc.sc2.y3")
 printStatus(status, 3)
 
-status, src = session.oms3_list("model.wc")
+status, src = session.oms_list("model.wc")
 print(src)
 
-status = session.oms3_deleteConnection("model.wc.sc1.u1", "model.wc.sc2.y1")
+status = session.oms_deleteConnection("model.wc.sc1.u1", "model.wc.sc2.y1")
 printStatus(status, 0)
 
-status, src = session.oms3_list("model.wc")
+status, src = session.oms_list("model.wc")
 print(src)
 
-status = session.oms3_delete("model")
+status = session.oms_delete("model")
 printStatus(status, 0)
 
 ## Result:

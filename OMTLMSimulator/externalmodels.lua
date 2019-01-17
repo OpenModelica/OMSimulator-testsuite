@@ -5,7 +5,7 @@
 -- win: yes
 -- mac: yes
 
-oms3_setCommandLineOption("--suppressPath=true")
+oms_setCommandLineOption("--suppressPath=true")
 
 function printStatus(status, expected)
   cmp = ""
@@ -25,24 +25,24 @@ function printStatus(status, expected)
   print("status:  [" .. cmp .. "] " .. status)
 end
 
-status = oms3_setTempDirectory("./externalmodels-lua/")
+status = oms_setTempDirectory("./externalmodels-lua/")
 printStatus(status, 0)
 
-status = oms3_newModel("model")
+status = oms_newModel("model")
 printStatus(status, 0)
 
-status = oms3_addSystem("model.tlm", oms_system_tlm)
+status = oms_addSystem("model.tlm", oms_system_tlm)
 printStatus(status, 0)
 
-status = oms3_addExternalModel("model.tlm.external", "resources/external.mo", "resources/startscript.sh")
+status = oms_addExternalModel("model.tlm.external", "resources/external.mo", "resources/startscript.sh")
 printStatus(status, 0)
 
-status = oms3_addTLMBus("model.tlm.external.tlmbus", oms_tlm_domain_mechanical, 1, default)
+status = oms_addTLMBus("model.tlm.external.tlmbus", oms_tlm_domain_mechanical, 1, default)
 
-src, status = oms3_list("model.tlm")
+src, status = oms_list("model.tlm")
 print(src)
 
-status = oms3_delete("model")
+status = oms_delete("model")
 printStatus(status, 0)
 
 -- Result:

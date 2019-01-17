@@ -8,8 +8,8 @@
 from OMSimulator import OMSimulator
 session=OMSimulator()
 
-session.oms3_setCommandLineOption("--suppressPath=true")
-session.oms3_setTempDirectory("./import_export-py/")
+session.oms_setCommandLineOption("--suppressPath=true")
+session.oms_setTempDirectory("./import_export-py/")
 
 def printStatus(status, expected):
   cmp = ""
@@ -26,133 +26,133 @@ def printStatus(status, expected):
     status = "error"
   print "status:  [%s] %s" % (cmp, status)
 
-status = session.oms3_newModel("test")
+status = session.oms_newModel("test")
 printStatus(status, 0)
 
-status = session.oms3_addSystem("test.eoo", session.oms_system_tlm)
+status = session.oms_addSystem("test.eoo", session.oms_system_tlm)
 printStatus(status, 0)
 
-status = session.oms3_setTLMSocketData("test.eoo", "127.0.1.1", 11111, 11121)
+status = session.oms_setTLMSocketData("test.eoo", "127.0.1.1", 11111, 11121)
 
-status = session.oms3_addSystem("test.eoo.foo", session.oms_system_wc)
+status = session.oms_addSystem("test.eoo.foo", session.oms_system_wc)
 printStatus(status, 0)
 
 ## CS FMU
-status = session.oms3_addSubModel("test.eoo.foo.A", "../FMUs/source.fmu")
+status = session.oms_addSubModel("test.eoo.foo.A", "../FMUs/source.fmu")
 printStatus(status, 0)
 
 ## table
-status = session.oms3_addSubModel("test.eoo.foo.T", "setpoint.csv")
+status = session.oms_addSubModel("test.eoo.foo.T", "setpoint.csv")
 printStatus(status, 0)
 
-status = session.oms3_addSystem("test.eoo.foo.goo", session.oms_system_sc)
+status = session.oms_addSystem("test.eoo.foo.goo", session.oms_system_sc)
 printStatus(status, 0)
 
-status = session.oms3_addSystem("test.eoo.foo2", session.oms_system_wc)
+status = session.oms_addSystem("test.eoo.foo2", session.oms_system_wc)
 printStatus(status, 0)
 
-status = session.oms3_addConnector("test.eoo.foo.f", session.input, session.oms_signal_type_real)
+status = session.oms_addConnector("test.eoo.foo.f", session.input, session.oms_signal_type_real)
 printStatus(status, 0)
 
-status = session.oms3_addConnector("test.eoo.foo.x", session.output, session.oms_signal_type_real)
+status = session.oms_addConnector("test.eoo.foo.x", session.output, session.oms_signal_type_real)
 printStatus(status, 0)
 
-status = session.oms3_addConnector("test.eoo.foo.v", session.output, session.oms_signal_type_real)
+status = session.oms_addConnector("test.eoo.foo.v", session.output, session.oms_signal_type_real)
 printStatus(status, 0)
 
-status = session.oms3_addConnector("test.eoo.foo.y1", session.output, session.oms_signal_type_real)
+status = session.oms_addConnector("test.eoo.foo.y1", session.output, session.oms_signal_type_real)
 printStatus(status, 0)
 
-status = session.oms3_addConnector("test.eoo.foo.y2", session.output, session.oms_signal_type_real)
+status = session.oms_addConnector("test.eoo.foo.y2", session.output, session.oms_signal_type_real)
 printStatus(status, 0)
 
-status = session.oms3_addTLMBus("test.eoo.foo.tlm", session.oms_tlm_domain_mechanical, 1, session.default)
+status = session.oms_addTLMBus("test.eoo.foo.tlm", session.oms_tlm_domain_mechanical, 1, session.default)
 printStatus(status, 0)
 
-status = session.oms3_addConnectorToTLMBus("test.eoo.foo.tlm", "test.eoo.foo.f", "effort")
+status = session.oms_addConnectorToTLMBus("test.eoo.foo.tlm", "test.eoo.foo.f", "effort")
 printStatus(status, 0)
 
-status = session.oms3_addConnectorToTLMBus("test.eoo.foo.tlm", "test.eoo.foo.x", "state")
+status = session.oms_addConnectorToTLMBus("test.eoo.foo.tlm", "test.eoo.foo.x", "state")
 printStatus(status, 0)
 
-status = session.oms3_addConnectorToTLMBus("test.eoo.foo.tlm", "test.eoo.foo.v", "flow")
+status = session.oms_addConnectorToTLMBus("test.eoo.foo.tlm", "test.eoo.foo.v", "flow")
 printStatus(status, 0)
 
-status = session.oms3_addBus("test.eoo.foo.bus")
+status = session.oms_addBus("test.eoo.foo.bus")
 printStatus(status, 0)
 
-status = session.oms3_addConnectorToBus("test.eoo.foo.bus", "test.eoo.foo.y1")
+status = session.oms_addConnectorToBus("test.eoo.foo.bus", "test.eoo.foo.y1")
 printStatus(status, 0)
 
-status = session.oms3_addConnectorToBus("test.eoo.foo.bus", "test.eoo.foo.y2")
+status = session.oms_addConnectorToBus("test.eoo.foo.bus", "test.eoo.foo.y2")
 printStatus(status, 0)
 
-status = session.oms3_addConnector("test.eoo.foo2.f", session.input, session.oms_signal_type_real)
+status = session.oms_addConnector("test.eoo.foo2.f", session.input, session.oms_signal_type_real)
 printStatus(status, 0)
 
-status = session.oms3_addConnector("test.eoo.foo2.x", session.output, session.oms_signal_type_real)
+status = session.oms_addConnector("test.eoo.foo2.x", session.output, session.oms_signal_type_real)
 printStatus(status, 0)
 
-status = session.oms3_addConnector("test.eoo.foo2.v", session.output, session.oms_signal_type_real)
+status = session.oms_addConnector("test.eoo.foo2.v", session.output, session.oms_signal_type_real)
 printStatus(status, 0)
 
-status = session.oms3_addConnector("test.eoo.foo2.u1", session.input, session.oms_signal_type_real)
+status = session.oms_addConnector("test.eoo.foo2.u1", session.input, session.oms_signal_type_real)
 printStatus(status, 0)
 
-status = session.oms3_addConnector("test.eoo.foo2.u2", session.input, session.oms_signal_type_real)
+status = session.oms_addConnector("test.eoo.foo2.u2", session.input, session.oms_signal_type_real)
 printStatus(status, 0)
 
-status = session.oms3_addTLMBus("test.eoo.foo2.tlm", session.oms_tlm_domain_mechanical, 1, session.default)
+status = session.oms_addTLMBus("test.eoo.foo2.tlm", session.oms_tlm_domain_mechanical, 1, session.default)
 printStatus(status, 0)
 
-status = session.oms3_addConnectorToTLMBus("test.eoo.foo2.tlm", "test.eoo.foo2.f", "effort")
+status = session.oms_addConnectorToTLMBus("test.eoo.foo2.tlm", "test.eoo.foo2.f", "effort")
 printStatus(status, 0)
 
-status = session.oms3_addConnectorToTLMBus("test.eoo.foo2.tlm", "test.eoo.foo2.x", "state")
+status = session.oms_addConnectorToTLMBus("test.eoo.foo2.tlm", "test.eoo.foo2.x", "state")
 printStatus(status, 0)
 
-status = session.oms3_addConnectorToTLMBus("test.eoo.foo2.tlm", "test.eoo.foo2.v", "flow")
+status = session.oms_addConnectorToTLMBus("test.eoo.foo2.tlm", "test.eoo.foo2.v", "flow")
 printStatus(status, 0)
 
-status = session.oms3_addBus("test.eoo.foo2.bus")
+status = session.oms_addBus("test.eoo.foo2.bus")
 printStatus(status, 0)
 
-status = session.oms3_addConnectorToBus("test.eoo.foo2.bus", "test.eoo.foo2.u1")
+status = session.oms_addConnectorToBus("test.eoo.foo2.bus", "test.eoo.foo2.u1")
 printStatus(status, 0)
 
-status = session.oms3_addConnectorToBus("test.eoo.foo2.bus", "test.eoo.foo2.u2")
+status = session.oms_addConnectorToBus("test.eoo.foo2.bus", "test.eoo.foo2.u2")
 printStatus(status, 0)
 
-status = session.oms3_addTLMConnection("test.eoo.foo.tlm", "test.eoo.foo2.tlm", 0.001, 0.3, 100, 0)
+status = session.oms_addTLMConnection("test.eoo.foo.tlm", "test.eoo.foo2.tlm", 0.001, 0.3, 100, 0)
 printStatus(status, 0)
 
-status = session.oms3_addConnection("test.eoo.foo.y1", "test.eoo.foo2.u1")
+status = session.oms_addConnection("test.eoo.foo.y1", "test.eoo.foo2.u1")
 printStatus(status, 0)
 
-status = session.oms3_addConnection("test.eoo.foo.y2", "test.eoo.foo2.u2")
+status = session.oms_addConnection("test.eoo.foo.y2", "test.eoo.foo2.u2")
 printStatus(status, 0)
 
-status = session.oms3_addConnection("test.eoo.foo.bus", "test.eoo.foo2.bus")
+status = session.oms_addConnection("test.eoo.foo.bus", "test.eoo.foo2.bus")
 printStatus(status, 0)
 
-status, src = session.oms3_list("test")
-printStatus(status, 0)
-print(src)
-
-status = session.oms3_export("test", "test-py.ssp")
-printStatus(status, 0)
-
-status = session.oms3_delete("test")
-printStatus(status, 0)
-
-status, model = session.oms3_import("test-py.ssp")
-printStatus(status, 0)
-
-status, src = session.oms3_list(model)
+status, src = session.oms_list("test")
 printStatus(status, 0)
 print(src)
 
-status = session.oms3_delete(model)
+status = session.oms_export("test", "test-py.ssp")
+printStatus(status, 0)
+
+status = session.oms_delete("test")
+printStatus(status, 0)
+
+status, model = session.oms_import("test-py.ssp")
+printStatus(status, 0)
+
+status, src = session.oms_list(model)
+printStatus(status, 0)
+print(src)
+
+status = session.oms_delete(model)
 printStatus(status, 0)
 
 ## Result:

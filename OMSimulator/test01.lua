@@ -5,8 +5,8 @@
 -- win: yes
 -- mac: yes
 
-oms3_setCommandLineOption("--suppressPath=true")
-oms3_setTempDirectory("./test01-lua/")
+oms_setCommandLineOption("--suppressPath=true")
+oms_setTempDirectory("./test01-lua/")
 
 function printStatus(status, expected)
   cmp = ""
@@ -26,55 +26,55 @@ function printStatus(status, expected)
   print("status:  [" .. cmp .. "] " .. status)
 end
 
-status = oms3_newModel("test")
+status = oms_newModel("test")
 printStatus(status, 0)
 
-status = oms3_addSystem("test", oms_system_tlm)
+status = oms_addSystem("test", oms_system_tlm)
 printStatus(status, 3)
 
-status = oms3_addSystem("test.foo", oms_system_wc)
+status = oms_addSystem("test.foo", oms_system_wc)
 printStatus(status, 0)
 
-status = oms3_addSystem("test.foo.goo", oms_system_sc)
+status = oms_addSystem("test.foo.goo", oms_system_sc)
 printStatus(status, 0)
 
-status = oms3_addSystem("test.foo.hoo", oms_system_wc)
+status = oms_addSystem("test.foo.hoo", oms_system_wc)
 printStatus(status, 3)
 
-src, status = oms3_list("test")
+src, status = oms_list("test")
 print(src)
 
-src, status = oms3_list("test.foo")
+src, status = oms_list("test.foo")
 print(src)
 
-src, status = oms3_list("test.foo.goo")
+src, status = oms_list("test.foo.goo")
 print(src)
 
-status = oms3_newModel("test")
+status = oms_newModel("test")
 printStatus(status, 3)
 
-status = oms3_rename("test", "foo")
+status = oms_rename("test", "foo")
 printStatus(status, 0)
 
-status = oms3_newModel("test")
+status = oms_newModel("test")
 printStatus(status, 0)
 
-status = oms3_delete("test")
+status = oms_delete("test")
 printStatus(status, 0)
 
-status = oms3_delete("foo")
+status = oms_delete("foo")
 printStatus(status, 0)
 
-status = oms3_newModel("test")
+status = oms_newModel("test")
 printStatus(status, 0)
 
-src, status = oms3_list("test")
+src, status = oms_list("test")
 print(src)
 
-status = oms3_delete("test")
+status = oms_delete("test")
 printStatus(status, 0)
 
-status = oms3_delete("foo")
+status = oms_delete("foo")
 printStatus(status, 3)
 
 -- Result:
@@ -149,7 +149,7 @@ printStatus(status, 3)
 -- </ssd:SystemStructureDescription>
 --
 -- status:  [correct] ok
--- error:   [oms3_delete] Model "foo" does not exist in the scope
+-- error:   [oms_delete] Model "foo" does not exist in the scope
 -- status:  [correct] error
 -- info:    0 warnings
 -- info:    4 errors
