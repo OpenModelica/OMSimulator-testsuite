@@ -60,7 +60,7 @@ oms_exportDependencyGraphs("PI_Controller.co_sim", "PI_Controller_init.dot", "PI
 
 oms_export("PI_Controller", "PI_Controller.ssp");
 oms_delete("PI_Controller")
-oms_import("PI_Controller.ssp");
+oms_importFile("PI_Controller.ssp");
 
 oms_instantiate("PI_Controller")
 

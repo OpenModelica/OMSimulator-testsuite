@@ -6,9 +6,9 @@
 ## mac: no
 
 from OMSimulator import OMSimulator
-session=OMSimulator()
+oms = OMSimulator()
 
-session.oms_setCommandLineOption("--suppressPath=true")
+oms.setCommandLineOption("--suppressPath=true")
 
 def printStatus(status, expected):
   cmp = ""
@@ -25,24 +25,24 @@ def printStatus(status, expected):
     status = "error"
   print "status:  [%s] %s" % (cmp, status)
 
-status = session.oms_setTempDirectory("./externalmodels-py/")
+status = oms.setTempDirectory("./externalmodels-py/")
 printStatus(status, 0)
 
-status = session.oms_newModel("model")
+status = oms.newModel("model")
 printStatus(status, 0)
 
-status = session.oms_addSystem("model.tlm", session.oms_system_tlm)
+status = oms.addSystem("model.tlm", oms.system_tlm)
 printStatus(status, 0)
 
-status = session.oms_addExternalModel("model.tlm.external", "resources/external.mo", "resources/startscript.sh")
+status = oms.addExternalModel("model.tlm.external", "resources/external.mo", "resources/startscript.sh")
 printStatus(status, 0)
 
-status = session.oms_addTLMBus("model.tlm.external.tlmbus", session.oms_tlm_domain_mechanical, 1, session.default)
+status = oms.addTLMBus("model.tlm.external.tlmbus", oms.tlm_domain_mechanical, 1, oms.default)
 
-status, src = session.oms_list("model.tlm")
+status, src = oms.list("model.tlm")
 print(src)
 
-status = session.oms_delete("model")
+status = oms.delete("model")
 printStatus(status, 0)
 
 ## Result:
