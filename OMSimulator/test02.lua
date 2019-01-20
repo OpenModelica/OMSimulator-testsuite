@@ -41,6 +41,10 @@ end
 status = oms_newModel("test")
 printStatus(status, 0)
 
+type, status = oms_getSystemType("test")
+printType(type)
+printStatus(status, 3)
+
 status = oms_addSystem("test.eoo", oms_system_tlm)
 printStatus(status, 0)
 
@@ -71,12 +75,14 @@ printStatus(status, 0)
 
 -- Result:
 -- status:  [correct] ok
--- status:  [correct] ok
--- status:  [correct] ok
--- status:  [correct] ok
 -- error:   [oms_getSystemType] Model "test" does not contain system ""
 -- Unknown type
 -- status:  [correct] error
+-- status:  [correct] ok
+-- status:  [correct] ok
+-- status:  [correct] ok
+-- type: oms_system_tlm
+-- status:  [wrong] ok
 -- type: oms_system_tlm
 -- status:  [correct] ok
 -- type: oms_system_wc

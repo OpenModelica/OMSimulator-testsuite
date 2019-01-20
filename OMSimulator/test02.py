@@ -39,6 +39,10 @@ def printType(t):
 status = oms.newModel("test")
 printStatus(status, 0)
 
+status, type = oms.getSystemType("test")
+printType(type)
+printStatus(status, 3)
+
 status = oms.addSystem("test.eoo", oms.system_tlm)
 printStatus(status, 0)
 
@@ -69,12 +73,14 @@ printStatus(status, 0)
 
 ## Result:
 ## status:  [correct] ok
-## status:  [correct] ok
-## status:  [correct] ok
-## status:  [correct] ok
 ## error:   [oms_getSystemType] Model "test" does not contain system ""
 ## Unknown type
 ## status:  [correct] error
+## status:  [correct] ok
+## status:  [correct] ok
+## status:  [correct] ok
+## type: system_tlm
+## status:  [wrong] ok
 ## type: system_tlm
 ## status:  [correct] ok
 ## type: system_wc
