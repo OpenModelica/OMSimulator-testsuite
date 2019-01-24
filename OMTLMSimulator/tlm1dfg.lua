@@ -117,6 +117,4 @@ end
 -- wc1.P.F [N] is equal
 -- wc2.P.F [N] is equal
 -- info:    Logging information has been saved to "tlm1dfg.log"
--- info:    0 warnings
--- info:    4 errors
 -- endResult
