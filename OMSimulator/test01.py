@@ -149,7 +149,7 @@ printStatus(status, 3)
 ## </ssd:SystemStructureDescription>
 ##
 ## status:  [correct] ok
-## error:   [oms_delete] Model "foo" does not exist in the scope
+## error:   [deleteModel] Model "foo" does not exist in the scope
 ## status:  [correct] error
 ## info:    0 warnings
 ## info:    4 errors
