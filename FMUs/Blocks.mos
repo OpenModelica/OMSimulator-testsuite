@@ -1,10 +1,25 @@
 loadModel(Modelica); getErrorString();
 
-buildModelFMU(Modelica.Blocks.Math.Add, version="2.0", fmuType="me", fileNamePrefix="Modelica.Blocks.Math.Add", platforms={"static"}); getErrorString();
-buildModelFMU(Modelica.Blocks.Math.Feedback, version="2.0", fmuType="me", fileNamePrefix="Modelica.Blocks.Math.Feedback", platforms={"static"}); getErrorString();
-buildModelFMU(Modelica.Blocks.Math.Gain, version="2.0", fmuType="me", fileNamePrefix="Modelica.Blocks.Math.Gain", platforms={"static"}); getErrorString();
-buildModelFMU(Modelica.Blocks.Math.Product, version="2.0", fmuType="me", fileNamePrefix="Modelica.Blocks.Math.Product", platforms={"static"}); getErrorString();
-buildModelFMU(Modelica.Blocks.Sources.Clock, version="2.0", fmuType="me", fileNamePrefix="Modelica.Blocks.Sources.Clock", platforms={"static"}); getErrorString();
-buildModelFMU(Modelica.Blocks.Sources.Constant, version="2.0", fmuType="me", fileNamePrefix="Modelica.Blocks.Sources.Constant", platforms={"static"}); getErrorString();
-buildModelFMU(Modelica.Blocks.Sources.Sine, version="2.0", fmuType="me", fileNamePrefix="Modelica.Blocks.Sources.Sine", platforms={"static"}); getErrorString();
-buildModelFMU(Modelica.Blocks.Sources.Step, version="2.0", fmuType="me", fileNamePrefix="Modelica.Blocks.Sources.Step", platforms={"static"}); getErrorString();
+buildModelFMU(Modelica.Blocks.Math.Add, version="2.0", fmuType="me_cs", fileNamePrefix="Modelica.Blocks.Math.Add", platforms={"x86_64-linux-gnu"}); getErrorString();
+buildModelFMU(Modelica.Blocks.Math.Feedback, version="2.0", fmuType="me_cs", fileNamePrefix="Modelica.Blocks.Math.Feedback", platforms={"x86_64-linux-gnu"}); getErrorString();
+buildModelFMU(Modelica.Blocks.Math.Gain, version="2.0", fmuType="me_cs", fileNamePrefix="Modelica.Blocks.Math.Gain", platforms={"x86_64-linux-gnu"}); getErrorString();
+buildModelFMU(Modelica.Blocks.Math.Product, version="2.0", fmuType="me_cs", fileNamePrefix="Modelica.Blocks.Math.Product", platforms={"x86_64-linux-gnu"}); getErrorString();
+buildModelFMU(Modelica.Blocks.Sources.Clock, version="2.0", fmuType="me_cs", fileNamePrefix="Modelica.Blocks.Sources.Clock", platforms={"x86_64-linux-gnu"}); getErrorString();
+buildModelFMU(Modelica.Blocks.Sources.Constant, version="2.0", fmuType="me_cs", fileNamePrefix="Modelica.Blocks.Sources.Constant", platforms={"x86_64-linux-gnu"}); getErrorString();
+buildModelFMU(Modelica.Blocks.Sources.Sine, version="2.0", fmuType="me_cs", fileNamePrefix="Modelica.Blocks.Sources.Sine", platforms={"x86_64-linux-gnu"}); getErrorString();
+buildModelFMU(Modelica.Blocks.Sources.Step, version="2.0", fmuType="me_cs", fileNamePrefix="Modelica.Blocks.Sources.Step", platforms={"x86_64-linux-gnu"}); getErrorString();
+buildModelFMU(Modelica.Blocks.Math.Add3, version="2.0", fmuType="me_cs", fileNamePrefix="Modelica.Blocks.Math.Add3", platforms={"x86_64-linux-gnu"}); getErrorString();
+buildModelFMU(Modelica.Blocks.Nonlinear.Limiter, version="2.0", fmuType="me_cs", fileNamePrefix="Modelica.Blocks.Nonlinear.Limiter", platforms={"x86_64-linux-gnu"}); getErrorString();
+buildModelFMU(Modelica.Blocks.Continuous.Integrator, version="2.0", fmuType="me_cs", fileNamePrefix="Modelica.Blocks.Continuous.Integrator", platforms={"x86_64-linux-gnu"}); getErrorString();
+
+system("zip -qd Modelica.Blocks.Math.Add.fmu sources/*");
+system("zip -qd Modelica.Blocks.Math.Feedback.fmu sources/*");
+system("zip -qd Modelica.Blocks.Math.Gain.fmu sources/*");
+system("zip -qd Modelica.Blocks.Math.Product.fmu sources/*");
+system("zip -qd Modelica.Blocks.Sources.Clock.fmu sources/*");
+system("zip -qd Modelica.Blocks.Sources.Constant.fmu sources/*");
+system("zip -qd Modelica.Blocks.Sources.Sine.fmu sources/*");
+system("zip -qd Modelica.Blocks.Sources.Step.fmu sources/*");
+system("zip -qd Modelica.Blocks.Math.Add3.fmu sources/*");
+system("zip -qd Modelica.Blocks.Nonlinear.Limiter.fmu sources/*");
+system("zip -qd Modelica.Blocks.Continuous.Integrator.fmu sources/*");
