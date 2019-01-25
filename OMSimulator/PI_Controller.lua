@@ -5,7 +5,7 @@
 -- win: no
 -- mac: no
 
-oms_setCommandLineOption("--suppressPath=true")
+oms_setCommandLineOption("--suppressPath=true --ignoreInitialUnknowns=true")
 oms_setTempDirectory("./PI_Controller-lua/")
 
 oms_newModel("PI_Controller")
@@ -75,6 +75,7 @@ oms_setReal("PI_Controller.co_sim.addP.k1", wp)
 oms_setReal("PI_Controller.co_sim.addP.k2", -1.0)
 oms_setReal("PI_Controller.co_sim.addI.k2", -1.0)
 oms_setReal("PI_Controller.co_sim.I.y_start", xi_start)
+oms_setReal("PI_Controller.co_sim.I.k", 10)
 oms_setReal("PI_Controller.co_sim.gainPI.k", k)
 oms_setReal("PI_Controller.co_sim.limiter.uMax", yMax)
 oms_setReal("PI_Controller.co_sim.addSat.k2", -1.0)
@@ -118,6 +119,6 @@ oms_delete("PI_Controller")
 -- info:      limiter.u: 0.0
 -- info:      limiter.y: 0.0
 -- info:    Simulation
--- info:      limiter.u: -10.041848601893
--- info:      limiter.y: -10.041848601893
+-- info:      limiter.u: -10.041439549286
+-- info:      limiter.y: -10.041439549286
 -- endResult
